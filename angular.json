@@ -26,7 +26,7 @@
             ],
             "styles": [
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -35,8 +35,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -73,25 +73,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "iot-master-ui:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "src/styles.css"
-            ],
-            "scripts": []
           }
         }
       }
