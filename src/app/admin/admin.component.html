@@ -1,1 +1,14 @@
-<p>admin works!</p>
+<nz-tabset nzType="editable-card" [nzHideAdd]="true" [nzTabBarGutter]="2" nzLinkRouter>
+  <nz-tab nzClosable>
+    <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'one' }" queryParamsHandling="merge">
+      Default
+    </a>
+    Default.
+  </nz-tab>
+  <nz-tab>
+    <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'two' }" queryParamsHandling="merge">
+      Default 2
+    </a>
+    Default. 2
+  </nz-tab>
+</nz-tabset>

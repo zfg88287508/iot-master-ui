@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AdminComponent } from './admin/admin.component';
 import { H5Component } from './h5/h5.component';
 import {RouterModule, RouterOutlet, Routes} from "@angular/router";
+import {NzTabsModule} from "ng-zorro-antd/tabs";
 
 registerLocaleData(zh);
 
@@ -47,6 +48,7 @@ const routes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     RouterOutlet,
+    NzTabsModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent],
