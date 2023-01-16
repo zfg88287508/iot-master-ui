@@ -1,1 +1,16 @@
-<p>device-edit works!</p>
+<form nz-form [formGroup]="group" (ngSubmit)="submit()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">名称</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="名称">
+      <input nz-input formControlName="name"/>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">产品</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+      <input nz-input formControlName="product" placeholder="TODO：选择产品" />
+    </nz-form-control>
+  </nz-form-item>
+
+</form>

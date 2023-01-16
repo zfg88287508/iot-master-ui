@@ -20,7 +20,7 @@ export class GatewaysComponent {
 
   create() {
     this.ms.create({
-      nzTitle: "创建",
+      nzTitle: "创建网关",
       nzContent: GatewayEditComponent
     })
   }

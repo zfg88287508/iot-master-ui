@@ -20,7 +20,7 @@ export class DevicesComponent {
 
   create() {
     this.ms.create({
-      nzTitle: "创建",
+      nzTitle: "创建设备",
       nzContent: DeviceEditComponent
     })
   }

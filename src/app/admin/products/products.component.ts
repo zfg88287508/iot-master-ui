@@ -20,7 +20,7 @@ export class ProductsComponent {
 
   create() {
     this.ms.create({
-      nzTitle: "创建",
+      nzTitle: "创建产品（物模型）",
       nzContent: ProductEditComponent
     })
   }
