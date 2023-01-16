@@ -1,14 +1,39 @@
-<nz-tabset nzType="editable-card" [nzHideAdd]="true" [nzTabBarGutter]="2" nzLinkRouter>
-  <nz-tab nzClosable>
-    <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'one' }" queryParamsHandling="merge">
-      Default
-    </a>
-    Default.
-  </nz-tab>
-  <nz-tab>
-    <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'two' }" queryParamsHandling="merge">
-      Default 2
-    </a>
-    Default. 2
-  </nz-tab>
-</nz-tabset>
+<nz-layout class="admin-layout">
+  <nz-header>
+    <div class="logo"></div>
+  </nz-header>
+  <nz-layout>
+    <nz-sider nzWidth="200px" nzTheme="light">
+      <ul nz-menu nzMode="inline" class="sider-menu">
+        <li nz-submenu nzOpen nzIcon="dashboard" nzTitle="控制台">
+          <ul>
+            <li nz-menu-item>数据大屏</li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="总线管理" nzIcon="laptop">
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <a [routerLink]="['/admin/broker/users']">接入管理</a>
+            </li>
+            <li nz-menu-item>option6</li>
+            <li nz-menu-item>option7</li>
+            <li nz-menu-item>option8</li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="系统设置" nzIcon="setting">
+          <ul>
+            <li nz-menu-item>插件管理</li>
+            <li nz-menu-item>配置文件</li>
+            <li nz-menu-item>修改密码</li>
+            <li nz-menu-item>退出</li>
+          </ul>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout class="inner-layout">
+      <nz-content>
+        <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>

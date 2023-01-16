@@ -1,0 +1,33 @@
+
+<nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+  <input type="text" nz-input placeholder="用户名" />
+</nz-input-group>
+<ng-template #suffixButton>
+  <button nz-button nzType="primary" nzSize="large" nzSearch>搜索</button>
+</ng-template>
+<!--<button nz-button nzType="primary"><span nz-icon nzType="plus"></span>添加</button>-->
+
+<nz-table #basicTable [nzData]="users">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>用户名</th>
+    <th>密码</th>
+    <th>日期</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{data.id}}</td>
+    <td>{{data.username}}</td>
+    <td>{{data.password}}</td>
+    <td>{{data.created}}</td>
+    <td>
+      <a>编辑</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a>删除</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
