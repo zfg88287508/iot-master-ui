@@ -23,9 +23,16 @@ import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
 import {NzMessageModule} from "ng-zorro-antd/message";
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
-import { BrokerUsersComponent } from './broker-users/broker-users.component';
+import { GatewaysComponent } from './admin/gateways/gateways.component';
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerModule} from "ng-zorro-antd/divider";
+import { DevicesComponent } from './admin/devices/devices.component';
+import { ProductsComponent } from './admin/products/products.component';
+import { DatePipe } from './date.pipe';
+import { ProductEditComponent } from './admin/product-edit/product-edit.component';
+import { DeviceEditComponent } from './admin/device-edit/device-edit.component';
+import { GatewayEditComponent } from './admin/gateway-edit/gateway-edit.component';
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 registerLocaleData(zh);
 
@@ -40,8 +47,16 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       {
-        path: 'broker/users',
-        component: BrokerUsersComponent,
+        path: 'gateways',
+        component: GatewaysComponent,
+      },
+      {
+        path: 'devices',
+        component: DevicesComponent,
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
       }
     ]
   },
@@ -56,7 +71,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AppComponent, TabsComponent, LoginComponent, PageNotFoundComponent, AdminComponent, H5Component, BrokerUsersComponent],
+  declarations: [AppComponent, TabsComponent, LoginComponent, PageNotFoundComponent, AdminComponent, H5Component, GatewaysComponent, DevicesComponent, ProductsComponent, DatePipe, ProductEditComponent, DeviceEditComponent, GatewayEditComponent],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
@@ -75,6 +90,7 @@ const routes: Routes = [
     NzMenuModule,
     NzTableModule,
     NzDividerModule,
+    NzModalModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent],

@@ -10,14 +10,17 @@
             <li nz-menu-item>数据大屏</li>
           </ul>
         </li>
-        <li nz-submenu nzTitle="总线管理" nzIcon="laptop">
+        <li nz-submenu nzTitle="设备管理" nzIcon="laptop" nzOpen>
           <ul>
             <li nz-menu-item nzMatchRouter>
-              <a [routerLink]="['/admin/broker/users']">接入管理</a>
+              <a [routerLink]="['/admin/gateways']">网关管理</a>
             </li>
-            <li nz-menu-item>option6</li>
-            <li nz-menu-item>option7</li>
-            <li nz-menu-item>option8</li>
+            <li nz-menu-item nzMatchRouter>
+              <a [routerLink]="['/admin/devices']">设备管理</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a [routerLink]="['/admin/products']">产品管理</a>
+            </li>
           </ul>
         </li>
         <li nz-submenu nzTitle="系统设置" nzIcon="setting">
