@@ -11,8 +11,8 @@ export class UserService {
   public userSub = new Subject<any>();
 
   constructor(private rs: RequestService) {
-    rs.get('my/me').subscribe(res => {
-      this.setUser(res.data);
+    rs.get('user/me').subscribe(res => {
+      this.setUser(res.data) ;
     })
   }
 
