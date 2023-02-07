@@ -1,1 +1,19 @@
-<p>desktop works!</p>
+<nz-layout class="layout">
+  <nz-header class="header">
+    数据采集中台
+  </nz-header>
+  <nz-content class="content">
+    <nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24}, { xs: 8, sm: 16, md: 24}]">
+      <nz-col class="app" (click)="open(app)"
+        *ngFor="let app of apps"
+        [nzXs]="8" [nzSm]="6" [nzMd]="4" [nzLg]="3">
+        <img class="icon" [src]="app.icon || '/assets/app.png'" alt="app">
+        <div class="name">{{app.name}}</div>
+      </nz-col>
+    </nz-row>
+
+  </nz-content>
+  <nz-footer class="footer">
+    无锡真格智能科技有限公司
+  </nz-footer>
+</nz-layout>
