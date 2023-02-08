@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-gateway-edit',
+  selector: 'app-gateways-edit',
   templateUrl: './gateway-edit.component.html',
   styleUrls: ['./gateway-edit.component.scss']
 })

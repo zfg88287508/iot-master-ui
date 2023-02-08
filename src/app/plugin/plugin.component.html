@@ -1,0 +1,33 @@
+<nz-layout style="height: 100%">
+  <nz-sider>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+<!--      <li nz-menu-item [routerLink]="['/']">-->
+<!--        <i nz-icon nzType="home"></i>-->
+<!--        <span>返回桌面</span>-->
+<!--      </li>-->
+      <li nz-submenu nzTitle="服务器" nzIcon="database" nzOpen>
+        <ul>
+          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+            <a [routerLink]="['/broker/servers']">查看</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+            <a [routerLink]="['/broker/servers/create']">新建</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="网关" nzIcon="wifi" nzOpen>
+        <ul>
+          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+            <a [routerLink]="['/broker/gateways']">查看</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+            <a [routerLink]="['/broker/gateways/create']">新建</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-content>
+    <router-outlet></router-outlet>
+  </nz-content>
+</nz-layout>

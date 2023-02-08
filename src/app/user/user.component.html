@@ -1,0 +1,33 @@
+<nz-layout style="height: 100%">
+  <nz-sider>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+<!--      <li nz-menu-item [routerLink]="['/']">-->
+<!--        <i nz-icon nzType="home"></i>-->
+<!--        <span>返回桌面</span>-->
+<!--      </li>-->
+      <li nz-submenu nzTitle="用户" nzIcon="team" nzOpen>
+        <ul>
+          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+            <a [routerLink]="['/user/users']">查看</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+            <a [routerLink]="['/user/user/create']">新建</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="我的" nzIcon="user" nzOpen>
+        <ul>
+          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+            <a [routerLink]="['/user/me']">个人信息</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+            <a [routerLink]="['/user/password']">修改密码</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-content>
+    <router-outlet></router-outlet>
+  </nz-content>
+</nz-layout>

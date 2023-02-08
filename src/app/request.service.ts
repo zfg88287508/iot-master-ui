@@ -12,7 +12,7 @@ import {environment} from '../environments/environment';
 })
 export class RequestService {
 
-  public base = '/api/'; //使用ng server proxy.config.json
+  public base = '/api/'; //使用ng servers proxy.config.json
   //public base = environment.host;
 
   constructor(private http: HttpClient, private message: NzMessageService, private route: Router) {
