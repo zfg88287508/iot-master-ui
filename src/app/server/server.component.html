@@ -5,16 +5,16 @@
 <!--        <i nz-icon nzType="home"></i>-->
 <!--        <span>返回桌面</span>-->
 <!--      </li>-->
-      <li nz-submenu nzTitle="物模型" nzIcon="database" nzOpen>
+      <li nz-submenu nzTitle="服务器" nzIcon="database" nzOpen>
         <ul>
           <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/model/models']">
+            <a [routerLink]="['/server/servers']">
               <i nz-icon nzType="menu" nzTheme="outline"></i>
               <span>所有</span>
             </a>
           </li>
           <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/model/create']">
+            <a [routerLink]="['/server/create']">
               <i nz-icon nzType="edit" nzTheme="outline"></i>
               <span>新建</span>
             </a>

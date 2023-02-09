@@ -5,11 +5,11 @@ import {RequestService} from "../../request.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
-  selector: 'app-models-edit',
-  templateUrl: './model-edit.component.html',
-  styleUrls: ['./model-edit.component.scss']
+  selector: 'app-plugin-edit',
+  templateUrl: './plugin-edit.component.html',
+  styleUrls: ['./plugin-edit.component.scss']
 })
-export class ModelEditComponent {
+export class PluginEditComponent {
   group: any = {};
   id: any = 0
 

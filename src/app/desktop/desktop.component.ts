@@ -17,35 +17,40 @@ export class DesktopComponent {
   oem: any;
 
   apps: any[] = [{
-    icon: '/assets/broker.png',
+    icon: '/assets/server.png',
     name: '数据总线',
     internal: true,
-    url: '/broker'
+    url: '/server'
   }, {
-    icon: '/assets/user.png',
-    name: '用户管理',
+    icon: '/assets/gateway.png',
+    name: '网关管理',
     internal: true,
-    url: '/user'
-  }, {
-    icon: '/assets/setting.png',
-    name: '系统设置',
-    internal: true,
-    url: '/setting'
-  }, {
-    icon: '/assets/model.png',
-    name: '物模型',
-    internal: true,
-    url: '/model'
+    url: '/gateway'
   }, {
     icon: '/assets/device.png',
     name: '设备管理',
     internal: true,
     url: '/device'
   }, {
+    icon: '/assets/model.png',
+    name: '物模型',
+    internal: true,
+    url: '/model'
+  }, {
+    icon: '/assets/user.png',
+    name: '用户管理',
+    internal: true,
+    url: '/user'
+  }, {
     icon: '/assets/plugin.png',
     name: '插件管理',
     internal: true,
     url: '/plugin'
+  }, {
+    icon: '/assets/setting.png',
+    name: '系统设置',
+    internal: true,
+    url: '/setting'
   }];
   drawVisible: any;
 

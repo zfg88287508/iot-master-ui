@@ -8,6 +8,16 @@ import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {DeviceComponent} from "./device.component";
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {ReactiveFormsModule} from "@angular/forms";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzInputNumberModule} from "ng-zorro-antd/input-number";
+import {BaseModule} from "../base/base.module";
+import {NzSpaceModule} from "ng-zorro-antd/space";
+import {NzTableModule} from "ng-zorro-antd/table";
+import {NzDividerModule} from "ng-zorro-antd/divider";
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 
 @NgModule({
@@ -21,7 +31,17 @@ import {DeviceComponent} from "./device.component";
     DeviceRoutingModule,
     NzLayoutModule,
     NzMenuModule,
-    NzIconModule
+    NzIconModule,
+    NzCardModule,
+    NzFormModule,
+    ReactiveFormsModule,
+    NzInputModule,
+    NzInputNumberModule,
+    BaseModule,
+    NzSpaceModule,
+    NzTableModule,
+    NzDividerModule,
+    NzButtonModule
   ]
 })
 export class DeviceModule { }

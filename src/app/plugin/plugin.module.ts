@@ -6,18 +6,42 @@ import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {PluginComponent} from "./plugin.component";
+import { PluginsComponent } from './plugins/plugins.component';
+import { PluginEditComponent } from './plugin-edit/plugin-edit.component';
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {ReactiveFormsModule} from "@angular/forms";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzInputNumberModule} from "ng-zorro-antd/input-number";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {BaseModule} from "../base/base.module";
+import {NzSpaceModule} from "ng-zorro-antd/space";
+import {NzTableModule} from "ng-zorro-antd/table";
+import {NzDividerModule} from "ng-zorro-antd/divider";
 
 
 @NgModule({
   declarations: [
     PluginComponent,
+    PluginsComponent,
+    PluginEditComponent,
   ],
   imports: [
     CommonModule,
     PluginRoutingModule,
     NzLayoutModule,
     NzMenuModule,
-    NzIconModule
+    NzIconModule,
+    NzCardModule,
+    NzFormModule,
+    ReactiveFormsModule,
+    NzInputModule,
+    NzInputNumberModule,
+    NzButtonModule,
+    BaseModule,
+    NzSpaceModule,
+    NzTableModule,
+    NzDividerModule
   ]
 })
 export class PluginModule { }

@@ -10,8 +10,8 @@ const routes: Routes = [
     path: '', component: ModelComponent, children: [
       {path: '', pathMatch:"full", redirectTo: "models"},
       {path: 'models', component: ModelsComponent},
-      {path: 'model/edit/:id', component: ModelEditComponent},
-      {path: 'model/create', component: ModelEditComponent},
+      {path: 'edit/:id', component: ModelEditComponent},
+      {path: 'create', component: ModelEditComponent},
     ]
   },
   {path: '**', component: PageNotFoundComponent}

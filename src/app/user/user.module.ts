@@ -10,6 +10,16 @@ import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {UserComponent} from "./user.component";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzCardModule} from "ng-zorro-antd/card";
+import {ReactiveFormsModule} from "@angular/forms";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzInputNumberModule} from "ng-zorro-antd/input-number";
+import {BaseModule} from "../base/base.module";
+import {NzSpaceModule} from "ng-zorro-antd/space";
+import {NzTableModule} from "ng-zorro-antd/table";
+import {NzDividerModule} from "ng-zorro-antd/divider";
 
 
 @NgModule({
@@ -25,7 +35,17 @@ import {UserComponent} from "./user.component";
     UserRoutingModule,
     NzLayoutModule,
     NzMenuModule,
-    NzIconModule
+    NzIconModule,
+    NzButtonModule,
+    NzCardModule,
+    ReactiveFormsModule,
+    NzFormModule,
+    NzInputModule,
+    NzInputNumberModule,
+    BaseModule,
+    NzSpaceModule,
+    NzTableModule,
+    NzDividerModule
   ]
 })
 export class UserModule { }

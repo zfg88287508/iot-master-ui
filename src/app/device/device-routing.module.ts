@@ -11,8 +11,8 @@ const routes: Routes = [
     path: '', component: DeviceComponent, children: [
       {path: '', pathMatch:"full", redirectTo: "devices"},
       {path: 'devices', component: DevicesComponent},
-      {path: 'device/edit/:id', component: DeviceEditComponent},
-      {path: 'device/create', component: DeviceEditComponent},
+      {path: 'edit/:id', component: DeviceEditComponent},
+      {path: 'create', component: DeviceEditComponent},
     ]
   },
   {path: '**', component: PageNotFoundComponent}

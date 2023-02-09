@@ -1,38 +1,22 @@
 <nz-layout style="height: 100%">
-  <nz-sider>
-    <ul nz-menu nzTheme="dark" nzMode="inline">
+  <nz-sider nzTheme="light" nzBreakpoint="sm">
+    <ul nz-menu nzTheme="light" nzMode="inline">
 <!--      <li nz-menu-item [routerLink]="['/']">-->
 <!--        <i nz-icon nzType="home"></i>-->
 <!--        <span>返回桌面</span>-->
 <!--      </li>-->
-      <li nz-submenu nzTitle="服务器" nzIcon="database" nzOpen>
+      <li nz-submenu nzTitle="插件" nzIcon="database" nzOpen>
         <ul>
           <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/broker/servers']">
+            <a [routerLink]="['/plugin/plugins']">
               <i nz-icon nzType="menu" nzTheme="outline"></i>
               <span>所有</span>
             </a>
           </li>
           <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/broker/servers/create']">
-              <i nz-icon nzType="menu" nzTheme="outline"></i>
-              <span>所有</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="网关" nzIcon="wifi" nzOpen>
-        <ul>
-          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/broker/gateways']">
-              <i nz-icon nzType="menu" nzTheme="outline"></i>
-              <span>所有</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/broker/gateways/create']">
-              <i nz-icon nzType="menu" nzTheme="outline"></i>
-              <span>所有</span>
+            <a [routerLink]="['/create']">
+              <i nz-icon nzType="edit" nzTheme="outline"></i>
+              <span>新建</span>
             </a>
           </li>
         </ul>

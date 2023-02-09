@@ -7,11 +7,11 @@ import {NzTableQueryParams} from "ng-zorro-antd/table";
 import {ParseTableQuery} from "../../base/table";
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-plugins',
+  templateUrl: './plugins.component.html',
+  styleUrls: ['./plugins.component.scss']
 })
-export class UsersComponent {
+export class PluginsComponent {
 
   loading = true
   datum: any[] = []
@@ -32,7 +32,7 @@ export class UsersComponent {
 
   load() {
     this.loading = true
-    this.rs.post("user/search", this.query).subscribe(res=>{
+    this.rs.post("model/search", this.query).subscribe(res=>{
       this.datum = res.data;
     }).add(()=>{
       this.loading = false;
@@ -40,17 +40,17 @@ export class UsersComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/user/user/create")
+    this.router.navigateByUrl("/model/model/create")
     // this.ms.create({
     //   nzTitle: "创建服务器",
-    //   nzContent: userEditComponent
+    //   nzContent: modelEditComponent
     // })
   }
 
   delete(index: number, id: number) {
     console.log('delete', index, id)
     this.datum.splice(index, 1);
-    this.rs.get(`user/${id}/delete`).subscribe(res => {
+    this.rs.get(`model/${id}/delete`).subscribe(res => {
       this.msg.success("删除成功")
     })
   }

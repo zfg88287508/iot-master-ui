@@ -5,33 +5,16 @@
 <!--        <i nz-icon nzType="home"></i>-->
 <!--        <span>返回桌面</span>-->
 <!--      </li>-->
-      <li nz-submenu nzTitle="服务器" nzIcon="database" nzOpen>
-        <ul>
-          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-
-            <a [routerLink]="['/broker/servers']">
-              <i nz-icon nzType="menu" nzTheme="outline"></i>
-              <span>所有</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/broker/server/create']">
-              <i nz-icon nzType="edit" nzTheme="outline"></i>
-              <span>新建</span>
-            </a>
-          </li>
-        </ul>
-      </li>
       <li nz-submenu nzTitle="网关" nzIcon="wifi" nzOpen>
         <ul>
           <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/broker/gateways']">
+            <a [routerLink]="['/gateway/gateways']">
               <i nz-icon nzType="menu" nzTheme="outline"></i>
               <span>所有</span>
             </a>
           </li>
           <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/broker/gateway/create']">
+            <a [routerLink]="['/gateway/create']">
               <i nz-icon nzType="edit" nzTheme="outline"></i>
               <span>新建</span>
             </a>

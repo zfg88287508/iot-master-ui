@@ -25,7 +25,7 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {DesktopComponent} from './desktop/desktop.component';
 import {NzDrawerModule} from "ng-zorro-antd/drawer";
-import { WindowComponent } from './window/window.component';
+import {WindowComponent} from './window/window.component';
 
 registerLocaleData(zh);
 
@@ -33,26 +33,27 @@ registerLocaleData(zh);
 const routes: Routes = [
   {path: '', redirectTo: 'desktop', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'desktop', component: DesktopComponent},
-  {
-    path: 'broker',
-    loadChildren: () => import('./broker/broker.module').then(m => m.BrokerModule)
-  },
-  {
+  {path: 'desktop', component: DesktopComponent}, {
+    path: 'server',
+    loadChildren: () => import('./server/server.module').then(m => m.ServerModule)
+  }, {
+    path: 'gateway',
+    loadChildren: () => import('./gateway/gateway.module').then(m => m.GatewayModule)
+  }, {
     path: 'setting',
     loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule)
-  },
-  {
+  }, {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
-  },
-  {
+  }, {
     path: 'model',
     loadChildren: () => import('./model/model.module').then(m => m.ModelModule)
-  },
-  {
+  }, {
     path: 'device',
     loadChildren: () => import('./device/device.module').then(m => m.DeviceModule)
+  }, {
+    path: 'plugin',
+    loadChildren: () => import('./plugin/plugin.module').then(m => m.PluginModule)
   },
   {path: '**', component: PageNotFoundComponent}
 ]

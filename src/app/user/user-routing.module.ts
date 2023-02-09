@@ -14,8 +14,8 @@ const routes: Routes = [
       {path: 'me', component: MeComponent},
       {path: 'password', component: PasswordComponent},
       {path: 'users', component: UsersComponent},
-      {path: 'user/create', component: UserEditComponent},
-      {path: 'user/edit/:id', component: UserEditComponent},
+      {path: 'create', component: UserEditComponent},
+      {path: 'edit/:id', component: UserEditComponent},
     ]
   },
   {path: '**', component: PageNotFoundComponent}
