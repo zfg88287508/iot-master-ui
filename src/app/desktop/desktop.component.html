@@ -1,6 +1,7 @@
 <nz-layout class="layout">
   <nz-header class="header">
-    数据采集中台
+    <img class="logo" [src]="oem.logo">
+    {{oem.title}}
   </nz-header>
   <nz-content class="content">
     <nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24}, { xs: 8, sm: 16, md: 24}]">
@@ -14,6 +15,6 @@
 
   </nz-content>
   <nz-footer class="footer">
-    无锡真格智能科技有限公司
+    {{oem.company}} {{oem.copyright}}
   </nz-footer>
 </nz-layout>
