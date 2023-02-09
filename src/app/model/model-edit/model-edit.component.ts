@@ -42,16 +42,16 @@ export class ModelEditComponent implements OnInit {
       desc: [obj.desc || '', []],
       version: [obj.version || '', []],
       properties: this.fb.array(
-        obj.properties ? obj.properties.map((prop: any) => {
+        obj.properties ? obj.properties.map((prop: any) =>
           this.fb.group({
-            id: [obj.id || '', []],
-            name: [obj.name || '', []],
-            type: [obj.type || 'int', []],
-            unit: [obj.unit || '', []],
-            mode: [obj.mode || 'rw', []],
+            id: [prop.id || '', []],
+            name: [prop.name || '', []],
+            type: [prop.type || 'int', []],
+            unit: [prop.unit || '', []],
+            mode: [prop.mode || 'rw', []],
 
           })
-        }) : []
+        ) : []
       )
     })
   }
