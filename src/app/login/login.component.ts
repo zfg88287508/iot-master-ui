@@ -5,6 +5,7 @@ import {UserService} from "../user.service";
 import {Router} from '@angular/router';
 
 import {Md5} from 'ts-md5';
+import {OemService} from "../oem.service";
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,14 @@ import {Md5} from 'ts-md5';
 })
 export class LoginComponent implements OnInit {
   validateForm!: FormGroup;
+  oem: any;
 
-  constructor(private fb: FormBuilder, private rs: RequestService, private us: UserService, private router: Router) {
+  constructor(private fb: FormBuilder,
+              private rs: RequestService,
+              private us: UserService,
+              private router: Router,
+              private os: OemService) {
+    this.oem = os.oem;
   }
 
   submitForm(): void {
