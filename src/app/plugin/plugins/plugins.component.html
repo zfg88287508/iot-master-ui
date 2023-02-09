@@ -21,8 +21,8 @@
   <tr>
     <th nzColumnKey="id" [nzSortFn]="true">ID</th>
     <th nzColumnKey="name" [nzSortFn]="true">名称</th>
-    <th nzColumnKey="desc">说明</th>
-    <th nzColumnKey="port" [nzSortFn]="true">端口</th>
+    <th nzColumnKey="version">版本</th>
+    <th nzColumnKey="command">命令</th>
     <th nzColumnKey="created" [nzSortFn]="true">日期</th>
     <th>操作</th>
   </tr>
@@ -31,8 +31,8 @@
   <tr *ngFor="let data of basicTable.data; let i = index">
     <td>{{data.id}}</td>
     <td>{{data.name}}</td>
-    <td>{{data.desc}}</td>
-    <td>{{data.port}}</td>
+    <td>{{data.version}}</td>
+    <td>{{data.command}}</td>
     <td>{{data.created | date}}</td>
     <td>
       <a [routerLink]="'/plugin/edit/'+data.id">

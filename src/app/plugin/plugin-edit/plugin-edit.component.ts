@@ -24,7 +24,7 @@ export class PluginEditComponent implements OnInit {
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.has("id")) {
       this.id = this.route.snapshot.paramMap.get("id");
-      this.rs.get(`model/${this.id}`).subscribe(res => {
+      this.rs.get(`plugin/${this.id}`).subscribe(res => {
         //let data = res.data;
         this.build(res.data)
       })
@@ -37,16 +37,18 @@ export class PluginEditComponent implements OnInit {
   build(obj?: any) {
     obj = obj || {}
     this.group = this.fb.group({
+      id: [obj.id || '', []],
       name: [obj.name || '', [Validators.required]],
-      desc: [obj.desc || '', []],
-      port: [obj.port || 1883, []],
+      version: [obj.version || '', []],
+      command: [obj.command || '', []],
+      dependencies: [obj.dependencies || {}, []],
     })
   }
 
   submit() {
-    let url = this.id ? `model/${this.id}` : `model/create`
+    let url = this.id ? `plugin/${this.id}` : `plugin/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      this.router.navigateByUrl("model/models")
+      this.router.navigateByUrl("plugin/plugins")
       this.msg.success("保存成功")
     })
 
