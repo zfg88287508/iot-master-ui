@@ -16,6 +16,9 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {BaseModule} from "../base/base.module";
+import {ReactiveFormsModule} from "@angular/forms";
+import {NzInputNumberModule} from "ng-zorro-antd/input-number";
+import {NzCardModule} from "ng-zorro-antd/card";
 
 
 @NgModule({
@@ -37,7 +40,10 @@ import {BaseModule} from "../base/base.module";
     NzButtonModule,
     NzTableModule,
     NzDividerModule,
-    BaseModule
+    BaseModule,
+    ReactiveFormsModule,
+    NzInputNumberModule,
+    NzCardModule
   ]
 })
 export class BrokerModule {

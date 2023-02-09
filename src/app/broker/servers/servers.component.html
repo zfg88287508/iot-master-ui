@@ -7,8 +7,8 @@
   <tr>
     <th>ID</th>
     <th>名称</th>
-    <th>用户名</th>
-    <th>密码</th>
+    <th>说明</th>
+    <th>端口</th>
     <th>日期</th>
     <th>操作</th>
   </tr>
@@ -17,8 +17,8 @@
   <tr *ngFor="let data of basicTable.data; index as index">
     <td>{{data.id}}</td>
     <td>{{data.name}}</td>
-    <td>{{data.username}}</td>
-    <td>{{data.password}}</td>
+    <td>{{data.desc}}</td>
+    <td>{{data.port}}</td>
     <td>{{data.created | date}}</td>
     <td>
       <a [routerLink]="'/broker/server/edit/'+data.id">
