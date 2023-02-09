@@ -40,11 +40,7 @@ export class ServersComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/broker/server/create")
-    // this.ms.create({
-    //   nzTitle: "创建服务器",
-    //   nzContent: ServerEditComponent
-    // })
+    this.router.navigateByUrl("/server/create")
   }
 
   delete(index: number, id: number) {

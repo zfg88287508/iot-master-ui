@@ -9,8 +9,23 @@
 <nz-card [nzTitle]="id ? '编辑设备' : '创建设备'" [nzExtra]="extra">
 
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
+
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">名称</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="gateway_id">网关ID</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <input nz-input formControlName="gateway_id"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="model_id">模型ID</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <input nz-input formControlName="model_id"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">名称</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
         <input nz-input formControlName="name"/>
       </nz-form-control>
@@ -23,15 +38,8 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="port">端口</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <nz-input-number formControlName="port" [nzMax]="65535" [nzMin]="100"></nz-input-number>
-      </nz-form-control>
-    </nz-form-item>
-
     <p>
-      TODO tls配置
+      网关ID 和 模型ID 需要改成选择器
     </p>
   </form>
 

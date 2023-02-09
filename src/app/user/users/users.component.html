@@ -20,9 +20,9 @@
   <thead>
   <tr>
     <th nzColumnKey="id" [nzSortFn]="true">ID</th>
-    <th nzColumnKey="name" [nzSortFn]="true">名称</th>
-    <th nzColumnKey="desc">说明</th>
-    <th nzColumnKey="port" [nzSortFn]="true">端口</th>
+    <th nzColumnKey="username" [nzSortFn]="true">名称</th>
+    <th nzColumnKey="name">姓名</th>
+    <th nzColumnKey="email">邮箱</th>
     <th nzColumnKey="created" [nzSortFn]="true">日期</th>
     <th>操作</th>
   </tr>
@@ -30,12 +30,12 @@
   <tbody>
   <tr *ngFor="let data of basicTable.data; let i = index">
     <td>{{data.id}}</td>
+    <td>{{data.username}}</td>
     <td>{{data.name}}</td>
-    <td>{{data.desc}}</td>
-    <td>{{data.port}}</td>
+    <td>{{data.email}}</td>
     <td>{{data.created | date}}</td>
     <td>
-      <a [routerLink]="'/user/user/edit/'+data.id">
+      <a [routerLink]="'/user/edit/'+data.id">
         <i nz-icon nzType="edit"></i>
       </a>
       <nz-divider nzType="vertical"></nz-divider>

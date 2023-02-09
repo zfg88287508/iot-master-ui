@@ -10,6 +10,12 @@ import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {SettingComponent} from "./setting.component";
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {ReactiveFormsModule} from "@angular/forms";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 
 
 @NgModule({
@@ -25,7 +31,13 @@ import {SettingComponent} from "./setting.component";
     SettingRoutingModule,
     NzLayoutModule,
     NzMenuModule,
-    NzIconModule
+    NzIconModule,
+    NzCardModule,
+    NzFormModule,
+    ReactiveFormsModule,
+    NzInputModule,
+    NzButtonModule,
+    NzInputNumberModule
   ]
 })
 export class SettingModule { }

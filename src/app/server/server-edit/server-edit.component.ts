@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RequestService} from "../../request.service";
@@ -9,7 +9,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
   templateUrl: './server-edit.component.html',
   styleUrls: ['./server-edit.component.scss']
 })
-export class ServerEditComponent {
+export class ServerEditComponent implements OnInit{
   group: any = {};
   id: any = 0
 
@@ -46,7 +46,7 @@ export class ServerEditComponent {
   submit() {
     let url = this.id ? `server/${this.id}` : `server/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      this.router.navigateByUrl("broker/servers")
+      this.router.navigateByUrl("server/servers")
       this.msg.success("保存成功")
     })
 

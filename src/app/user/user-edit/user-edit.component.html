@@ -6,32 +6,33 @@
   </button>
 </ng-template>
 
-<nz-card [nzTitle]="id ? '编辑服务器' : '创建服务器'" [nzExtra]="extra">
+<nz-card [nzTitle]="id ? '编辑用户' : '创建用户'" [nzExtra]="extra">
 
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">名称</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">用户名</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <input nz-input formControlName="username"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">姓名</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
         <input nz-input formControlName="name"/>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="desc">说明</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">邮箱</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <textarea nz-input formControlName="desc"></textarea>
+        <input nz-input formControlName="email"/>
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="port">端口</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <nz-input-number formControlName="port" [nzMax]="65535" [nzMin]="100"></nz-input-number>
-      </nz-form-control>
-    </nz-form-item>
 
     <p>
-      TODO tls配置
+      权限分配
     </p>
   </form>
 

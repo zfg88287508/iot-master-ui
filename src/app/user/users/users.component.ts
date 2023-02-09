@@ -40,11 +40,7 @@ export class UsersComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/user/user/create")
-    // this.ms.create({
-    //   nzTitle: "创建服务器",
-    //   nzContent: userEditComponent
-    // })
+    this.router.navigateByUrl("/user/create")
   }
 
   delete(index: number, id: number) {

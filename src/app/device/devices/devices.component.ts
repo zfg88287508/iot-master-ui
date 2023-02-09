@@ -41,10 +41,6 @@ export class DevicesComponent {
 
   create() {
     this.router.navigateByUrl("/device/device/create")
-    // this.ms.create({
-    //   nzTitle: "创建服务器",
-    //   nzContent: deviceEditComponent
-    // })
   }
 
   delete(index: number, id: number) {

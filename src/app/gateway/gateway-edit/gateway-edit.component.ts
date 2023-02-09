@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RequestService} from "../../request.service";
@@ -9,7 +9,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
   templateUrl: './gateway-edit.component.html',
   styleUrls: ['./gateway-edit.component.scss']
 })
-export class GatewayEditComponent {
+export class GatewayEditComponent implements OnInit {
   group: any = {};
   id: any = 0
 
@@ -48,7 +48,7 @@ export class GatewayEditComponent {
   submit() {
     let url = this.id ? `gateway/${this.id}` : `gateway/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      this.router.navigateByUrl("broker/gateways")
+      this.router.navigateByUrl("gateway/gateways")
       this.msg.success("保存成功")
     })
 

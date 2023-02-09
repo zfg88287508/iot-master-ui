@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RequestService} from "../../request.service";
@@ -9,7 +9,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
   templateUrl: './model-edit.component.html',
   styleUrls: ['./model-edit.component.scss']
 })
-export class ModelEditComponent {
+export class ModelEditComponent implements OnInit {
   group: any = {};
   id: any = 0
 
@@ -37,9 +37,10 @@ export class ModelEditComponent {
   build(obj?: any) {
     obj = obj || {}
     this.group = this.fb.group({
-      name: [obj.name || '', [Validators.required]],
+      id: [obj.id || '', []],
+      name: [obj.name || '', []],
       desc: [obj.desc || '', []],
-      port: [obj.port || 1883, []],
+      version: [obj.version || '', []],
     })
   }
 

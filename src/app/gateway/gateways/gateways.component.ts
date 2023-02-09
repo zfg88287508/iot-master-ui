@@ -40,11 +40,7 @@ export class GatewaysComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/broker/gateway/create")
-    // this.ms.create({
-    //   nzTitle: "创建网关",
-    //   nzContent: gatewayEditComponent
-    // })
+    this.router.navigateByUrl("/gateway/create")
   }
 
   delete(index: number, id: number) {

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RequestService} from "../../request.service";
@@ -9,7 +9,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
   templateUrl: './plugin-edit.component.html',
   styleUrls: ['./plugin-edit.component.scss']
 })
-export class PluginEditComponent {
+export class PluginEditComponent implements OnInit {
   group: any = {};
   id: any = 0
 

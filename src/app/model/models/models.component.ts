@@ -40,11 +40,7 @@ export class ModelsComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/model/model/create")
-    // this.ms.create({
-    //   nzTitle: "创建服务器",
-    //   nzContent: modelEditComponent
-    // })
+    this.router.navigateByUrl("/model/create")
   }
 
   delete(index: number, id: number) {

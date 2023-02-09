@@ -1,10 +1,45 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {RequestService} from "../../request.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-web',
   templateUrl: './web.component.html',
   styleUrls: ['./web.component.scss']
 })
-export class WebComponent {
+export class WebComponent implements OnInit {
+  group: any = {};
 
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute,
+              private rs: RequestService,
+              private msg: NzMessageService) {
+  }
+
+
+  ngOnInit(): void {
+    this.rs.get(`config`).subscribe(res => {
+      //let data = res.data;
+      this.build(res.data)
+    })
+
+    this.build()
+  }
+
+  build(obj?: any) {
+    obj = obj || {}
+    this.group = this.fb.group({
+      web: [obj.web || 8888, []],
+    })
+  }
+
+  submit() {
+    this.rs.post(`config`, this.group.value).subscribe(res => {
+      this.msg.success("保存成功")
+    })
+
+  }
 }

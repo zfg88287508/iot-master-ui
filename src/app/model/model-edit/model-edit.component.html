@@ -9,8 +9,16 @@
 <nz-card [nzTitle]="id ? '编辑物模型' : '创建物模型'" [nzExtra]="extra">
 
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
+
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">名称</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id">ID</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <input nz-input formControlName="id"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">名称</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
         <input nz-input formControlName="name"/>
       </nz-form-control>
@@ -24,14 +32,14 @@
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="port">端口</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="version">版本</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <nz-input-number formControlName="port" [nzMax]="65535" [nzMin]="100"></nz-input-number>
+        <input nz-input formControlName="version"/>
       </nz-form-control>
     </nz-form-item>
 
     <p>
-      TODO tls配置
+      属性，功能，事件 编辑器
     </p>
   </form>
 

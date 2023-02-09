@@ -32,7 +32,7 @@ export class PluginsComponent {
 
   load() {
     this.loading = true
-    this.rs.post("model/search", this.query).subscribe(res=>{
+    this.rs.post("plugin/search", this.query).subscribe(res=>{
       this.datum = res.data;
     }).add(()=>{
       this.loading = false;
@@ -40,17 +40,13 @@ export class PluginsComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/model/model/create")
-    // this.ms.create({
-    //   nzTitle: "创建服务器",
-    //   nzContent: modelEditComponent
-    // })
+    this.router.navigateByUrl("/plugin/create")
   }
 
   delete(index: number, id: number) {
     console.log('delete', index, id)
     this.datum.splice(index, 1);
-    this.rs.get(`model/${id}/delete`).subscribe(res => {
+    this.rs.get(`plugin/${id}/delete`).subscribe(res => {
       this.msg.success("删除成功")
     })
   }
