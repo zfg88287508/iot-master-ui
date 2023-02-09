@@ -9,7 +9,11 @@
         *ngFor="let app of apps"
         [nzXs]="8" [nzSm]="6" [nzMd]="4" [nzLg]="3">
         <img class="icon" [src]="app.icon || '/assets/app.png'" alt="app">
-        <div class="name">{{app.name}}</div>
+        <div class="name">
+          <span class="inner">
+            {{app.name}}
+          </span>
+        </div>
       </nz-col>
     </nz-row>
 

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {RequestService} from "../request.service";
 
+
 @Component({
   selector: 'app-desktop',
   templateUrl: './desktop.component.html',
@@ -49,17 +50,21 @@ export class DesktopComponent {
   }];
 
   constructor(private router: Router, private rs: RequestService) {
-
-
+    this.loadOEM()
   }
 
   loadOEM() {
-    this.rs.get("/oem").subscribe(res => {
+    //优先从缓存中读取，避免闪烁
+    let oem = localStorage.getItem("oem");
+    if (oem) {
+      oem = JSON.parse(oem)
+      Object.assign(this.oem, oem)
+    }
+
+    this.rs.get("oem").subscribe(res => {
       let oem = res.data;
-      this.oem.title ||= oem.title
-      this.oem.logo ||= oem.logo
-      this.oem.company ||= oem.company
-      this.oem.copyright ||= oem.copyright
+      localStorage.setItem("oem", JSON.stringify(oem));
+      Object.assign(this.oem, oem)
     })
   }
 

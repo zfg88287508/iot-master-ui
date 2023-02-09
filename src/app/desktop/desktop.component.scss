@@ -3,23 +3,34 @@
   height: 100%;
   overflow: hidden;
 }
+
 .header{
   color: white;
   font-weight: bold;
   font-size: 1.2em;
+  padding: 0 20px;
+
   .logo{
     width: 32px;
     height: 32px;
   }
+  .title{
+
+  }
 }
 .footer{
+  height: 30px;
   color: #888888;
+  padding: 0px 20px;
+  line-height: 30px;
 }
 
 .content{
   overflow-y: auto;
   overflow-x: hidden;
   padding: 20px;
+  background-image: url(/assets/bk.jpg);
+  background-size: cover;
 }
 
 .app{
@@ -29,12 +40,34 @@
   //align-content: center;
   padding: 20px;
   text-align: center;
+  border-radius: 20px;
+  overflow: hidden;
+
+  &:hover{
+    background: #a0a0a077;
+  }
 
   .icon{
     width: 60%;
     //display: block;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
   }
   .name{
+    margin: 10px 0;
     text-align: center;
+    //text-shadow: #a0a0a0 1px 1px 0;
+    .inner{
+      padding: 5px 20px;
+      border-radius: 10px;
+      color: white;
+      text-shadow: black 2px 2px 5px;
+      //background: #606060;
+      //color: white;
+      letter-spacing: 2px;
+      font-size: 1.1em;
+      //box-shadow: #a0a0a0 2px 2px 5px inset;
+    }
   }
 }
