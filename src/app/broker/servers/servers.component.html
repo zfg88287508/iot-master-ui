@@ -1,1 +1,34 @@
-<p>server works!</p>
+<app-toolbar>
+  <app-search-box></app-search-box>
+</app-toolbar>
+
+<nz-table #basicTable [nzData]="datum">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>名称</th>
+    <th>用户名</th>
+    <th>密码</th>
+    <th>日期</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data; index as index">
+    <td>{{data.id}}</td>
+    <td>{{data.name}}</td>
+    <td>{{data.username}}</td>
+    <td>{{data.password}}</td>
+    <td>{{data.created | date}}</td>
+    <td>
+      <a [routerLink]="'/broker/server/edit/'+data.id">
+        <i nz-icon nzType="edit"></i>
+      </a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a (click)="delete(index, data.id)">
+        <i nz-icon nzType="delete"></i>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

@@ -1,7 +1,10 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {RequestService} from "../request.service";
+import {NzModalService} from "ng-zorro-antd/modal";
+import {WindowComponent} from "../window/window.component";
 
+declare var window: any;
 
 @Component({
   selector: 'app-desktop',
@@ -50,7 +53,7 @@ export class DesktopComponent {
   }];
   drawVisible: any;
 
-  constructor(private router: Router, private rs: RequestService) {
+  constructor(private router: Router, private rs: RequestService, private ms: NzModalService) {
     this.loadOEM()
   }
 
@@ -70,11 +73,23 @@ export class DesktopComponent {
   }
 
   open(app: any) {
-    //内部程序
-    if (app.internal) {
-      this.router.navigate([app.url]).then(() => {
-      })
+    if (window.innerWidth < 800) {
+      this.router.navigate([app.url])
       return;
     }
+
+    this.ms.create({
+      nzTitle: app.name,
+      nzFooter: null,
+      //nzMask: false,
+      nzMaskClosable: false,
+      nzWidth: "90%",
+      //nzStyle: {height: "90%"},
+      nzBodyStyle: {padding: "0", overflow: "hidden"},
+      nzContent: WindowComponent,
+      nzComponentParams: {
+        url: app.url
+      }
+    })
   }
 }

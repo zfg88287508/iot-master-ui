@@ -24,8 +24,8 @@ import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {DesktopComponent} from './desktop/desktop.component';
-import {BaseModule} from "./base/base.module";
 import {NzDrawerModule} from "ng-zorro-antd/drawer";
+import { WindowComponent } from './window/window.component';
 
 registerLocaleData(zh);
 
@@ -58,7 +58,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DesktopComponent],
+  declarations: [AppComponent, LoginComponent, DesktopComponent, WindowComponent],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
@@ -78,8 +78,6 @@ const routes: Routes = [
     NzTableModule,
     NzDividerModule,
     NzModalModule,
-
-    BaseModule,
     NzDrawerModule,
   ],
   providers: [{provide: NZ_I18N, useValue: zh_CN}],
