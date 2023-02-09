@@ -41,6 +41,18 @@ export class ModelEditComponent implements OnInit {
       name: [obj.name || '', []],
       desc: [obj.desc || '', []],
       version: [obj.version || '', []],
+      properties: this.fb.array(
+        obj.properties ? obj.properties.map((prop: any) => {
+          this.fb.group({
+            id: [obj.id || '', []],
+            name: [obj.name || '', []],
+            type: [obj.type || 'int', []],
+            unit: [obj.unit || '', []],
+            mode: [obj.mode || 'rw', []],
+
+          })
+        }) : []
+      )
     })
   }
 
@@ -51,5 +63,19 @@ export class ModelEditComponent implements OnInit {
       this.msg.success("保存成功")
     })
 
+  }
+
+  propertyAdd($event: any) {
+    $event.stopPropagation()
+    this.group.get('properties').push(
+      this.fb.group({
+        id: ['', []],
+        name: ['', []],
+        type: ['int', []],
+        unit: ['', []],
+        mode: ['rw', []],
+
+      })
+    )
   }
 }

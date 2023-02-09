@@ -18,6 +18,8 @@ import {BaseModule} from "../base/base.module";
 import {NzSpaceModule} from "ng-zorro-antd/space";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerModule} from "ng-zorro-antd/divider";
+import {NzCollapseModule} from "ng-zorro-antd/collapse";
+import {NzSelectModule} from "ng-zorro-antd/select";
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
     BaseModule,
     NzSpaceModule,
     NzTableModule,
-    NzDividerModule
+    NzDividerModule,
+    NzCollapseModule,
+    NzSelectModule
   ]
 })
 export class ModelModule { }
