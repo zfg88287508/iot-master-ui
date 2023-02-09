@@ -9,14 +9,29 @@
   font-weight: bold;
   font-size: 1.2em;
   padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  .logo{
+  .system{
+    flex: 1;
+
+    .logo{
+      width: 32px;
+      height: 32px;
+    }
+    .title{
+      margin: 0 10px;
+    }
+  }
+  .avatar{
     width: 32px;
     height: 32px;
   }
-  .title{
-
+  .user{
+    //width: 60px;
   }
+
 }
 .footer{
   height: 30px;
@@ -51,21 +66,23 @@
     width: 60%;
     //display: block;
     background-color: white;
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px;
+    //border-radius: 50%;
+    //box-shadow: #606060 -1px -1px 5px inset;
   }
   .name{
     margin: 10px 0;
     text-align: center;
     //text-shadow: #a0a0a0 1px 1px 0;
     .inner{
-      padding: 5px 20px;
+      //padding: 5px 20px;
       border-radius: 10px;
       color: white;
       text-shadow: black 2px 2px 5px;
       //background: #606060;
       //color: white;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       font-size: 1.1em;
       //box-shadow: #a0a0a0 2px 2px 5px inset;
     }

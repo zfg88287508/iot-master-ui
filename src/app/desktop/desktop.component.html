@@ -1,13 +1,17 @@
 <nz-layout class="layout">
   <nz-header class="header">
-    <img class="logo" [src]="oem.logo">
-    {{oem.title}}
+    <div class="system">
+      <img class="logo" [src]="oem.logo" alt="logo">
+      <span class="title">{{oem.title}}</span>
+    </div>
+    <img class="avatar" src="/assets/user.svg" alt="logo" (click)="drawVisible=!drawVisible">
+    <div class="user"></div>
   </nz-header>
   <nz-content class="content">
     <nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24}, { xs: 8, sm: 16, md: 24}]">
       <nz-col class="app" (click)="open(app)"
-        *ngFor="let app of apps"
-        [nzXs]="8" [nzSm]="6" [nzMd]="4" [nzLg]="3">
+              *ngFor="let app of apps"
+              [nzXs]="8" [nzSm]="6" [nzMd]="4" [nzLg]="3">
         <img class="icon" [src]="app.icon || '/assets/app.png'" alt="app">
         <div class="name">
           <span class="inner">
@@ -22,3 +26,8 @@
     {{oem.company}} {{oem.copyright}}
   </nz-footer>
 </nz-layout>
+<nz-drawer nzTitle="个人中心" [nzVisible]="drawVisible" (nzOnClose)="drawVisible=false">
+  <ng-container *nzDrawerContent>
+    用户中心
+  </ng-container>
+</nz-drawer>

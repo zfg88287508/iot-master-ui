@@ -8,10 +8,16 @@
       <li nz-submenu nzTitle="物模型" nzIcon="database" nzOpen>
         <ul>
           <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/model/models']">查看</a>
+            <a [routerLink]="['/model/models']">
+              <i nz-icon nzType="menu" nzTheme="outline"></i>
+              <span>所有</span>
+            </a>
           </li>
           <li nz-menu-item nzMatchRouter nzMatchRouterExact>
-            <a [routerLink]="['/model/model/create']">新建</a>
+            <a [routerLink]="['/model/model/create']">
+              <i nz-icon nzType="edit" nzTheme="outline"></i>
+              <span>新建</span>
+            </a>
           </li>
         </ul>
       </li>

@@ -48,6 +48,7 @@ export class DesktopComponent {
     internal: true,
     url: '/plugin'
   }];
+  drawVisible: any;
 
   constructor(private router: Router, private rs: RequestService) {
     this.loadOEM()
