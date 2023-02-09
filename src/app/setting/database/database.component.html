@@ -1,1 +1,34 @@
-<p>database works!</p>
+<ng-template #extra>
+
+  <button nz-button nzType="primary" (click)="submit()">
+    <i nz-icon nzType="save" nzTheme="outline"></i>
+    保存
+  </button>
+</ng-template>
+
+<nz-card nzTitle="Web服务器" [nzExtra]="extra">
+
+  <form nz-form [formGroup]="group" (ngSubmit)="submit()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="type">类型</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <nz-select formControlName="type">
+          <nz-option nzValue="sqlite3" nzLabel="SQLite3" nzDisabled></nz-option>
+          <nz-option nzValue="mysql" nzLabel="MySQL"></nz-option>
+          <nz-option nzValue="postgres" nzLabel="PostgreSQL"></nz-option>
+          <nz-option nzValue="oci8" nzLabel="Oracle"></nz-option>
+          <nz-option nzValue="mssql" nzLabel="MS SQL Server"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="url">URL</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <input nz-input formControlName="url">
+      </nz-form-control>
+    </nz-form-item>
+
+
+  </form>
+</nz-card>

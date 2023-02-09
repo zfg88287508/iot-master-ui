@@ -16,6 +16,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
+import {NzSelectModule} from "ng-zorro-antd/select";
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {NzInputNumberModule} from "ng-zorro-antd/input-number";
     ReactiveFormsModule,
     NzInputModule,
     NzButtonModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzSelectModule
   ]
 })
 export class SettingModule { }
