@@ -19,6 +19,7 @@ import {BaseModule} from "../base/base.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {NzCardModule} from "ng-zorro-antd/card";
+import {NzSpaceModule} from "ng-zorro-antd/space";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {NzCardModule} from "ng-zorro-antd/card";
     BaseModule,
     ReactiveFormsModule,
     NzInputNumberModule,
-    NzCardModule
+    NzCardModule,
+    NzSpaceModule
   ]
 })
 export class BrokerModule {

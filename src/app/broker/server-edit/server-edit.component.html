@@ -6,7 +6,7 @@
   </button>
 </ng-template>
 
-<nz-card nzTitle="创建服务器" [nzExtra]="extra">
+<nz-card [nzTitle]="id ? '编辑服务器' : '创建服务器'" [nzExtra]="extra">
 
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
     <nz-form-item>

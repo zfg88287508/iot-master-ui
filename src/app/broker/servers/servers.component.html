@@ -1,20 +1,34 @@
 <app-toolbar>
-  <app-search-box></app-search-box>
+  <nz-space>
+    <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="reload()">
+      <i nz-icon nzType="reload" [nzSpin]="loading"></i>
+      刷新
+    </button>
+    <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
+  </nz-space>
 </app-toolbar>
 
-<nz-table #basicTable [nzData]="datum">
+<nz-table #basicTable
+          [nzData]="datum"
+          [nzFrontPagination]="false"
+          [nzLoading]="loading"
+          [nzTotal]="total"
+          [nzPageSize]="pageSize"
+          [nzPageIndex]="pageIndex"
+          (nzQueryParams)="onQuery($event)"
+>
   <thead>
   <tr>
-    <th>ID</th>
-    <th>名称</th>
-    <th>说明</th>
-    <th>端口</th>
-    <th>日期</th>
+    <th nzColumnKey="id" [nzSortFn]="true">ID</th>
+    <th nzColumnKey="name" [nzSortFn]="true">名称</th>
+    <th nzColumnKey="desc">说明</th>
+    <th nzColumnKey="port" [nzSortFn]="true">端口</th>
+    <th nzColumnKey="created" [nzSortFn]="true">日期</th>
     <th>操作</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of basicTable.data; index as index">
+  <tr *ngFor="let data of basicTable.data; let i = index">
     <td>{{data.id}}</td>
     <td>{{data.name}}</td>
     <td>{{data.desc}}</td>
@@ -25,7 +39,7 @@
         <i nz-icon nzType="edit"></i>
       </a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a (click)="delete(index, data.id)">
+      <a (click)="delete(i, data.id)">
         <i nz-icon nzType="delete"></i>
       </a>
     </td>
