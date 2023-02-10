@@ -22,7 +22,7 @@ export class ModelsComponent {
 
 
   constructor(private ms: NzModalService, private router: Router, private rs: RequestService, private msg: NzMessageService) {
-    this.load();
+    //this.load();
   }
 
   reload() {
