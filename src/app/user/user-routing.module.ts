@@ -6,14 +6,16 @@ import {MeComponent} from "./me/me.component";
 import {PasswordComponent} from "./password/password.component";
 import {UsersComponent} from "./users/users.component";
 import {UserEditComponent} from "./user-edit/user-edit.component";
+import {UserDetailComponent} from "./user-detail/user-detail.component";
 
 const routes: Routes = [
   {
     path: '', component: UserComponent, children: [
       {path: '', pathMatch: "full", redirectTo: "users"},
       {path: 'users', component: UsersComponent},
-      {path: 'create', component: UserEditComponent},
+      {path: 'detail/:id', component: UserDetailComponent},
       {path: 'edit/:id', component: UserEditComponent},
+      {path: 'create', component: UserEditComponent},
     ]
   },
   {path: '**', component: PageNotFoundComponent}

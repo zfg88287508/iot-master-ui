@@ -18,13 +18,15 @@ import {NzSpaceModule} from "ng-zorro-antd/space";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import { DeviceDetailComponent } from './device-detail/device-detail.component';
 
 
 @NgModule({
   declarations: [
     DeviceComponent,
     DevicesComponent,
-    DeviceEditComponent
+    DeviceEditComponent,
+    DeviceDetailComponent
   ],
   imports: [
     CommonModule,

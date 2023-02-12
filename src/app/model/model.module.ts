@@ -20,13 +20,15 @@ import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {NzSelectModule} from "ng-zorro-antd/select";
+import { ModelDetailComponent } from './model-detail/model-detail.component';
 
 
 @NgModule({
   declarations: [
     ModelComponent,
     ModelsComponent,
-    ModelEditComponent
+    ModelEditComponent,
+    ModelDetailComponent
   ],
   imports: [
     CommonModule,

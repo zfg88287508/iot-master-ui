@@ -18,6 +18,7 @@ import {BaseModule} from "../base/base.module";
 import {NzSpaceModule} from "ng-zorro-antd/space";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerModule} from "ng-zorro-antd/divider";
+import { PluginDetailComponent } from './plugin-detail/plugin-detail.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
     PluginComponent,
     PluginsComponent,
     PluginEditComponent,
+    PluginDetailComponent,
   ],
   imports: [
     CommonModule,

@@ -18,13 +18,15 @@ import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {NzCardModule} from "ng-zorro-antd/card";
 import {NzSpaceModule} from "ng-zorro-antd/space";
 import {ServerRoutingModule} from "./server-routing.module";
+import { ServerDetailComponent } from './server-detail/server-detail.component';
 
 
 @NgModule({
   declarations: [
     ServersComponent,
     ServerEditComponent,
-    ServerComponent
+    ServerComponent,
+    ServerDetailComponent
   ],
   imports: [
     CommonModule,

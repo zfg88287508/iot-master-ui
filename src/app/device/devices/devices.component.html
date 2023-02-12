@@ -29,7 +29,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of basicTable.data; let i = index">
+  <tr *ngFor="let data of basicTable.data; let i = index" (dblclick)="open(data.id)">
     <td>{{data.id}}</td>
     <td>{{data.gateway_id}}</td>
     <td>{{data.model_id}}</td>
@@ -37,11 +37,15 @@
     <td>{{data.desc}}</td>
     <td>{{data.created | date}}</td>
     <td>
-      <a [routerLink]="'/device/edit/'+data.id">
+      <a (click)="open(data.id)" title="详情">
+        <i nz-icon nzType="eye"></i>
+      </a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a [routerLink]="'/device/edit/'+data.id" title="编辑">
         <i nz-icon nzType="edit"></i>
       </a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a (click)="delete(i, data.id)">
+      <a (click)="delete(i, data.id)" title="删除">
         <i nz-icon nzType="delete"></i>
       </a>
     </td>

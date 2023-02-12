@@ -18,13 +18,15 @@ import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {BaseModule} from "../base/base.module";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzSpaceModule} from "ng-zorro-antd/space";
+import { GatewayDetailComponent } from './gateway-detail/gateway-detail.component';
 
 
 @NgModule({
   declarations: [
     GatewaysComponent,
     GatewayEditComponent,
-    GatewayComponent
+    GatewayComponent,
+    GatewayDetailComponent
   ],
   imports: [
     CommonModule,

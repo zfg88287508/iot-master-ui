@@ -26,15 +26,15 @@ export class DevicesComponent {
   }
 
   reload() {
-    this.datum =[];
+    this.datum = [];
     this.load()
   }
 
   load() {
     this.loading = true
-    this.rs.post("device/search", this.query).subscribe(res=>{
+    this.rs.post("device/search", this.query).subscribe(res => {
       this.datum = res.data;
-    }).add(()=>{
+    }).add(() => {
       this.loading = false;
     })
   }
@@ -62,5 +62,9 @@ export class DevicesComponent {
     };
     this.query.skip = 0;
     this.load();
+  }
+
+  open(data: any) {
+    this.router.navigateByUrl("/device/detail/" + data)
   }
 }
