@@ -34,6 +34,7 @@ export class GatewaysComponent {
     this.loading = true
     this.rs.post("gateway/search", this.query).subscribe(res=>{
       this.datum = res.data;
+      this.total = res.total;
     }).add(()=>{
       this.loading = false;
     })

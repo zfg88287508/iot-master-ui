@@ -34,6 +34,7 @@ export class PluginsComponent {
     this.loading = true
     this.rs.post("plugin/search", this.query).subscribe(res=>{
       this.datum = res.data;
+      this.total = res.total;
     }).add(()=>{
       this.loading = false;
     })

@@ -34,6 +34,7 @@ export class DevicesComponent {
     this.loading = true
     this.rs.post("device/search", this.query).subscribe(res => {
       this.datum = res.data;
+      this.total = res.total;
     }).add(() => {
       this.loading = false;
     })
