@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {GatewayRoutingModule} from './gateway-routing.module';
-import {GatewayComponent} from './gateway.component';
-import {GatewaysComponent} from "./gateways/gateways.component";
-import {GatewayEditComponent} from "./gateway-edit/gateway-edit.component";
+import {DeviceRoutingModule} from './device-routing.module';
+import {DeviceComponent} from './device.component';
+import {DevicesComponent} from "./devices/devices.component";
+import {DeviceEditComponent} from "./device-edit/device-edit.component";
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzFormModule} from "ng-zorro-antd/form";
@@ -18,19 +18,19 @@ import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {BaseModule} from "../base/base.module";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzSpaceModule} from "ng-zorro-antd/space";
-import { GatewayDetailComponent } from './gateway-detail/gateway-detail.component';
+import { DeviceDetailComponent } from './device-detail/device-detail.component';
 
 
 @NgModule({
   declarations: [
-    GatewaysComponent,
-    GatewayEditComponent,
-    GatewayComponent,
-    GatewayDetailComponent
+    DevicesComponent,
+    DeviceEditComponent,
+    DeviceComponent,
+    DeviceDetailComponent
   ],
   imports: [
     CommonModule,
-    GatewayRoutingModule,
+    DeviceRoutingModule,
     NzLayoutModule,
     NzMenuModule,
     NzIconModule,
@@ -46,5 +46,5 @@ import { GatewayDetailComponent } from './gateway-detail/gateway-detail.componen
     NzSpaceModule
   ]
 })
-export class GatewayModule {
+export class DeviceModule {
 }

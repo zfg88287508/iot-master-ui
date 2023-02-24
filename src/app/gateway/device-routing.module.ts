@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {DeviceComponent} from "./device.component";
-import {PageNotFoundComponent} from "../base/page-not-found/page-not-found.component";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {DevicesComponent} from "./devices/devices.component";
 import {DeviceEditComponent} from "./device-edit/device-edit.component";
+import {PageNotFoundComponent} from "../base/page-not-found/page-not-found.component";
+import {DeviceComponent} from "./device.component";
 import {DeviceDetailComponent} from "./device-detail/device-detail.component";
-
 
 const routes: Routes = [
   {

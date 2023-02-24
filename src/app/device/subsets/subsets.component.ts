@@ -7,11 +7,11 @@ import {NzTableQueryParams} from "ng-zorro-antd/table";
 import {ParseTableQuery} from "../../base/table";
 
 @Component({
-  selector: 'app-gateways',
-  templateUrl: './gateways.component.html',
-  styleUrls: ['./gateways.component.scss']
+  selector: 'app-subsets',
+  templateUrl: './subsets.component.html',
+  styleUrls: ['./subsets.component.scss']
 })
-export class GatewaysComponent {
+export class SubsetsComponent {
 
   loading = true
   datum: any[] = []
@@ -26,28 +26,28 @@ export class GatewaysComponent {
   }
 
   reload() {
-    this.datum =[];
+    this.datum = [];
     this.load()
   }
 
   load() {
     this.loading = true
-    this.rs.post("gateway/search", this.query).subscribe(res=>{
+    this.rs.post("subset/search", this.query).subscribe(res => {
       this.datum = res.data;
       this.total = res.total;
-    }).add(()=>{
+    }).add(() => {
       this.loading = false;
     })
   }
 
   create() {
-    this.router.navigateByUrl("/gateway/create")
+    this.router.navigateByUrl("/subset/subset/create")
   }
 
   delete(index: number, id: number) {
     console.log('delete', index, id)
     this.datum.splice(index, 1);
-    this.rs.get(`gateway/${id}/delete`).subscribe(res => {
+    this.rs.get(`subset/${id}/delete`).subscribe(res => {
       this.msg.success("删除成功")
     })
   }
@@ -63,5 +63,9 @@ export class GatewaysComponent {
     };
     this.query.skip = 0;
     this.load();
+  }
+
+  open(data: any) {
+    this.router.navigateByUrl("/subset/detail/" + data)
   }
 }

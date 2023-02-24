@@ -37,10 +37,11 @@ export class DeviceEditComponent implements OnInit {
   build(obj?: any) {
     obj = obj || {}
     this.group = this.fb.group({
-      gateway_id: [obj.gateway_id || '', []],
-      model_id: [obj.model_id || '', []],
-      name: [obj.name || '', []],
+      id: [obj.id || '', []],
+      name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
+      username: [obj.username || '', []],
+      password: [obj.password || '', []],
     })
   }
 
