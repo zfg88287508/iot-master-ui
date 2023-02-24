@@ -9,8 +9,8 @@ import {DeviceDetailComponent} from "./device-detail/device-detail.component";
 const routes: Routes = [
   {
     path: '', component: DeviceComponent, children: [
-      {path: '', pathMatch:"full", redirectTo: "devices"},
-      {path: 'devices', component: DevicesComponent},
+      {path: '', pathMatch:"full", redirectTo: "products"},
+      {path: 'products', component: DevicesComponent},
       {path: 'detail/:id', component: DeviceDetailComponent},
       {path: 'edit/:id', component: DeviceEditComponent},
       {path: 'create', component: DeviceEditComponent},

@@ -8,10 +8,10 @@ import {ParseTableQuery} from "../../base/table";
 
 @Component({
   selector: 'app-products',
-  templateUrl: './devices.component.html',
-  styleUrls: ['./devices.component.scss']
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class DevicesComponent {
+export class productsComponent {
 
   loading = true
   datum: any[] = []
@@ -32,7 +32,7 @@ export class DevicesComponent {
 
   load() {
     this.loading = true
-    this.rs.post("device/search", this.query).subscribe(res=>{
+    this.rs.post("product/search", this.query).subscribe(res=>{
       this.datum = res.data;
       this.total = res.total;
     }).add(()=>{
@@ -41,13 +41,13 @@ export class DevicesComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/device/create")
+    this.router.navigateByUrl("/product/create")
   }
 
   delete(index: number, id: number) {
     console.log('delete', index, id)
     this.datum.splice(index, 1);
-    this.rs.get(`device/${id}/delete`).subscribe(res => {
+    this.rs.get(`product/${id}/delete`).subscribe(res => {
       this.msg.success("删除成功")
     })
   }

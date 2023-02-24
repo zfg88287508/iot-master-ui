@@ -22,20 +22,25 @@ export class DesktopComponent {
     internal: true,
     url: '/server'
   }, {
-    icon: '/assets/gateway.png',
-    name: '网关管理',
-    internal: true,
-    url: '/gateway'
-  }, {
-    icon: '/assets/device.png',
-    name: '设备管理',
-    internal: true,
-    url: '/device'
-  }, {
     icon: '/assets/model.png',
     name: '物模型',
     internal: true,
     url: '/model'
+  }, {
+    icon: '/assets/product.png',
+    name: '产品管理',
+    internal: true,
+    url: '/product'
+  }, {
+    icon: '/assets/gateway.png',
+    name: '设备管理',
+    internal: true,
+    url: '/device'
+  }, {
+    icon: '/assets/device.png',
+    name: '子设备管理',
+    internal: true,
+    url: '/subset'
   }, {
     icon: '/assets/user.png',
     name: '用户管理',

@@ -37,8 +37,11 @@ const routes: Routes = [
     path: 'server',
     loadChildren: () => import('./server/server.module').then(m => m.ServerModule)
   }, {
-    path: 'gateway',
-    loadChildren: () => import('./gateway/device.module').then(m => m.DeviceModule)
+    path: 'device',
+    loadChildren: () => import('./device/device.module').then(m => m.DeviceModule)
+  }, {
+    path: 'subset',
+    loadChildren: () => import('./subset/subset.module').then(m => m.SubsetModule)
   }, {
     path: 'setting',
     loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule)
@@ -49,8 +52,8 @@ const routes: Routes = [
     path: 'model',
     loadChildren: () => import('./model/model.module').then(m => m.ModelModule)
   }, {
-    path: 'device',
-    loadChildren: () => import('./device/subset.module').then(m => m.SubsetModule)
+    path: 'product',
+    loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
   }, {
     path: 'plugin',
     loadChildren: () => import('./plugin/plugin.module').then(m => m.PluginModule)

@@ -6,10 +6,10 @@ import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-products-edit',
-  templateUrl: './device-edit.component.html',
-  styleUrls: ['./device-edit.component.scss']
+  templateUrl: './product-edit.component.html',
+  styleUrls: ['./product-edit.component.scss']
 })
-export class DeviceEditComponent implements OnInit {
+export class ProductEditComponent implements OnInit {
   group: any = {};
   id: any = 0
 
@@ -24,7 +24,7 @@ export class DeviceEditComponent implements OnInit {
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.has("id")) {
       this.id = this.route.snapshot.paramMap.get("id");
-      this.rs.get(`device/${this.id}`).subscribe(res => {
+      this.rs.get(`product/${this.id}`).subscribe(res => {
         //let data = res.data;
         this.build(res.data)
       })
@@ -46,9 +46,9 @@ export class DeviceEditComponent implements OnInit {
   }
 
   submit() {
-    let url = this.id ? `device/${this.id}` : `device/create`
+    let url = this.id ? `product/${this.id}` : `product/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      this.router.navigateByUrl("device/devices")
+      this.router.navigateByUrl("product/products")
       this.msg.success("保存成功")
     })
 
