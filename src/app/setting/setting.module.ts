@@ -17,6 +17,7 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {NzSelectModule} from "ng-zorro-antd/select";
+import { RebootComponent } from './reboot/reboot.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {NzSelectModule} from "ng-zorro-antd/select";
     DatabaseComponent,
     LogComponent,
     WebComponent,
-    BackupComponent
+    BackupComponent,
+    RebootComponent
   ],
   imports: [
     CommonModule,

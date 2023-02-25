@@ -19,15 +19,20 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import { SubsetDetailComponent } from './subsets-detail/subset-detail.component';
 import {SubsetComponent} from "./subset.component";
 import {SubsetRoutingModule} from "./subset-routing.module";
+import {NzStatisticModule} from "ng-zorro-antd/statistic";
+import {NzTabsModule} from "ng-zorro-antd/tabs";
 
 
 @NgModule({
-  declarations: [
-    SubsetComponent,
-    SubsetsComponent,
-    SubsetEditComponent,
-    SubsetDetailComponent
-  ],
+    declarations: [
+        SubsetComponent,
+        SubsetsComponent,
+        SubsetEditComponent,
+        SubsetDetailComponent
+    ],
+    exports: [
+        SubsetsComponent
+    ],
   imports: [
     CommonModule,
     SubsetRoutingModule,
@@ -43,7 +48,9 @@ import {SubsetRoutingModule} from "./subset-routing.module";
     NzSpaceModule,
     NzTableModule,
     NzDividerModule,
-    NzButtonModule
+    NzButtonModule,
+    NzStatisticModule,
+    NzTabsModule
   ]
 })
 export class SubsetModule { }

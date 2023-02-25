@@ -41,7 +41,7 @@ export class SubsetsComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/subset/subset/create")
+    this.router.navigateByUrl("/subset/create")
   }
 
   delete(index: number, id: number) {

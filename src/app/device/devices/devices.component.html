@@ -34,7 +34,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of basicTable.data; let i = index">
+  <tr *ngFor="let data of basicTable.data; let i = index" (dblclick)="open(data.id)">
     <td>{{data.id}}</td>
     <td>{{data.product_id}}</td>
     <td>{{data.name}}</td>
@@ -43,6 +43,10 @@
     <td>{{data.password}}</td>
     <td>{{data.created | date}}</td>
     <td>
+      <a (click)="open(data.id)" title="详情">
+        <i nz-icon nzType="eye"></i>
+      </a>
+      <nz-divider nzType="vertical"></nz-divider>
       <a [routerLink]="'/device/edit/'+data.id">
         <i nz-icon nzType="edit"></i>
       </a>

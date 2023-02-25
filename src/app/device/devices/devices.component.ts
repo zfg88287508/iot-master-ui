@@ -64,4 +64,8 @@ export class DevicesComponent {
     this.query.skip = 0;
     this.load();
   }
+
+  open(data: any) {
+    this.router.navigateByUrl("/device/detail/" + data)
+  }
 }

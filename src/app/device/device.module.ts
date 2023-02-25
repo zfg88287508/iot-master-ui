@@ -19,6 +19,10 @@ import {BaseModule} from "../base/base.module";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzSpaceModule} from "ng-zorro-antd/space";
 import { DeviceDetailComponent } from './device-detail/device-detail.component';
+import {NzStatisticModule} from "ng-zorro-antd/statistic";
+import {NzCollapseModule} from "ng-zorro-antd/collapse";
+import {NzTabsModule} from "ng-zorro-antd/tabs";
+import {SubsetModule} from "../subset/subset.module";
 
 
 @NgModule({
@@ -43,7 +47,11 @@ import { DeviceDetailComponent } from './device-detail/device-detail.component';
     ReactiveFormsModule,
     NzInputNumberModule,
     NzCardModule,
-    NzSpaceModule
+    NzSpaceModule,
+    NzStatisticModule,
+    NzCollapseModule,
+    NzTabsModule,
+    SubsetModule
   ]
 })
 export class DeviceModule {

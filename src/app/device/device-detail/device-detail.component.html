@@ -1,1 +1,48 @@
-<p>device-detail works!</p>
+
+<nz-card nzTitle="设备状态" [nzExtra]="device.id">
+  <nz-row [nzGutter]="[10, 10]">
+    <nz-col [nzXs]="12"  [nzSm]="8"  [nzMd]="6"  [nzLg]="4" *ngFor="let prop of model.properties">
+      <div class="prop">
+        <nz-statistic [nzTitle]="prop.name" [nzSuffix]="prop.unit" [nzValue]="properties[prop.id] || '-'">
+        </nz-statistic>
+      </div>
+    </nz-col>
+  </nz-row>
+</nz-card>
+
+<nz-tabset nzType="card" style="margin-top: 10px; background-color: white">
+  <nz-tab nzTitle="设备信息">
+    <div style="padding: 20px;">
+
+      <nz-row [nzGutter]="[10, 10]">
+        <nz-col [nzXs]="24"  [nzSm]="12"  [nzMd]="8"  [nzLg]="6">
+          名称：{{device.name}}
+        </nz-col>
+        <nz-col [nzXs]="24"  [nzSm]="12"  [nzMd]="8"  [nzLg]="6">
+          产品：{{device.product_id}}
+        </nz-col>
+        <nz-col [nzXs]="24"  [nzSm]="12"  [nzMd]="8"  [nzLg]="6">
+          账号：{{device.username}}
+        </nz-col>
+        <nz-col [nzXs]="24"  [nzSm]="12"  [nzMd]="8"  [nzLg]="6">
+          密钥：{{device.password}}
+        </nz-col>
+        <nz-col [nzXs]="24"  [nzSm]="12"  [nzMd]="8"  [nzLg]="6">
+          上线时间：{{device.last | date}}
+        </nz-col>
+        <nz-col [nzXs]="24"  [nzSm]="12"  [nzMd]="8"  [nzLg]="6">
+          创建时间：{{device.created | date}}
+        </nz-col>
+
+      </nz-row>
+
+    </div>
+
+  </nz-tab>
+  <nz-tab nzTitle="设备日志">
+
+  </nz-tab>
+  <nz-tab nzTitle="子设备管理">
+    <app-subsets></app-subsets>
+  </nz-tab>
+</nz-tabset>
