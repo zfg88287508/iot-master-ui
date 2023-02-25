@@ -38,10 +38,9 @@ export class ProductEditComponent implements OnInit {
     obj = obj || {}
     this.group = this.fb.group({
       id: [obj.id || '', []],
+      model_id: [obj.model_id || '', []],
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
-      username: [obj.username || '', []],
-      password: [obj.password || '', []],
     })
   }
 

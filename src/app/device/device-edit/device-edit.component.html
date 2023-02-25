@@ -11,9 +11,16 @@
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="id">ClientID</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="id">ID</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="id"/>
+        <input nz-input formControlName="id" placeholder="默认为随机生成"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="product_id">产品ID</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <input nz-input formControlName="product_id"/> TODO:改为选择产品
       </nz-form-control>
     </nz-form-item>
 

@@ -10,17 +10,25 @@
 
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
 
+
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="gateway_id">网关ID</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="id">ID</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="gateway_id"/>
+        <input nz-input formControlName="id" placeholder="默认为随机生成"/>
+      </nz-form-control>
+    </nz-form-item>
+	
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="device_id">设备ID</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <input nz-input formControlName="device_id"/> TODO: 改为选择
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="model_id">模型ID</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="product_id">产品ID</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="model_id"/>
+        <input nz-input formControlName="product_id"/> TODO:改为选择产品
       </nz-form-control>
     </nz-form-item>
 
@@ -37,10 +45,6 @@
         <textarea nz-input formControlName="desc"></textarea>
       </nz-form-control>
     </nz-form-item>
-
-    <p>
-      网关ID 和 模型ID 需要改成选择器
-    </p>
   </form>
 
 </nz-card>

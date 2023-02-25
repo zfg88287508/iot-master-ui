@@ -23,7 +23,8 @@
 >
   <thead>
   <tr>
-    <th nzColumnKey="id" [nzSortFn]="true">ClientID</th>
+    <th nzColumnKey="id" [nzSortFn]="true">ID</th>
+    <th nzColumnKey="product_id">产品ID</th>
     <th nzColumnKey="name" [nzSortFn]="true">名称</th>
     <th nzColumnKey="desc">说明</th>
     <th nzColumnKey="username">用户名</th>
@@ -35,6 +36,7 @@
   <tbody>
   <tr *ngFor="let data of basicTable.data; let i = index">
     <td>{{data.id}}</td>
+    <td>{{data.product_id}}</td>
     <td>{{data.name}}</td>
     <td>{{data.desc}}</td>
     <td>{{data.username}}</td>

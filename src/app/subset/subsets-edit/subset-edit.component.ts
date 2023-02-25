@@ -37,8 +37,8 @@ export class SubsetEditComponent implements OnInit {
   build(obj?: any) {
     obj = obj || {}
     this.group = this.fb.group({
-      gateway_id: [obj.gateway_id || '', []],
-      model_id: [obj.model_id || '', []],
+      device_id: [obj.device_id || '', []],
+      product_id: [obj.product_id || '', []],
       name: [obj.name || '', []],
       desc: [obj.desc || '', []],
     })
