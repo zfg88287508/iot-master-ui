@@ -46,7 +46,10 @@ export class UserEditComponent implements OnInit {
   submit() {
     let url = this.id ? `user/${this.id}` : `user/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      this.router.navigateByUrl("user/users")
+      let path = "/user/list"
+      if (location.pathname.startsWith("/admin"))
+        path = "/admin" + path
+      this.router.navigateByUrl(path)
       this.msg.success("保存成功")
     })
 

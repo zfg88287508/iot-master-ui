@@ -47,7 +47,7 @@
         <i nz-icon nzType="eye"></i>
       </a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a [routerLink]="'/device/edit/'+data.id">
+      <a (click)="edit(data.id)">
         <i nz-icon nzType="edit"></i>
       </a>
       <nz-divider nzType="vertical"></nz-divider>

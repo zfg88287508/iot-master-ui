@@ -5,7 +5,6 @@ import { PluginRoutingModule } from './plugin-routing.module';
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
-import {PluginComponent} from "./plugin.component";
 import { PluginsComponent } from './plugins/plugins.component';
 import { PluginEditComponent } from './plugin-edit/plugin-edit.component';
 import {NzCardModule} from "ng-zorro-antd/card";
@@ -23,7 +22,6 @@ import { PluginDetailComponent } from './plugin-detail/plugin-detail.component';
 
 @NgModule({
   declarations: [
-    PluginComponent,
     PluginsComponent,
     PluginEditComponent,
     PluginDetailComponent,

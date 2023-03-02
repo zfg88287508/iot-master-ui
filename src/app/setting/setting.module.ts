@@ -9,7 +9,6 @@ import { BackupComponent } from './backup/backup.component';
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
-import {SettingComponent} from "./setting.component";
 import {NzCardModule} from "ng-zorro-antd/card";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -22,7 +21,6 @@ import { RebootComponent } from './reboot/reboot.component';
 
 @NgModule({
   declarations: [
-    SettingComponent,
     DatabaseComponent,
     LogComponent,
     WebComponent,

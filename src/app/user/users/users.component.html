@@ -35,7 +35,7 @@
     <td>{{data.email}}</td>
     <td>{{data.created | date}}</td>
     <td>
-      <a [routerLink]="'/user/edit/'+data.id">
+      <a (click)="edit(data.id)">
         <i nz-icon nzType="edit"></i>
       </a>
       <nz-divider nzType="vertical"></nz-divider>

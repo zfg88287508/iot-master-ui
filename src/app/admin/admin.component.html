@@ -1,0 +1,34 @@
+<nz-layout style="height: 100%">
+  <nz-header class="header">
+    <div class="logo">
+      <img [src]="os.oem.logo" alt="logo">
+    </div>
+    <div class="title">
+      {{os.oem.title}}
+    </div>
+    <div class="fill">
+    </div>
+    <div class="user">
+      <img class="avatar" src="/assets/user.svg" alt="logo">
+    </div>
+  </nz-header>
+  <nz-layout>
+    <nz-sider nzBreakpoint="sm">
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-submenu [nzTitle]="app.name" *ngFor="let app of _as.apps">
+          <ul>
+            <li nz-menu-item nzMatchRouter nzMatchRouterExact *ngFor="let entry of app.entries">
+              <a [routerLink]="['/admin'+entry.path]">
+                <span>{{entry.name}}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+
+</nz-layout>

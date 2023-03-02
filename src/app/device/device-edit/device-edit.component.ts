@@ -18,6 +18,7 @@ export class DeviceEditComponent implements OnInit {
               private route: ActivatedRoute,
               private rs: RequestService,
               private msg: NzMessageService) {
+
   }
 
 
@@ -49,8 +50,12 @@ export class DeviceEditComponent implements OnInit {
   submit() {
     let url = this.id ? `device/${this.id}` : `device/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      this.router.navigateByUrl("device/devices")
+      let path = "/device/list"
+      if (location.pathname.startsWith("/admin"))
+        path = "/admin" + path
+      this.router.navigateByUrl(path)
       this.msg.success("保存成功")
+
     })
 
   }

@@ -3,19 +3,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {DevicesComponent} from "./devices/devices.component";
 import {DeviceEditComponent} from "./device-edit/device-edit.component";
 import {PageNotFoundComponent} from "../base/page-not-found/page-not-found.component";
-import {DeviceComponent} from "./device.component";
 import {DeviceDetailComponent} from "./device-detail/device-detail.component";
 
 const routes: Routes = [
-  {
-    path: '', component: DeviceComponent, children: [
-      {path: '', pathMatch:"full", redirectTo: "devices"},
-      {path: 'devices', component: DevicesComponent},
-      {path: 'detail/:id', component: DeviceDetailComponent},
-      {path: 'edit/:id', component: DeviceEditComponent},
-      {path: 'create', component: DeviceEditComponent},
-    ]
-  },
+  {path: '', pathMatch: "full", redirectTo: "list"},
+  {path: 'list', component: DevicesComponent},
+  {path: 'detail/:id', component: DeviceDetailComponent},
+  {path: 'edit/:id', component: DeviceEditComponent},
+  {path: 'create', component: DeviceEditComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -23,4 +18,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DeviceRoutingModule { }
+export class DeviceRoutingModule {
+}

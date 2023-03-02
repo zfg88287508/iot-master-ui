@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 
 import {ServersComponent} from './servers/servers.component';
 import {ServerEditComponent} from './server-edit/server-edit.component';
-import {ServerComponent} from './server.component';
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
@@ -25,7 +24,6 @@ import { ServerDetailComponent } from './server-detail/server-detail.component';
   declarations: [
     ServersComponent,
     ServerEditComponent,
-    ServerComponent,
     ServerDetailComponent
   ],
   imports: [

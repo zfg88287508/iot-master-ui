@@ -46,7 +46,10 @@ export class ServerEditComponent implements OnInit{
   submit() {
     let url = this.id ? `server/${this.id}` : `server/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      this.router.navigateByUrl("server/servers")
+      let path = "/server/list"
+      if (location.pathname.startsWith("/admin"))
+        path = "/admin" + path
+      this.router.navigateByUrl(path)
       this.msg.success("保存成功")
     })
 

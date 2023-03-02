@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {DeviceRoutingModule} from './device-routing.module';
-import {DeviceComponent} from './device.component';
 import {DevicesComponent} from "./devices/devices.component";
 import {DeviceEditComponent} from "./device-edit/device-edit.component";
 import {NzLayoutModule} from "ng-zorro-antd/layout";
@@ -22,14 +21,12 @@ import { DeviceDetailComponent } from './device-detail/device-detail.component';
 import {NzStatisticModule} from "ng-zorro-antd/statistic";
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {NzTabsModule} from "ng-zorro-antd/tabs";
-import {SubsetModule} from "../subset/subset.module";
 
 
 @NgModule({
   declarations: [
     DevicesComponent,
     DeviceEditComponent,
-    DeviceComponent,
     DeviceDetailComponent
   ],
   imports: [
@@ -50,8 +47,7 @@ import {SubsetModule} from "../subset/subset.module";
     NzSpaceModule,
     NzStatisticModule,
     NzCollapseModule,
-    NzTabsModule,
-    SubsetModule
+    NzTabsModule
   ]
 })
 export class DeviceModule {

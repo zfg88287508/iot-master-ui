@@ -41,7 +41,10 @@ export class productsComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/product/create")
+    let path = "/product/create"
+    if (location.pathname.startsWith("/admin"))
+      path = "/admin" + path
+    this.router.navigateByUrl(path)
   }
 
   delete(index: number, id: number) {
@@ -63,5 +66,12 @@ export class productsComponent {
     };
     this.query.skip = 0;
     this.load();
+  }
+
+  edit(id: any) {
+    let path = "/product/edit/" + id
+    if (location.pathname.startsWith("/admin"))
+      path = "/admin" + path
+    this.router.navigateByUrl(path)
   }
 }

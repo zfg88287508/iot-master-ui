@@ -41,7 +41,10 @@ export class ServersComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/server/create")
+    let path = "/server/create"
+    if (location.pathname.startsWith("/admin"))
+      path = "/admin" + path
+    this.router.navigateByUrl(path)
   }
 
   delete(index: number, id: number) {
@@ -63,5 +66,12 @@ export class ServersComponent {
     };
     this.query.skip = 0;
     this.load();
+  }
+
+  edit(id: any) {
+    let path = "/server/edit/" + id
+    if (location.pathname.startsWith("/admin"))
+      path = "/admin" + path
+    this.router.navigateByUrl(path)
   }
 }

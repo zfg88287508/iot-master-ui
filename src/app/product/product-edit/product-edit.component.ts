@@ -47,7 +47,10 @@ export class ProductEditComponent implements OnInit {
   submit() {
     let url = this.id ? `product/${this.id}` : `product/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      this.router.navigateByUrl("product/products")
+      let path = "/product/list"
+      if (location.pathname.startsWith("/admin"))
+        path = "/admin" + path
+      this.router.navigateByUrl(path)
       this.msg.success("保存成功")
     })
 

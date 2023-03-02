@@ -26,22 +26,18 @@ import {NzModalModule} from "ng-zorro-antd/modal";
 import {DesktopComponent} from './desktop/desktop.component';
 import {NzDrawerModule} from "ng-zorro-antd/drawer";
 import {WindowComponent} from './window/window.component';
+import {AdminComponent} from './admin/admin.component';
+import {NzIconModule} from "ng-zorro-antd/icon";
 
 registerLocaleData(zh);
 
-
-const routes: Routes = [
-  {path: '', redirectTo: 'desktop', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'desktop', component: DesktopComponent}, {
+const pages: Routes = [
+  {
     path: 'server',
     loadChildren: () => import('./server/server.module').then(m => m.ServerModule)
   }, {
     path: 'device',
     loadChildren: () => import('./device/device.module').then(m => m.DeviceModule)
-  }, {
-    path: 'subset',
-    loadChildren: () => import('./subset/subset.module').then(m => m.SubsetModule)
   }, {
     path: 'setting',
     loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule)
@@ -49,20 +45,25 @@ const routes: Routes = [
     path: 'user',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   }, {
-    path: 'model',
-    loadChildren: () => import('./model/model.module').then(m => m.ModelModule)
-  }, {
     path: 'product',
     loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
   }, {
     path: 'plugin',
     loadChildren: () => import('./plugin/plugin.module').then(m => m.PluginModule)
   },
+]
+
+const routes: Routes = [
+  {path: '', redirectTo: 'desktop', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'admin', component: AdminComponent, children: pages},
+  {path: 'desktop', component: DesktopComponent},
+  ...pages,
   {path: '**', component: PageNotFoundComponent}
 ]
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DesktopComponent, WindowComponent],
+  declarations: [AppComponent, LoginComponent, DesktopComponent, WindowComponent, AdminComponent],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
@@ -83,6 +84,7 @@ const routes: Routes = [
     NzDividerModule,
     NzModalModule,
     NzDrawerModule,
+    NzIconModule,
   ],
   providers: [{provide: NZ_I18N, useValue: zh_CN}],
   bootstrap: [AppComponent],

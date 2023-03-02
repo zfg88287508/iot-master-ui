@@ -48,7 +48,10 @@ export class PluginEditComponent implements OnInit {
   submit() {
     let url = this.id ? `plugin/${this.id}` : `plugin/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      this.router.navigateByUrl("plugin/plugins")
+      let path = "/plugin/list"
+      if (location.pathname.startsWith("/admin"))
+        path = "/admin" + path
+      this.router.navigateByUrl(path)
       this.msg.success("保存成功")
     })
 

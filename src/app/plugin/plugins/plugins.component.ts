@@ -41,7 +41,10 @@ export class PluginsComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/plugin/create")
+    let path = "/plugin/create"
+    if (location.pathname.startsWith("/admin"))
+      path = "/admin" + path
+    this.router.navigateByUrl(path)
   }
 
   delete(index: number, id: number) {
@@ -63,5 +66,12 @@ export class PluginsComponent {
     };
     this.query.skip = 0;
     this.load();
+  }
+
+  edit(id: any) {
+    let path = "/plugin/edit/" + id
+    if (location.pathname.startsWith("/admin"))
+      path = "/admin" + path
+    this.router.navigateByUrl(path)
   }
 }

@@ -9,7 +9,6 @@ import { MeComponent } from './me/me.component';
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
-import {UserComponent} from "./user.component";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzCardModule} from "ng-zorro-antd/card";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -25,12 +24,11 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
-    UserComponent,
     UsersComponent,
     UserEditComponent,
+    UserDetailComponent,
     PasswordComponent,
-    MeComponent,
-    UserDetailComponent
+    MeComponent
   ],
   imports: [
     CommonModule,

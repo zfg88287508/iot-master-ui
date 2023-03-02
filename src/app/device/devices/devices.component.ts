@@ -7,7 +7,7 @@ import {NzTableQueryParams} from "ng-zorro-antd/table";
 import {ParseTableQuery} from "../../base/table";
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-devices',
   templateUrl: './devices.component.html',
   styleUrls: ['./devices.component.scss']
 })
@@ -41,7 +41,10 @@ export class DevicesComponent {
   }
 
   create() {
-    this.router.navigateByUrl("/device/create")
+    let path = "/device/create"
+    if (location.pathname.startsWith("/admin"))
+      path = "/admin" + path
+    this.router.navigateByUrl(path)
   }
 
   delete(index: number, id: number) {
@@ -65,7 +68,17 @@ export class DevicesComponent {
     this.load();
   }
 
-  open(data: any) {
-    this.router.navigateByUrl("/device/detail/" + data)
+  open(id: any) {
+    let path = "/device/detail/" + id
+    if (location.pathname.startsWith("/admin"))
+      path = "/admin" + path
+    this.router.navigateByUrl(path)
+  }
+
+  edit(id: any) {
+    let path = "/device/edit/" + id
+    if (location.pathname.startsWith("/admin"))
+      path = "/admin" + path
+    this.router.navigateByUrl(path)
   }
 }

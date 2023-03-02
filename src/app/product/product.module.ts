@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {ProductRoutingModule} from './product-routing.module';
-import {ProductComponent} from './product.component';
 import {productsComponent} from "./products/products.component";
 import {ProductEditComponent} from "./product-edit/product-edit.component";
 import {NzLayoutModule} from "ng-zorro-antd/layout";
@@ -25,7 +24,6 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   declarations: [
     productsComponent,
     ProductEditComponent,
-    ProductComponent,
     ProductDetailComponent
   ],
   imports: [
