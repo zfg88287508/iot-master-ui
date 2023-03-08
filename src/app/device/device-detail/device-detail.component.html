@@ -1,9 +1,9 @@
 
 <nz-card nzTitle="设备状态" [nzExtra]="device.id">
   <nz-row [nzGutter]="[10, 10]">
-    <nz-col [nzXs]="12"  [nzSm]="8"  [nzMd]="6"  [nzLg]="4" *ngFor="let prop of model.properties">
+    <nz-col [nzXs]="12"  [nzSm]="8"  [nzMd]="6"  [nzLg]="4" *ngFor="let prop of product.properties">
       <div class="prop">
-        <nz-statistic [nzTitle]="prop.name" [nzSuffix]="prop.unit" [nzValue]="properties[prop.id] || '-'">
+        <nz-statistic [nzTitle]="prop.label" [nzSuffix]="prop.unit" [nzValue]="properties[prop.name] || '-'">
         </nz-statistic>
       </div>
     </nz-col>

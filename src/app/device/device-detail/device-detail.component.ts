@@ -11,7 +11,6 @@ export class DeviceDetailComponent {
   id: any = ''
   device: any = {}
   product: any = {}
-  model: any = {}
 
   properties: any = {}
 
@@ -25,9 +24,6 @@ export class DeviceDetailComponent {
       this.device = res.data;
       this.rs.get(`product/${this.device.product_id}`).subscribe(res => {
         this.product = res.data;
-        this.rs.get(`model/${this.product.model_id}`).subscribe(res => {
-          this.model = res.data;
-        })
       })
     })
 
