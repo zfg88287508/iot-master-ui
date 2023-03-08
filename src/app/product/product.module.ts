@@ -18,6 +18,8 @@ import {BaseModule} from "../base/base.module";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzSpaceModule} from "ng-zorro-antd/space";
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import {NzCollapseModule} from "ng-zorro-antd/collapse";
+import {NzSelectModule} from "ng-zorro-antd/select";
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     ReactiveFormsModule,
     NzInputNumberModule,
     NzCardModule,
-    NzSpaceModule
+    NzSpaceModule,
+    NzCollapseModule,
+    NzSelectModule
   ]
 })
 export class ProductModule {

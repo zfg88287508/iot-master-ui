@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RequestService} from "../../request.service";
 import {NzMessageService} from "ng-zorro-antd/message";
@@ -10,7 +10,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
   styleUrls: ['./product-edit.component.scss']
 })
 export class ProductEditComponent implements OnInit {
-  group: any = {};
+  group!: any;
   id: any = 0
 
   constructor(private fb: FormBuilder,
@@ -38,9 +38,20 @@ export class ProductEditComponent implements OnInit {
     obj = obj || {}
     this.group = this.fb.group({
       id: [obj.id || '', []],
-      model_id: [obj.model_id || '', []],
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
+      version: [obj.version || '', []],
+      properties: this.fb.array(
+        obj.properties ? obj.properties.map((prop: any) =>
+          this.fb.group({
+            label: [prop.label || '', []],
+            name: [prop.name || '', []],
+            type: [prop.type || 'int', []],
+            unit: [prop.unit || '', []],
+            mode: [prop.mode || 'rw', []],
+          })
+        ) : []
+      )
     })
   }
 
@@ -54,5 +65,23 @@ export class ProductEditComponent implements OnInit {
       this.msg.success("保存成功")
     })
 
+  }
+
+  propertyAdd($event: any) {
+    $event.stopPropagation()
+    this.group.get('properties').push(
+      this.fb.group({
+        name: ['', []],
+        label: ['', []],
+        type: ['int', []],
+        unit: ['', []],
+        mode: ['rw', []],
+      })
+    )
+  }
+
+
+  propertyDel(i: number) {
+    this.group.get('properties').controls.splice(i, 1)
   }
 }
