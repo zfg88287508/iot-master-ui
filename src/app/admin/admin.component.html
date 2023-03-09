@@ -8,14 +8,22 @@
     </div>
     <div class="fill">
     </div>
-    <div class="user">
+    <div class="user" nzTrigger="click" nz-dropdown [nzDropdownMenu]="menu">
       <img class="avatar" src="/assets/user.svg" alt="logo">
+      管理员
     </div>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item routerLink="/admin/user/me">个人中心</li>
+        <li nz-menu-item routerLink="/admin/user/password">修改密码</li>
+        <li nz-menu-item>退出</li>
+      </ul>
+    </nz-dropdown-menu>
   </nz-header>
   <nz-layout>
     <nz-sider nzBreakpoint="sm">
       <ul nz-menu nzTheme="dark" nzMode="inline">
-        <li nz-submenu [nzTitle]="app.name" *ngFor="let app of _as.apps">
+        <li nz-submenu [nzIcon]="app.nzIcon" [nzTitle]="app.name" *ngFor="let app of _as.apps">
           <ul>
             <li nz-menu-item nzMatchRouter nzMatchRouterExact *ngFor="let entry of app.entries">
               <a [routerLink]="['/admin'+entry.path]">

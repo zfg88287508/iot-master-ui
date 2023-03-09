@@ -9,5 +9,6 @@ import {OemService} from "../oem.service";
 })
 export class AdminComponent {
   constructor(protected _as: AppService, protected os: OemService) {
+    localStorage.setItem("main", "/admin")
   }
 }

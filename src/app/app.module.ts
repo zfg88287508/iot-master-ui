@@ -28,6 +28,7 @@ import {NzDrawerModule} from "ng-zorro-antd/drawer";
 import {WindowComponent} from './window/window.component';
 import {AdminComponent} from './admin/admin.component';
 import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 
 registerLocaleData(zh);
 
@@ -56,7 +57,12 @@ const pages: Routes = [
 const routes: Routes = [
   {path: '', redirectTo: 'desktop', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'admin', component: AdminComponent, children: pages},
+  {
+    path: 'admin', component: AdminComponent, children: [
+      {path: '', pathMatch: "full", redirectTo: "device"},
+      ...pages
+    ]
+  },
   {path: 'desktop', component: DesktopComponent},
   ...pages,
   {path: '**', component: PageNotFoundComponent}
@@ -85,6 +91,7 @@ const routes: Routes = [
     NzModalModule,
     NzDrawerModule,
     NzIconModule,
+    NzDropDownModule,
   ],
   providers: [{provide: NZ_I18N, useValue: zh_CN}],
   bootstrap: [AppComponent],

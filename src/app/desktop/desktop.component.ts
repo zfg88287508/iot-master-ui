@@ -22,6 +22,8 @@ export class DesktopComponent {
               private ms: NzModalService,
               protected os: OemService,
               protected _as: AppService) {
+
+    localStorage.setItem("main", "/desktop")
   }
 
   open(app: any) {

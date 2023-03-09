@@ -21,7 +21,7 @@ const internals: any[] = [{
   ]
 }, {
   icon: '/assets/gateway.png',
-  nzIcon: 'server',
+  nzIcon: 'block',
   name: '设备管理',
   internal: true,
   entries: [
@@ -31,6 +31,7 @@ const internals: any[] = [{
   ]
 }, {
   icon: '/assets/user.png',
+  nzIcon: 'user',
   name: '用户管理',
   internal: true,
   entries: [
@@ -39,6 +40,7 @@ const internals: any[] = [{
   ]
 }, {
   icon: '/assets/plugin.png',
+  nzIcon: 'appstore-add',
   name: '插件管理',
   internal: true,
   entries: [
@@ -47,6 +49,7 @@ const internals: any[] = [{
   ]
 }, {
   icon: '/assets/setting.png',
+  nzIcon: 'setting',
   name: '系统设置',
   internal: true,
   entries: [

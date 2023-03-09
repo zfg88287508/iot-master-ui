@@ -45,7 +45,10 @@ export class LoginComponent implements OnInit {
       //更新用户
       this.us.setUser(res.data);
 
-      this.router.navigate(['/desktop']).then(r => {});
+      //TODO 缓存用户喜好
+      let main = localStorage.getItem("main") || "/admin"
+      this.router.navigate([main]).then(r => {});
+
     }, err => {
       console.log('err:', err);
     });

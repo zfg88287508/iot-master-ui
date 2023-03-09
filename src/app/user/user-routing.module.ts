@@ -13,6 +13,8 @@ const routes: Routes = [
   {path: 'detail/:id', component: UserDetailComponent},
   {path: 'edit/:id', component: UserEditComponent},
   {path: 'create', component: UserEditComponent},
+  {path: 'me', component: MeComponent},
+  {path: 'password', component: PasswordComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
