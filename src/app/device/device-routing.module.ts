@@ -4,6 +4,7 @@ import {DevicesComponent} from "./devices/devices.component";
 import {DeviceEditComponent} from "./device-edit/device-edit.component";
 import {PageNotFoundComponent} from "../base/page-not-found/page-not-found.component";
 import {DeviceDetailComponent} from "./device-detail/device-detail.component";
+import {BatchComponent} from "./batch/batch.component";
 
 const routes: Routes = [
   {path: '', pathMatch: "full", redirectTo: "list"},
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path: 'detail/:id', component: DeviceDetailComponent},
   {path: 'edit/:id', component: DeviceEditComponent},
   {path: 'create', component: DeviceEditComponent},
+  {path: 'batch', component: BatchComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

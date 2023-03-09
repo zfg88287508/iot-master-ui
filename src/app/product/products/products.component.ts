@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {NzModalService} from "ng-zorro-antd/modal";
+import {Component, Optional} from '@angular/core';
+import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {Router} from "@angular/router";
 import {RequestService} from "../../request.service";
 import {NzMessageService} from "ng-zorro-antd/message";
@@ -11,7 +11,7 @@ import {ParseTableQuery} from "../../base/table";
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class productsComponent {
+export class ProductsComponent {
 
   loading = true
   datum: any[] = []
@@ -21,7 +21,11 @@ export class productsComponent {
   query: any = {}
 
 
-  constructor(private ms: NzModalService, private router: Router, private rs: RequestService, private msg: NzMessageService) {
+  constructor(private ms: NzModalService,
+              @Optional() protected ref: NzModalRef,
+              private router: Router,
+              private rs: RequestService,
+              private msg: NzMessageService) {
     //this.load();
   }
 
@@ -73,5 +77,9 @@ export class productsComponent {
     if (location.pathname.startsWith("/admin"))
       path = "/admin" + path
     this.router.navigateByUrl(path)
+  }
+
+  select(id: any) {
+    this.ref && this.ref.close(id)
   }
 }

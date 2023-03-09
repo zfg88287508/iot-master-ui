@@ -21,13 +21,17 @@ import { DeviceDetailComponent } from './device-detail/device-detail.component';
 import {NzStatisticModule} from "ng-zorro-antd/statistic";
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {NzTabsModule} from "ng-zorro-antd/tabs";
+import {NzSwitchModule} from "ng-zorro-antd/switch";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import { BatchComponent } from './batch/batch.component';
 
 
 @NgModule({
   declarations: [
     DevicesComponent,
     DeviceEditComponent,
-    DeviceDetailComponent
+    DeviceDetailComponent,
+    BatchComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +51,9 @@ import {NzTabsModule} from "ng-zorro-antd/tabs";
     NzSpaceModule,
     NzStatisticModule,
     NzCollapseModule,
-    NzTabsModule
+    NzTabsModule,
+    NzSwitchModule,
+    NzSelectModule
   ]
 })
 export class DeviceModule {

@@ -17,12 +17,34 @@
       </nz-form-control>
     </nz-form-item>
 
+
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="product_id">产品ID</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type">类型</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="product_id"/> TODO:改为选择产品
+        <nz-select formControlName="type">
+          <nz-option nzValue="gateway" nzLabel="网关"></nz-option>
+          <nz-option nzValue="device" nzLabel="设备"></nz-option>
+          <nz-option nzValue="subset" nzLabel="子设备"></nz-option>
+        </nz-select>
       </nz-form-control>
     </nz-form-item>
+
+    <nz-form-item *ngIf="group.value.type != 'gateway'">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="product_id">产品ID</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <input nz-input formControlName="product_id"/>
+        <a (click)="chooseProduct()">选择</a>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="group.value.type == 'subset'">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="gateway_id">网关ID</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <input nz-input formControlName="gateway_id"/>
+        <a (click)="chooseGateway()">选择</a>
+      </nz-form-control>
+    </nz-form-item>
+
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">名称</nz-form-label>
@@ -38,15 +60,15 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username">用户名</nz-form-label>
+    <nz-form-item *ngIf="group.value.type != 'subset'">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username">MQTT账号</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
         <input nz-input formControlName="username"/>
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password">密码</nz-form-label>
+    <nz-form-item *ngIf="group.value.type != 'subset'">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password">MQTT密码</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
         <input nz-input formControlName="password"/>
       </nz-form-control>

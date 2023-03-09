@@ -5,10 +5,6 @@
       刷新
     </button>
     <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
-    <button *nzSpaceItem nz-button nzSize="large" disabled>
-      <i nz-icon nzType="menu"></i>
-      批量创建
-    </button>
   </nz-space>
 </app-toolbar>
 
@@ -34,7 +30,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of basicTable.data; let i = index" (dblclick)="open(data.id)">
+  <tr *ngFor="let data of basicTable.data; let i = index" (click)="select(data.id)" (dblclick)="open(data.id)">
     <td>{{data.id}}</td>
     <td>{{data.product_id}}</td>
     <td>{{data.name}}</td>
@@ -42,7 +38,7 @@
     <td>{{data.username}}</td>
     <td>{{data.password}}</td>
     <td>{{data.created | date}}</td>
-    <td>
+    <td *ngIf="!ref">
       <a (click)="open(data.id)" title="详情">
         <i nz-icon nzType="eye"></i>
       </a>
@@ -53,6 +49,11 @@
       <nz-divider nzType="vertical"></nz-divider>
       <a (click)="delete(i, data.id)">
         <i nz-icon nzType="delete"></i>
+      </a>
+    </td>
+    <td *ngIf="ref">
+      <a (click)="select(data.id)">
+        选择
       </a>
     </td>
   </tr>
