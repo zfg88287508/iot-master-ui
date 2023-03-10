@@ -10,9 +10,18 @@ export class UserService {
   public user: any;
   public userSub = new Subject<any>();
 
+  public getting = true;
+
   constructor(private rs: RequestService) {
+    console.log("user me")
     rs.get('user/me').subscribe(res => {
+      console.log("user me ok")
       this.setUser(res.data) ;
+    }, error => {
+      this.userSub.error(error)
+    }).add(()=>{
+      console.log('getting false')
+      this.getting = false;
     })
   }
 

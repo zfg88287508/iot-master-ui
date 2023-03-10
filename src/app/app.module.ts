@@ -29,27 +29,35 @@ import {WindowComponent} from './window/window.component';
 import {AdminComponent} from './admin/admin.component';
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
+import {NzNotificationModule} from "ng-zorro-antd/notification";
+import {authGuard} from "./auth.guard";
 
 registerLocaleData(zh);
 
 const pages: Routes = [
   {
     path: 'server',
+    canActivate: [authGuard],
     loadChildren: () => import('./server/server.module').then(m => m.ServerModule)
   }, {
     path: 'device',
+    canActivate: [authGuard],
     loadChildren: () => import('./device/device.module').then(m => m.DeviceModule)
   }, {
     path: 'setting',
+    canActivate: [authGuard],
     loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule)
   }, {
     path: 'user',
+    canActivate: [authGuard],
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   }, {
     path: 'product',
+    canActivate: [authGuard],
     loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
   }, {
     path: 'plugin',
+    canActivate: [authGuard],
     loadChildren: () => import('./plugin/plugin.module').then(m => m.PluginModule)
   },
 ]
@@ -58,12 +66,15 @@ const routes: Routes = [
   {path: '', redirectTo: 'desktop', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {
-    path: 'admin', component: AdminComponent, children: [
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [authGuard],
+    children: [
       {path: '', pathMatch: "full", redirectTo: "device"},
       ...pages
     ]
   },
-  {path: 'desktop', component: DesktopComponent},
+  {path: 'desktop', component: DesktopComponent, canActivate: [authGuard]},
   ...pages,
   {path: '**', component: PageNotFoundComponent}
 ]
@@ -84,6 +95,7 @@ const routes: Routes = [
     NzButtonModule,
     NzCheckboxModule,
     NzMessageModule,
+    NzNotificationModule,
     NzLayoutModule,
     NzMenuModule,
     NzTableModule,
