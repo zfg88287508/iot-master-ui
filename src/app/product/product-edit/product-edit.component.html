@@ -45,7 +45,7 @@
           添加
         </button>
       </ng-template>
-      <nz-collapse-panel nzHeader="属性" [nzActive]="true" [nzExtra]="propertyEx">
+      <nz-collapse-panel nzHeader="属性" [nzExtra]="propertyEx">
 
         <nz-table formArrayName="properties">
           <tr>
@@ -54,13 +54,14 @@
             <th>类型</th>
             <th>单位</th>
             <th>模式</th>
+            <th></th>
           </tr>
           <tr *ngFor="let value of group.get('properties').controls; let i=index;" [formGroupName]="i">
             <td>
-              <input nz-input formControlName="name">
+              <input nz-input formControlName="name"/>
             </td>
             <td>
-              <input nz-input formControlName="label">
+              <input nz-input formControlName="label"/>
             </td>
             <td>
               <nz-select formControlName="type">
@@ -93,8 +94,8 @@
           添加
         </button>
       </ng-template>
-      <nz-collapse-panel nzHeader="功能" [nzActive]="true" [nzExtra]="functionEx">
-
+      <nz-collapse-panel nzDisabled nzHeader="功能" [nzExtra]="functionEx">
+        暂不支持
       </nz-collapse-panel>
 
       <ng-template #eventEx>
@@ -103,9 +104,101 @@
           添加
         </button>
       </ng-template>
-      <nz-collapse-panel nzHeader="事件" [nzActive]="true" [nzExtra]="eventEx">
+      <nz-collapse-panel nzDisabled nzHeader="事件" [nzExtra]="eventEx">
+        暂不支持
+      </nz-collapse-panel>
+
+
+      <ng-template #parameterEx>
+        <button type="button" nz-button nzType="primary" (click)="parameterAdd($event)">
+          <i type="button" nz-icon nzType="plus"></i>
+          添加
+        </button>
+      </ng-template>
+      <nz-collapse-panel nzHeader="变量" [nzExtra]="parameterEx">
+
+        <nz-table formArrayName="parameters">
+          <tr>
+            <th>名称（ID）</th>
+            <th>显示</th>
+            <th>最大值</th>
+            <th>最小值</th>
+            <th>默认值</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let value of group.get('parameters').controls; let i=index;" [formGroupName]="i">
+            <td>
+              <input nz-input formControlName="name"/>
+            </td>
+            <td>
+              <input nz-input formControlName="label"/>
+            </td>
+            <td>
+              <nz-input-number formControlName="max"></nz-input-number>
+            </td>
+            <td>
+              <nz-input-number formControlName="min"></nz-input-number>
+            </td>
+            <td>
+              <nz-input-number formControlName="default"></nz-input-number>
+            </td>
+            <td>
+              <span nz-icon nzType="delete" nzTheme="outline" (click)="parameterDel(i)"></span>
+            </td>
+          </tr>
+        </nz-table>
 
       </nz-collapse-panel>
+
+
+      <ng-template #constraintEx>
+        <button type="button" nz-button nzType="primary" (click)="constraintAdd($event)">
+          <i type="button" nz-icon nzType="plus"></i>
+          添加
+        </button>
+      </ng-template>
+      <nz-collapse-panel nzHeader="约束" [nzExtra]="constraintEx">
+
+        <nz-table formArrayName="constraints">
+          <tr>
+            <th>等级</th>
+            <th>标题</th>
+            <th>模板</th>
+            <th>表达式</th>
+            <th>延迟s</th>
+            <th>再次提醒s</th>
+            <th>总提醒次数</th>
+          </tr>
+          <tr *ngFor="let value of group.get('constraints').controls; let i=index;" [formGroupName]="i">
+            <td>
+              <nz-input-number formControlName="level"></nz-input-number>
+            </td>
+            <td>
+              <input nz-input formControlName="title"/>
+            </td>
+            <td>
+              <input nz-input formControlName="template"/>
+            </td>
+            <td>
+              <input nz-input formControlName="expression"/>
+            </td>
+            <td>
+              <nz-input-number formControlName="delay"></nz-input-number>
+            </td>
+            <td>
+              <nz-input-number formControlName="again"></nz-input-number>
+            </td>
+            <td>
+              <nz-input-number formControlName="total"></nz-input-number>
+            </td>
+            <td>
+              <span nz-icon nzType="delete" nzTheme="outline" (click)="constraintDel(i)"></span>
+            </td>
+          </tr>
+        </nz-table>
+
+      </nz-collapse-panel>
+
     </nz-collapse>
 
   </form>

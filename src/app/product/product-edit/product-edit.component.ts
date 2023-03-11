@@ -51,7 +51,31 @@ export class ProductEditComponent implements OnInit {
             mode: [prop.mode || 'rw', []],
           })
         ) : []
-      )
+      ),
+      parameters: this.fb.array(
+        obj.parameters ? obj.parameters.map((prop: any) =>
+          this.fb.group({
+            name: [prop.name || '', []],
+            label: [prop.label || '', []],
+            min: [prop.min || 0, []],
+            max: [prop.max || 0, []],
+            default: [prop.default || 0, []],
+          })
+        ) : []
+      ),
+      constraints: this.fb.array(
+        obj.constraints ? obj.constraints.map((prop: any) =>
+          this.fb.group({
+            level: [prop.level || 1, []],
+            title: [prop.title || '', []],
+            template: [prop.template || '', []],
+            expression: [prop.expression || '', []],
+            delay: [prop.delay || 0, []],
+            again: [prop.again || 0, []],
+            total: [prop.total || 0, []],
+          })
+        ) : []
+      ),
     })
   }
 
@@ -83,5 +107,46 @@ export class ProductEditComponent implements OnInit {
 
   propertyDel(i: number) {
     this.group.get('properties').controls.splice(i, 1)
+  }
+
+
+  parameterAdd($event: any) {
+    $event.stopPropagation()
+    this.group.get('parameters').push(
+      this.fb.group({
+        name: ['', []],
+        label: ['', []],
+        min: [0, []],
+        max: [0, []],
+        default: [0, []],
+      })
+    )
+  }
+
+
+  parameterDel(i: number) {
+    this.group.get('parameters').controls.splice(i, 1)
+  }
+
+
+
+  constraintAdd($event: any) {
+    $event.stopPropagation()
+    this.group.get('constraints').push(
+      this.fb.group({
+        level: [1, []],
+        title: ['', []],
+        template: ['', []],
+        expression: ['', []],
+        delay: [0, []],
+        again: [0, []],
+        total: [0, []],
+      })
+    )
+  }
+
+
+  constraintDel(i: number) {
+    this.group.get('constraints').controls.splice(i, 1)
   }
 }
