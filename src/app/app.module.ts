@@ -44,6 +44,10 @@ const pages: Routes = [
     canActivate: [authGuard],
     loadChildren: () => import('./device/device.module').then(m => m.DeviceModule)
   }, {
+    path: 'alarm',
+    canActivate: [authGuard],
+    loadChildren: () => import('./alarm/alarm.module').then(m => m.AlarmModule)
+  }, {
     path: 'setting',
     canActivate: [authGuard],
     loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule)

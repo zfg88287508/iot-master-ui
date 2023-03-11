@@ -6,6 +6,7 @@ import {PasswordComponent} from "./password/password.component";
 import {UsersComponent} from "./users/users.component";
 import {UserEditComponent} from "./user-edit/user-edit.component";
 import {UserDetailComponent} from "./user-detail/user-detail.component";
+import {RoleComponent} from "./role/role.component";
 
 const routes: Routes = [
   {path: '', pathMatch: "full", redirectTo: "list"},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'detail/:id', component: UserDetailComponent},
   {path: 'edit/:id', component: UserEditComponent},
   {path: 'create', component: UserEditComponent},
+  {path: 'role', component: RoleComponent},
   {path: 'me', component: MeComponent},
   {path: 'password', component: PasswordComponent},
   {path: '**', component: PageNotFoundComponent}

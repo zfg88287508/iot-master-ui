@@ -20,6 +20,8 @@ import {NzSpaceModule} from "ng-zorro-antd/space";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { RoleComponent } from './role/role.component';
+import { RoleEditComponent } from './role-edit/role-edit.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     UserEditComponent,
     UserDetailComponent,
     PasswordComponent,
-    MeComponent
+    MeComponent,
+    RoleComponent,
+    RoleEditComponent
   ],
   imports: [
     CommonModule,

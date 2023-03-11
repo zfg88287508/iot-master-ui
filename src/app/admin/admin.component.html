@@ -22,7 +22,7 @@
     </nz-dropdown-menu>
   </nz-header>
   <nz-layout>
-    <nz-sider nzBreakpoint="sm">
+    <nz-sider nzBreakpoint="sm" style="overflow-y: auto">
       <ul nz-menu nzTheme="dark" nzMode="inline">
         <li nz-submenu [nzIcon]="app.nzIcon" [nzTitle]="app.name" *ngFor="let app of _as.apps">
           <ul>
@@ -35,7 +35,7 @@
         </li>
       </ul>
     </nz-sider>
-    <nz-content>
+    <nz-content style="overflow-y: auto">
       <router-outlet></router-outlet>
     </nz-content>
   </nz-layout>

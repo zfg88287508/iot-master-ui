@@ -28,6 +28,15 @@ const internals: any[] = [{
     {name: '所有设备', path: '/device/list'},
     {name: '创建设备', path: '/device/create'},
     {name: '批量创建', path: '/device/batch'},
+    {name: '设备分组', path: '/device/group'},
+  ]
+}, {
+  icon: '/assets/alarm.png',
+  nzIcon: 'bell',
+  name: '报警管理',
+  internal: true,
+  entries: [
+    {name: '报警记录', path: '/alarm/list'},
   ]
 }, {
   icon: '/assets/user.png',
@@ -37,6 +46,7 @@ const internals: any[] = [{
   entries: [
     {name: '所有用户', path: '/user/list'},
     {name: '创建用户', path: '/user/create'},
+    {name: '角色权限', path: '/user/role'},
   ]
 }, {
   icon: '/assets/plugin.png',

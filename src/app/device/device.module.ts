@@ -24,6 +24,8 @@ import {NzTabsModule} from "ng-zorro-antd/tabs";
 import {NzSwitchModule} from "ng-zorro-antd/switch";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import { BatchComponent } from './batch/batch.component';
+import { GroupComponent } from './group/group.component';
+import { GroupEditComponent } from './group-edit/group-edit.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { BatchComponent } from './batch/batch.component';
     DevicesComponent,
     DeviceEditComponent,
     DeviceDetailComponent,
-    BatchComponent
+    BatchComponent,
+    GroupComponent,
+    GroupEditComponent
   ],
   imports: [
     CommonModule,
