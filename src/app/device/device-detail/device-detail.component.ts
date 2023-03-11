@@ -12,7 +12,7 @@ export class DeviceDetailComponent {
   device: any = {}
   product: any = {}
 
-  properties: any = {}
+  values: any = {}
 
   constructor(private rs: RequestService, private route: ActivatedRoute) {
     this.id = route.snapshot.paramMap.get('id')
@@ -27,8 +27,8 @@ export class DeviceDetailComponent {
       })
     })
 
-    this.rs.get(`device/${this.id}/properties`).subscribe(res => {
-      this.properties = res.data;
+    this.rs.get(`device/${this.id}/values`).subscribe(res => {
+      this.values = res.data;
     })
 
   }
