@@ -40,7 +40,7 @@
     <nz-form-item *ngIf="group.value.type != 'gateway'">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="group_id">分组ID</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="group_id"/>
+        <nz-input-number formControlName="group_id"></nz-input-number>
         <a (click)="chooseGroup()">选择</a>
       </nz-form-control>
     </nz-form-item>
