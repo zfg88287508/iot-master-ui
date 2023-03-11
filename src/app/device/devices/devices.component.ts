@@ -79,6 +79,11 @@ export class DevicesComponent {
   }
 
   open(id: any) {
+    if (this.chooseGateway) {
+      this.select(id)
+      return
+    }
+
     let path = "/device/detail/" + id
     if (location.pathname.startsWith("/admin"))
       path = "/admin" + path

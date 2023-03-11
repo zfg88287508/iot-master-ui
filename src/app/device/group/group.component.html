@@ -32,7 +32,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of basicTable.data; let i = index" (click)="select(data.id)" (dblclick)="edit(data)">
+  <tr *ngFor="let data of basicTable.data; let i = index" (dblclick)="select(data.id)">
     <td>{{data.id}}</td>
     <td>{{data.name}}</td>
     <td>{{data.desc}}</td>

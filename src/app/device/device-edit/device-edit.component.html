@@ -37,6 +37,14 @@
       </nz-form-control>
     </nz-form-item>
 
+    <nz-form-item *ngIf="group.value.type != 'gateway'">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="group_id">分组ID</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <input nz-input formControlName="group_id"/>
+        <a (click)="chooseGroup()">选择</a>
+      </nz-form-control>
+    </nz-form-item>
+
     <nz-form-item *ngIf="group.value.type == 'subset'">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="gateway_id">网关ID</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
@@ -44,7 +52,6 @@
         <a (click)="chooseGateway()">选择</a>
       </nz-form-control>
     </nz-form-item>
-
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">名称</nz-form-label>

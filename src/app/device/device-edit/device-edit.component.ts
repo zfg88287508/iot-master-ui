@@ -6,6 +6,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {ProductsComponent} from "../../product/products/products.component";
 import {DevicesComponent} from "../devices/devices.component";
+import {GroupComponent} from "../group/group.component";
 
 @Component({
   selector: 'app-products-edit',
@@ -45,6 +46,7 @@ export class DeviceEditComponent implements OnInit {
       id: [obj.id || '', []],
       product_id: [obj.product_id || '', []],
       gateway_id: [obj.gateway_id || '', []],
+      group_id: [obj.group_id || 0, []],
       type: [obj.type || 'device', []],
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
@@ -70,7 +72,8 @@ export class DeviceEditComponent implements OnInit {
     this.ms.create({
       nzTitle: "选择产品",
       nzContent: ProductsComponent,
-    }).afterClose.subscribe(res=>{
+      nzFooter: null
+    }).afterClose.subscribe(res => {
       if (res) {
         this.group.patchValue({product_id: res})
       }
@@ -83,10 +86,26 @@ export class DeviceEditComponent implements OnInit {
       nzContent: DevicesComponent,
       nzComponentParams: {
         chooseGateway: true,
-      }
-    }).afterClose.subscribe(res=>{
+      },
+      nzFooter: null
+    }).afterClose.subscribe(res => {
       if (res) {
         this.group.patchValue({gateway_id: res})
+      }
+    })
+  }
+
+  chooseGroup() {
+    this.ms.create({
+      nzTitle: "选择分组",
+      nzContent: GroupComponent,
+      nzComponentParams: {
+        choose: true,
+      },
+      nzFooter: null
+    }).afterClose.subscribe(res => {
+      if (res) {
+        this.group.patchValue({group_id: res})
       }
     })
   }

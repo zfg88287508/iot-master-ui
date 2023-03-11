@@ -46,7 +46,7 @@ export class GroupEditComponent implements OnInit {
   submit() {
     let url = this.id ? `group/${this.id}` : `group/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      this.ref.close(res.data)
+      this.ref.close(this.group.value)
       this.msg.success("保存成功")
 
     })

@@ -84,8 +84,7 @@ export class GroupComponent {
       nzContent: GroupEditComponent,
       nzComponentParams: {id: data.id}
     }).afterClose.subscribe(res => {
-      if (res && res.data)
-        Object.assign(data, res.data)
+      if (res) Object.assign(data, res)
     })
   }
 
