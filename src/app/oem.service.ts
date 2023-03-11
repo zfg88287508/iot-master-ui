@@ -9,7 +9,7 @@ export class OemService {
 
   oem: any = {
     title: '物联大师',
-    logo: '/assets/logo.svg',
+    logo: '/assets/logo.png',
     company: '无锡真格智能科技有限公司',
     copyright: '©2016-2023'
   }
