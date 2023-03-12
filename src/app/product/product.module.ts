@@ -20,6 +20,7 @@ import {NzSpaceModule} from "ng-zorro-antd/space";
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzTypographyModule} from "ng-zorro-antd/typography";
 
 
 @NgModule({
@@ -28,25 +29,26 @@ import {NzSelectModule} from "ng-zorro-antd/select";
     ProductEditComponent,
     ProductDetailComponent
   ],
-  imports: [
-    CommonModule,
-    ProductRoutingModule,
-    NzLayoutModule,
-    NzMenuModule,
-    NzIconModule,
-    NzFormModule,
-    NzInputModule,
-    NzButtonModule,
-    NzTableModule,
-    NzDividerModule,
-    BaseModule,
-    ReactiveFormsModule,
-    NzInputNumberModule,
-    NzCardModule,
-    NzSpaceModule,
-    NzCollapseModule,
-    NzSelectModule
-  ]
+    imports: [
+        CommonModule,
+        ProductRoutingModule,
+        NzLayoutModule,
+        NzMenuModule,
+        NzIconModule,
+        NzFormModule,
+        NzInputModule,
+        NzButtonModule,
+        NzTableModule,
+        NzDividerModule,
+        BaseModule,
+        ReactiveFormsModule,
+        NzInputNumberModule,
+        NzCardModule,
+        NzSpaceModule,
+        NzCollapseModule,
+        NzSelectModule,
+        NzTypographyModule
+    ]
 })
 export class ProductModule {
 }
