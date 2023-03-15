@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {RequestService} from "./request.service";
 
 const internals: any[] = [{
-  icon: '/assets/broker.png',
+  icon: '/assets/server.png',
   nzIcon: 'database',
   name: '数据总线',
   internal: true,
