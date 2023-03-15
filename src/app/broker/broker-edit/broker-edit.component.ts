@@ -5,11 +5,11 @@ import {RequestService} from "../../request.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
-  selector: 'app-servers-edit',
-  templateUrl: './server-edit.component.html',
-  styleUrls: ['./server-edit.component.scss']
+  selector: 'app-brokers-edit',
+  templateUrl: './broker-edit.component.html',
+  styleUrls: ['./broker-edit.component.scss']
 })
-export class ServerEditComponent implements OnInit{
+export class BrokerEditComponent implements OnInit{
   group: any = {};
   id: any = 0
 
@@ -24,7 +24,7 @@ export class ServerEditComponent implements OnInit{
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.has("id")) {
       this.id = this.route.snapshot.paramMap.get("id");
-      this.rs.get(`server/${this.id}`).subscribe(res => {
+      this.rs.get(`broker/${this.id}`).subscribe(res => {
         //let data = res.data;
         this.build(res.data)
       })
@@ -44,9 +44,9 @@ export class ServerEditComponent implements OnInit{
   }
 
   submit() {
-    let url = this.id ? `server/${this.id}` : `server/create`
+    let url = this.id ? `broker/${this.id}` : `broker/create`
     this.rs.post(url, this.group.value).subscribe(res => {
-      let path = "/server/list"
+      let path = "/broker/list"
       if (location.pathname.startsWith("/admin"))
         path = "/admin" + path
       this.router.navigateByUrl(path)

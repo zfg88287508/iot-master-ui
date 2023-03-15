@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {ServersComponent} from './servers/servers.component';
-import {ServerEditComponent} from './server-edit/server-edit.component';
+import {BrokersComponent} from './brokers/brokers.component';
+import {BrokerEditComponent} from './broker-edit/broker-edit.component';
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
@@ -16,19 +16,19 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {NzCardModule} from "ng-zorro-antd/card";
 import {NzSpaceModule} from "ng-zorro-antd/space";
-import {ServerRoutingModule} from "./server-routing.module";
-import { ServerDetailComponent } from './server-detail/server-detail.component';
+import {BrokerRoutingModule} from "./broker-routing.module";
+import { BrokerDetailComponent } from './broker-detail/broker-detail.component';
 
 
 @NgModule({
   declarations: [
-    ServersComponent,
-    ServerEditComponent,
-    ServerDetailComponent
+    BrokersComponent,
+    BrokerEditComponent,
+    BrokerDetailComponent
   ],
   imports: [
     CommonModule,
-    ServerRoutingModule,
+    BrokerRoutingModule,
     NzLayoutModule,
     NzMenuModule,
     NzIconModule,
@@ -44,5 +44,5 @@ import { ServerDetailComponent } from './server-detail/server-detail.component';
     NzSpaceModule
   ]
 })
-export class ServerModule {
+export class BrokerModule {
 }

@@ -7,11 +7,11 @@ import {NzTableQueryParams} from "ng-zorro-antd/table";
 import {ParseTableQuery} from "../../base/table";
 
 @Component({
-  selector: 'app-servers',
-  templateUrl: './servers.component.html',
-  styleUrls: ['./servers.component.scss']
+  selector: 'app-brokers',
+  templateUrl: './brokers.component.html',
+  styleUrls: ['./brokers.component.scss']
 })
-export class ServersComponent {
+export class BrokersComponent {
 
   loading = true
   datum: any[] = []
@@ -32,7 +32,7 @@ export class ServersComponent {
 
   load() {
     this.loading = true
-    this.rs.post("server/search", this.query).subscribe(res=>{
+    this.rs.post("broker/search", this.query).subscribe(res=>{
       this.datum = res.data;
       this.total = res.total;
     }).add(()=>{
@@ -41,7 +41,7 @@ export class ServersComponent {
   }
 
   create() {
-    let path = "/server/create"
+    let path = "/broker/create"
     if (location.pathname.startsWith("/admin"))
       path = "/admin" + path
     this.router.navigateByUrl(path)
@@ -50,7 +50,7 @@ export class ServersComponent {
   delete(index: number, id: number) {
     console.log('delete', index, id)
     this.datum.splice(index, 1);
-    this.rs.get(`server/${id}/delete`).subscribe(res => {
+    this.rs.get(`broker/${id}/delete`).subscribe(res => {
       this.msg.success("删除成功")
     })
   }
@@ -69,7 +69,7 @@ export class ServersComponent {
   }
 
   edit(id: any) {
-    let path = "/server/edit/" + id
+    let path = "/broker/edit/" + id
     if (location.pathname.startsWith("/admin"))
       path = "/admin" + path
     this.router.navigateByUrl(path)

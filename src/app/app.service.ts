@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import {RequestService} from "./request.service";
 
 const internals: any[] = [{
-  icon: '/assets/server.png',
+  icon: '/assets/broker.png',
   nzIcon: 'database',
   name: '数据总线',
   internal: true,
   entries: [
-    {name: '所有服务', path: '/server/list'},
-    {name: '创建服务', path: '/server/create'},
+    {name: '所有总线', path: '/broker/list'},
+    {name: '创建总线', path: '/broker/create'},
   ]
 }, {
   icon: '/assets/product.png',

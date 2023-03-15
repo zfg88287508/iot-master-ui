@@ -36,9 +36,9 @@ registerLocaleData(zh);
 
 const pages: Routes = [
   {
-    path: 'server',
+    path: 'broker',
     canActivate: [authGuard],
-    loadChildren: () => import('./server/server.module').then(m => m.ServerModule)
+    loadChildren: () => import('./broker/broker.module').then(m => m.BrokerModule)
   }, {
     path: 'device',
     canActivate: [authGuard],
