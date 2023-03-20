@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, Validators,FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RequestService} from "../../request.service";
 import {NzMessageService} from "ng-zorro-antd/message";
@@ -10,7 +10,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
   styleUrls: ['./plugin-edit.component.scss']
 })
 export class PluginEditComponent implements OnInit {
-  group: any = {};
+  group!: FormGroup;
   id: any = 0
 
   constructor(private fb: FormBuilder,
@@ -46,14 +46,30 @@ export class PluginEditComponent implements OnInit {
   }
 
   submit() {
-    let url = this.id ? `plugin/${this.id}` : `plugin/create`
-    this.rs.post(url, this.group.value).subscribe(res => {
-      let path = "/plugin/list"
-      if (location.pathname.startsWith("/admin"))
-        path = "/admin" + path
-      this.router.navigateByUrl(path)
-      this.msg.success("保存成功")
-    })
-
+     
+    if (this.group.valid) {
+ 
+      let url = this.id ? `plugin/${this.id}` : `plugin/create`
+      this.rs.post(url, this.group.value).subscribe(res => {
+        let path = "/plugin/list"
+        if (location.pathname.startsWith("/admin"))
+          path = "/admin" + path
+        this.router.navigateByUrl(path)
+        this.msg.success("保存成功")
+      })
+ 
+     return;
+   }
+   else {
+    Object.values(this.group.controls).forEach(control => {
+      if (control.invalid) {
+        control.markAsDirty();
+        control.updateValueAndValidity({ onlySelf: true });
+      }
+    });
+     
+   }
   }
+
+  
 }

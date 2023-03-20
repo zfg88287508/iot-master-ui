@@ -11,7 +11,7 @@ import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzCardModule} from "ng-zorro-antd/card";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
@@ -22,8 +22,7 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { RoleComponent } from './role/role.component';
 import { RoleEditComponent } from './role-edit/role-edit.component';
-
-
+import { NzSelectModule } from 'ng-zorro-antd/select';  
 @NgModule({
   declarations: [
     UsersComponent,
@@ -42,6 +41,8 @@ import { RoleEditComponent } from './role-edit/role-edit.component';
     NzIconModule,
     NzButtonModule,
     NzCardModule,
+    NzSelectModule,
+    FormsModule,
     ReactiveFormsModule,
     NzFormModule,
     NzInputModule,

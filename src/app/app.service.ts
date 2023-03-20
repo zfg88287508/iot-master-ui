@@ -45,7 +45,7 @@ const internals: any[] = [{
   internal: true,
   entries: [
     {name: '所有用户', path: '/user/list'},
-    {name: '创建用户', path: '/user/create'},
+    // {name: '创建用户', path: '/user/create'},
     {name: '角色权限', path: '/user/role'},
   ]
 }, {
@@ -66,6 +66,8 @@ const internals: any[] = [{
     {name: '网站', path: '/setting/web'},
     {name: '数据库', path: '/setting/database'},
     {name: '日志', path: '/setting/log'},
+    {name: 'OEM', path: '/setting/oem'},
+    {name: 'MQTT', path: '/setting/mqtt'},
     //{name: '备份', path: '/setting/backup'},
     //{name: '重启', path: '/setting/reboot'},
   ]

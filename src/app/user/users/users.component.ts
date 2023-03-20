@@ -1,77 +1,84 @@
-import {Component} from '@angular/core';
-import {NzModalService} from "ng-zorro-antd/modal";
-import {Router} from "@angular/router";
-import {RequestService} from "../../request.service";
-import {NzMessageService} from "ng-zorro-antd/message";
-import {NzTableQueryParams} from "ng-zorro-antd/table";
-import {ParseTableQuery} from "../../base/table";
+import { Component } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { Router } from '@angular/router';
+import { RequestService } from '../../request.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { ParseTableQuery } from '../../base/table';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent {
-
-  loading = true
-  datum: any[] = []
+  loading = true;
+  datum: any[] = [];
   total = 1;
   pageSize = 20;
   pageIndex = 1;
-  query: any = {}
+  query: any = {};
 
-
-  constructor(private ms: NzModalService, private router: Router, private rs: RequestService, private msg: NzMessageService) {
+  constructor(
+    private ms: NzModalService,
+    private router: Router,
+    private rs: RequestService,
+    private msg: NzMessageService
+  ) {
     //this.load();
   }
 
   reload() {
-    this.datum =[];
-    this.load()
+    this.datum = [];
+    this.load();
   }
 
   load() {
-    this.loading = true
-    this.rs.post("user/search", this.query).subscribe(res=>{
-      this.datum = res.data;
-      this.total = res.total;
-    }).add(()=>{
-      this.loading = false;
-    })
+    this.loading = true;
+    this.rs
+      .post('user/search', this.query)
+      .subscribe((res) => {
+        this.datum = res.data;
+        this.total = res.total;
+      })
+      .add(() => {
+        this.loading = false;
+      });
   }
 
   create() {
-    let path = "/user/create"
-    if (location.pathname.startsWith("/admin"))
-      path = "/admin" + path
-    this.router.navigateByUrl(path)
+    let path = '/user/create';
+    if (location.pathname.startsWith('/admin')) path = '/admin' + path;
+    this.router.navigateByUrl(path);
   }
 
   delete(index: number, id: number) {
-    console.log('delete', index, id)
+    console.log('delete', index, id);
     this.datum.splice(index, 1);
-    this.rs.get(`user/${id}/delete`).subscribe(res => {
-      this.msg.success("删除成功")
-    })
+    this.rs.get(`user/${id}/delete`).subscribe((res) => {
+      this.msg.success('删除成功');
+    });
   }
 
   onQuery($event: NzTableQueryParams) {
-    ParseTableQuery($event, this.query)
+    ParseTableQuery($event, this.query);
     this.load();
   }
 
   search($event: string) {
     this.query.keyword = {
-      name: $event
+      name: $event,
     };
     this.query.skip = 0;
     this.load();
   }
 
   edit(id: any) {
-    let path = "/user/edit/" + id
-    if (location.pathname.startsWith("/admin"))
-      path = "/admin" + path
-    this.router.navigateByUrl(path)
+    let path = '/user/edit/' + id;
+    if (location.pathname.startsWith('/admin')) path = '/admin' + path;
+    this.router.navigateByUrl(path);
+  }
+  add() {
+    this.router.navigateByUrl('/admin/user/create');
   }
 }

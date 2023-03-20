@@ -17,24 +17,30 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import { RebootComponent } from './reboot/reboot.component';
-
-
+import { MqttComponent } from './mqtt/mqtt.component';
+import { OemComponent } from './oem/oem.component';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 @NgModule({
   declarations: [
     DatabaseComponent,
     LogComponent,
     WebComponent,
     BackupComponent,
-    RebootComponent
+    RebootComponent,
+    MqttComponent,
+    OemComponent
   ],
   imports: [
     CommonModule,
     SettingRoutingModule,
     NzLayoutModule,
     NzMenuModule,
+    NzUploadModule,
     NzIconModule,
     NzCardModule,
     NzFormModule,
+    NzSwitchModule,
     ReactiveFormsModule,
     NzInputModule,
     NzButtonModule,

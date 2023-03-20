@@ -4,6 +4,10 @@
       <i nz-icon nzType="reload" [nzSpin]="loading"></i>
       刷新
     </button>
+    <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="add()">
+      <i nz-icon nzType="plus"  ></i>
+      新增
+    </button>
     <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
   </nz-space>
 </app-toolbar>

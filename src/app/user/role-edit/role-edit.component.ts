@@ -1,10 +1,83 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {RequestService} from "../../request.service";
+import {NzMessageService} from "ng-zorro-antd/message";
+import { NzSelectSizeType } from 'ng-zorro-antd/select';
 
 @Component({
   selector: 'app-role-edit',
   templateUrl: './role-edit.component.html',
   styleUrls: ['./role-edit.component.scss']
 })
-export class RoleEditComponent {
+export class RoleEditComponent implements OnInit {
+  group!: FormGroup;
+  id: any = 0
 
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute,
+              private rs: RequestService,
+              private msg: NzMessageService) {
+  }
+
+  listOfOption: Array<{ label: string; value: string }> = [];
+  size: NzSelectSizeType = 'default';
+  singleValue = 'a10';
+  multipleValue = ['管理员', '权限1'];
+  tagValue = ['管理员', '权限1', 'tag'];
+  
+  ngOnInit(): void {
+    // if (this.route.snapshot.paramMap.has("id")) {
+    //   this.id = this.route.snapshot.paramMap.get("id");
+    //   this.rs.get(`user/${this.id}`).subscribe(res => {
+    //     //let data = res.data;
+    //     this.build(res.data)
+    //   })
+
+    // }
+    const children: Array<{ label: string; value: string }> = [];
+    for (let i = 10; i < 35; i++) {
+      children.push({ label: i.toString(36) + i, value: i.toString(36) + i });
+    }
+    children.push({ label: "管理员", value:"管理员" });
+    children.push({ label: "权限1", value:"权限1" });
+    this.listOfOption = children;
+    this.build()
+  }
+
+  build(obj?: any) {
+    obj = obj || {}
+    this.group = this.fb.group({
+      name: [obj.username || '', [Validators.required]],
+      Id: [obj.name || '', [Validators.required]],
+      privilleges: [obj.privilleges|| '', [Validators.required]]
+    })
+  }
+
+  submit() {
+    
+    if (this.group.valid) {
+ 
+      let url = this.id ? `user/${this.id}` : `user/create`
+    this.rs.post(url, this.group.value).subscribe(res => {
+      let path = "/user/list"
+      if (location.pathname.startsWith("/admin"))
+        path = "/admin" + path
+      this.router.navigateByUrl(path)
+      this.msg.success("保存成功")
+    })
+ 
+     return;
+   }
+   else {  
+    Object.values(this.group.controls).forEach(control => {
+      if (control.invalid) {
+        control.markAsDirty();
+        control.updateValueAndValidity({ onlySelf: true });
+      }
+    });
+     
+   }
+  }
 }

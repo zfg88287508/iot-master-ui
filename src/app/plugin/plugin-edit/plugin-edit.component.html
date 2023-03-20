@@ -11,37 +11,52 @@
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id">ID</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="IDErrorTpl">
         <input nz-input formControlName="id"/>
+        <ng-template #IDErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请输入ID!</ng-container> 
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">名称</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="nameErrorTpl">
         <input nz-input formControlName="name"/>
+        <ng-template #nameErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请输入名称!</ng-container> 
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="version">版本</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="verErrorTpl">
         <input nz-input formControlName="version"/>
+        <ng-template #verErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请输入版本!</ng-container> 
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="command">命令</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="comErrorTpl">
         <input nz-input formControlName="command"/>
+        <ng-template #comErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请输入命令!</ng-container> 
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="dependencies">依赖</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="depErrorTpl">
         <input nz-input formControlName="dependencies"/>
+        <ng-template #depErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请输入依赖!</ng-container> 
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 

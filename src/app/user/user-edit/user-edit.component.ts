@@ -39,7 +39,7 @@ export class UserEditComponent implements OnInit {
     this.group = this.fb.group({
       username: [obj.username || '', [Validators.required]],
       name: [obj.name || '', []],
-      email: [obj.email || '', []],
+      email: [obj.email || '', []]
     })
   }
 

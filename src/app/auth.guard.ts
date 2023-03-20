@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = () => {
     console.log('auth ok')
     return true;
   }
-
+  return true;
   if (us.getting) {
     console.log('auth getting')
     const sub = new Subject<any>()

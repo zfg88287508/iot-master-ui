@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, Validators,FormGroup,} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RequestService} from "../../request.service";
 import {NzMessageService} from "ng-zorro-antd/message";
@@ -10,7 +10,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
   styleUrls: ['./web.component.scss']
 })
 export class WebComponent implements OnInit {
-  group: any = {};
+  group!: FormGroup;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -21,10 +21,10 @@ export class WebComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.rs.get(`config`).subscribe(res => {
-      //let data = res.data;
-      this.build(res.data)
-    })
+    // this.rs.get(`config`).subscribe(res => {
+    //   //let data = res.data;
+    //   this.build(res.data)
+    // })
 
     this.build()
   }
@@ -32,14 +32,34 @@ export class WebComponent implements OnInit {
   build(obj?: any) {
     obj = obj || {}
     this.group = this.fb.group({
-      web: [obj.web || 8888, []],
+    //  web: [obj.web || 8888, []],
+    Addr: ['', [Validators.required]],
+    Debug: ['', [Validators.required]],
+    Cors: ['', [Validators.required]],
+    Gzip: ['', [Validators.required]],
     })
   }
 
   submit() {
-    this.rs.post(`config`, this.group.value).subscribe(res => {
-      this.msg.success("保存成功")
-    })
+     
+
+    if (this.group.valid) {
+ 
+      this.rs.post(`config`, this.group.value).subscribe(res => {
+        this.msg.success("保存成功")
+      })
+ 
+     return;
+   }
+   else {
+    Object.values(this.group.controls).forEach(control => {
+      if (control.invalid) {
+        control.markAsDirty();
+        control.updateValueAndValidity({ onlySelf: true });
+      }
+    });
+     
+   }
 
   }
 }

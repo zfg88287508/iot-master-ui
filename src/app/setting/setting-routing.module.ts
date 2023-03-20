@@ -6,7 +6,8 @@ import {DatabaseComponent} from "./database/database.component";
 import {LogComponent} from "./log/log.component";
 import {BackupComponent} from "./backup/backup.component";
 import {RebootComponent} from "./reboot/reboot.component";
-
+import { MqttComponent } from './mqtt/mqtt.component';
+import { OemComponent } from './oem/oem.component';
 const routes: Routes = [
   {path: '', pathMatch: "full", redirectTo: "web"},
   {path: 'web', component: WebComponent},
@@ -14,6 +15,8 @@ const routes: Routes = [
   {path: 'log', component: LogComponent},
   {path: 'backup', component: BackupComponent},
   {path: 'reboot', component: RebootComponent},
+  {path: 'mqtt', component: MqttComponent},
+  {path: 'oem', component: OemComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

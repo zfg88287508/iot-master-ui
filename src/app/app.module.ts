@@ -31,7 +31,8 @@ import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import {NzNotificationModule} from "ng-zorro-antd/notification";
 import {authGuard} from "./auth.guard";
-
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 registerLocaleData(zh);
 
 const pages: Routes = [
@@ -96,7 +97,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     NzFormModule,
     NzInputModule,
+    NzSwitchModule,
     NzButtonModule,
+    NzSelectModule,
     NzCheckboxModule,
     NzMessageModule,
     NzNotificationModule,
