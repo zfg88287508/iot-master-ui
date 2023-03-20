@@ -1,23 +1,23 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {RequestService} from "../../request.service";
-import {NzMessageService} from "ng-zorro-antd/message";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { RequestService } from "../../request.service";
+import { NzMessageService } from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-brokers-edit',
   templateUrl: './broker-edit.component.html',
   styleUrls: ['./broker-edit.component.scss']
 })
-export class BrokerEditComponent implements OnInit{
-  group: any = {};
+export class BrokerEditComponent implements OnInit {
+  group!: FormGroup;
   id: any = 0
 
   constructor(private fb: FormBuilder,
-              private router: Router,
-              private route: ActivatedRoute,
-              private rs: RequestService,
-              private msg: NzMessageService) {
+    private router: Router,
+    private route: ActivatedRoute,
+    private rs: RequestService,
+    private msg: NzMessageService) {
   }
 
 
@@ -44,14 +44,29 @@ export class BrokerEditComponent implements OnInit{
   }
 
   submit() {
-    let url = this.id ? `broker/${this.id}` : `broker/create`
-    this.rs.post(url, this.group.value).subscribe(res => {
-      let path = "/broker/list"
-      if (location.pathname.startsWith("/admin"))
-        path = "/admin" + path
-      this.router.navigateByUrl(path)
-      this.msg.success("保存成功")
-    })
+    if (this.group.valid) {
+
+      let url = this.id ? `broker/${this.id}` : `broker/create`
+      this.rs.post(url, this.group.value).subscribe(res => {
+        let path = "/broker/list"
+        if (location.pathname.startsWith("/admin"))
+          path = "/admin" + path
+        this.router.navigateByUrl(path)
+        this.msg.success("保存成功")
+      })
+
+      return;
+    }
+    else {
+      Object.values(this.group.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+
+    }
+ 
 
   }
 }

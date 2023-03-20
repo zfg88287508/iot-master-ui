@@ -32,23 +32,21 @@
        
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24"   nzRequired>权限</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback [nzErrorTip]="privillegesErrorTpl">
-          <nz-select [(ngModel)]="tagValue"  nzShowSearch nzAllowClear nzMode="multiple"  name="privilleges"  formControlName="privilleges"  >
-             <nz-option  *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"  ></nz-option>
-            <!-- <nz-option nzLabel="管理员" nzValue="管理员"></nz-option>  
-            <nz-option nzLabel="权限1" nzValue="权限1"></nz-option>  
-            <nz-option nzLabel="权限2" nzValue="权限2"></nz-option>    -->
-          </nz-select>
+        <nz-form-control [nzSm]="14" [nzXs]="24"   [nzErrorTip]="privillegesErrorTpl">
+          <nz-select nzMode="multiple"    [nzOptions]="listOfOption" [(ngModel)]="listOfSelectedValue"
+          name="privilleges"  formControlName="privilleges"  nzShowSearch nzAllowClear></nz-select>
           <ng-template #privillegesErrorTpl let-control>
             <ng-container *ngIf="control.hasError('required')">请确定角色权限!</ng-container> 
           </ng-template>
         </nz-form-control>
       </nz-form-item>
- 
+     
+      
       <p>
-        权限分配
+        权限分配  
       </p>
     </form>
   
   </nz-card>
-  
+
+    

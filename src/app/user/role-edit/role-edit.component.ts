@@ -21,38 +21,36 @@ export class RoleEditComponent implements OnInit {
               private msg: NzMessageService) {
   }
 
-  listOfOption: Array<{ label: string; value: string }> = [];
-  size: NzSelectSizeType = 'default';
-  singleValue = 'a10';
-  multipleValue = ['管理员', '权限1'];
-  tagValue = ['管理员', '权限1', 'tag'];
-  
+  listOfOption: Array<{ label: string; value: string }> = [];  
+  listOfSelectedValue = ['管理员', '权限1'];  
   ngOnInit(): void {
-    // if (this.route.snapshot.paramMap.has("id")) {
-    //   this.id = this.route.snapshot.paramMap.get("id");
-    //   this.rs.get(`user/${this.id}`).subscribe(res => {
-    //     //let data = res.data;
-    //     this.build(res.data)
-    //   })
+    if (this.route.snapshot.paramMap.has("id")) {
+      this.id = this.route.snapshot.paramMap.get("id");
+      this.rs.get(`user/${this.id}`).subscribe(res => {
+        //let data = res.data;
+        this.build(res.data) 
+      }) 
+    }  
 
-    // }
-    const children: Array<{ label: string; value: string }> = [];
-    for (let i = 10; i < 35; i++) {
-      children.push({ label: i.toString(36) + i, value: i.toString(36) + i });
-    }
-    children.push({ label: "管理员", value:"管理员" });
-    children.push({ label: "权限1", value:"权限1" });
-    this.listOfOption = children;
+
+    const children: string[] = [];
+    children.push(`管理员`)
+    children.push(`权限1`)
+    this.listOfOption = children.map(item => ({
+      value: item,
+      label: item
+    }));
+ 
     this.build()
   }
 
   build(obj?: any) {
-    obj = obj || {}
+    obj = obj || {} 
     this.group = this.fb.group({
       name: [obj.username || '', [Validators.required]],
       Id: [obj.name || '', [Validators.required]],
-      privilleges: [obj.privilleges|| '', [Validators.required]]
-    })
+      privilleges: [obj.privilleges|| [[]], [Validators.required]]
+    }) 
   }
 
   submit() {
@@ -70,9 +68,9 @@ export class RoleEditComponent implements OnInit {
  
      return;
    }
-   else {  
+   else {    
     Object.values(this.group.controls).forEach(control => {
-      if (control.invalid) {
+      if (control.invalid) {  
         control.markAsDirty();
         control.updateValueAndValidity({ onlySelf: true });
       }

@@ -20,7 +20,7 @@
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">名称</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" nzRequired>名称</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="nameErrorTpl">
         <input nz-input formControlName="name"/>
         <ng-template #nameErrorTpl let-control>
