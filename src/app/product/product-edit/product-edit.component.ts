@@ -92,8 +92,7 @@ export class ProductEditComponent implements OnInit {
       })
 
       return;
-    }
-
+    } 
 
   }
 

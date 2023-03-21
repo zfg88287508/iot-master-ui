@@ -7,11 +7,11 @@
     <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="add()">
       <i nz-icon nzType="plus"  ></i>
       新增
-    </button>
+    </button> 
     <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
   </nz-space>
 </app-toolbar>
-
+ 
 <nz-table #basicTable
           [nzData]="datum"
           [nzFrontPagination]="false"
@@ -43,9 +43,10 @@
         <i nz-icon nzType="edit"></i>
       </a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a (click)="delete(i, data.id)">
-        <i nz-icon nzType="delete"></i>
-      </a>
+      <a nz-popconfirm nzPopconfirmTitle="确定删除?" (nzOnConfirm)="delete(i, data.id )"
+            (nzOnCancel)="cancel()" nzPopconfirmPlacement="topLeft">
+            <i nz-icon nzType="delete"></i>
+          </a>
     </td>
   </tr>
   </tbody>

@@ -20,8 +20,8 @@ import {NzSpaceModule} from "ng-zorro-antd/space";
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {NzSelectModule} from "ng-zorro-antd/select";
-import {NzTypographyModule} from "ng-zorro-antd/typography";
-
+import {NzTypographyModule} from "ng-zorro-antd/typography"; 
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import {NzTypographyModule} from "ng-zorro-antd/typography";
         NzFormModule,
         NzInputModule,
         NzButtonModule,
+        NzPopconfirmModule,
         NzTableModule,
         NzDividerModule,
         BaseModule,

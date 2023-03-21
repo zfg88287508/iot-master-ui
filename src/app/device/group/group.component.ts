@@ -91,4 +91,7 @@ export class GroupComponent {
   select(id: any) {
     this.ref && this.ref.close(id)
   }
+  cancel() {
+    this.msg.info('click cancel');
+  }   
 }

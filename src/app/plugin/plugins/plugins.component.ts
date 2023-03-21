@@ -74,4 +74,7 @@ export class PluginsComponent {
       path = "/admin" + path
     this.router.navigateByUrl(path)
   }
+  cancel() {
+    this.msg.info('click cancel');
+  }   
 }

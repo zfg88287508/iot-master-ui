@@ -70,5 +70,5 @@ export class AlarmsComponent {
       data.read = true;
       //this.msg.success("删除成功")
     })
-  }
+  } 
 }

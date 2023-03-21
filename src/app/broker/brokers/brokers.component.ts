@@ -74,4 +74,7 @@ export class BrokersComponent {
       path = "/admin" + path
     this.router.navigateByUrl(path)
   }
+  cancel() {
+    this.msg.info('click cancel');
+  }   
 }

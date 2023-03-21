@@ -9,7 +9,7 @@ import {NzTableModule} from "ng-zorro-antd/table";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzDividerModule} from "ng-zorro-antd/divider";
-
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
     BaseModule,
     NzSpaceModule,
     NzTableModule,
+    NzPopconfirmModule,
     NzIconModule,
     NzButtonModule,
     NzDividerModule
