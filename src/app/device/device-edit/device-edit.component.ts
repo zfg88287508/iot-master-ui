@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {RequestService} from "../../request.service";
-import {NzMessageService} from "ng-zorro-antd/message";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {ProductsComponent} from "../../product/products/products.component";
-import {DevicesComponent} from "../devices/devices.component";
-import {GroupComponent} from "../group/group.component";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { RequestService } from "../../request.service";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { ProductsComponent } from "../../product/products/products.component";
+import { DevicesComponent } from "../devices/devices.component";
+import { GroupComponent } from "../group/group.component";
+import { isIncludeAdmin } from "../../../public";
 
 @Component({
   selector: 'app-products-edit',
@@ -18,11 +19,11 @@ export class DeviceEditComponent implements OnInit {
   id: any = 0
 
   constructor(private fb: FormBuilder,
-              private router: Router,
-              private route: ActivatedRoute,
-              private rs: RequestService,
-              private ms: NzModalService,
-              private msg: NzMessageService) {
+    private router: Router,
+    private route: ActivatedRoute,
+    private rs: RequestService,
+    private ms: NzModalService,
+    private msg: NzMessageService) {
 
   }
 
@@ -56,32 +57,21 @@ export class DeviceEditComponent implements OnInit {
   }
 
   submit() {
-
     if (this.group.valid) {
- 
       let url = this.id ? `device/${this.id}` : `device/create`
       this.rs.post(url, this.group.value).subscribe(res => {
-        let path = "/device/list"
-        if (location.pathname.startsWith("/admin"))
-          path = "/admin" + path
-        this.router.navigateByUrl(path)
-        this.msg.success("保存成功")
-  
+        const path = `${isIncludeAdmin()}/device/list`;
+        this.router.navigateByUrl(path);
+        this.msg.success("保存成功");
       })
-       
-     return;
-   }
-   else {   
-    Object.values(this.group.controls).forEach(control => {
-      if (control.invalid) {
-        control.markAsDirty();
-        control.updateValueAndValidity({ onlySelf: true });
-      }
-    });
-     
-   } 
-    
-
+    } else {
+      Object.values(this.group.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
   }
 
   chooseProduct() {
@@ -91,7 +81,7 @@ export class DeviceEditComponent implements OnInit {
       nzFooter: null
     }).afterClose.subscribe(res => {
       if (res) {
-        this.group.patchValue({product_id: res})
+        this.group.patchValue({ product_id: res })
       }
     })
   }
@@ -106,7 +96,7 @@ export class DeviceEditComponent implements OnInit {
       nzFooter: null
     }).afterClose.subscribe(res => {
       if (res) {
-        this.group.patchValue({gateway_id: res})
+        this.group.patchValue({ gateway_id: res })
       }
     })
   }
@@ -121,8 +111,12 @@ export class DeviceEditComponent implements OnInit {
       nzFooter: null
     }).afterClose.subscribe(res => {
       if (res) {
-        this.group.patchValue({group_id: res})
+        this.group.patchValue({ group_id: res })
       }
     })
+  }
+  handleCancel() {
+    const path = `${isIncludeAdmin()}/device/list`;
+    this.router.navigateByUrl(path);
   }
 }

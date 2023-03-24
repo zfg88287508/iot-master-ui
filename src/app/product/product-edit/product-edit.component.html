@@ -1,5 +1,7 @@
 <ng-template #extra>
-
+  <button nz-button (click)="handleCancel()" style="margin-right:10px;">
+    取消
+  </button>
   <button nz-button nzType="primary" (click)="submit()">
     <i nz-icon nzType="save" nzTheme="outline"></i>
     保存
@@ -11,23 +13,23 @@
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="id">ID</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id">ID</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="id" placeholder="默认为随机生成"/>
+        <input nz-input formControlName="id" placeholder="默认为随机生成" />
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">名称</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">名称</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="name"/>
+        <input nz-input formControlName="name" />
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="version">版本</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="version"/>
+        <input nz-input formControlName="version" />
       </nz-form-control>
     </nz-form-item>
 
@@ -58,10 +60,10 @@
           </tr>
           <tr *ngFor="let value of group.get('properties').controls; let i=index;" [formGroupName]="i">
             <td>
-              <input nz-input formControlName="name"/>
+              <input nz-input formControlName="name" />
             </td>
             <td>
-              <input nz-input formControlName="label"/>
+              <input nz-input formControlName="label" />
             </td>
             <td>
               <nz-select formControlName="type">
@@ -132,10 +134,10 @@
           </tr>
           <tr *ngFor="let value of group.get('parameters').controls; let i=index;" [formGroupName]="i">
             <td>
-              <input nz-input formControlName="name"/>
+              <input nz-input formControlName="name" />
             </td>
             <td>
-              <input nz-input formControlName="label"/>
+              <input nz-input formControlName="label" />
             </td>
             <td>
               <nz-input-number formControlName="max"></nz-input-number>
@@ -179,13 +181,13 @@
               <nz-input-number formControlName="level"></nz-input-number>
             </td>
             <td>
-              <input nz-input formControlName="title"/>
+              <input nz-input formControlName="title" />
             </td>
             <td>
-              <input nz-input formControlName="template"/>
+              <input nz-input formControlName="template" />
             </td>
             <td>
-              <input nz-input formControlName="expression"/>
+              <input nz-input formControlName="expression" />
             </td>
             <td>
               <nz-input-number formControlName="delay"></nz-input-number>

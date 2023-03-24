@@ -5,6 +5,10 @@
       刷新
     </button>
     <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
+    <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="handleNew()">
+      <i nz-icon nzType="plus"></i>
+      创建设备
+    </button>
   </nz-space>
 </app-toolbar>
 

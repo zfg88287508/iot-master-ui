@@ -1,11 +1,11 @@
-import {Component, Input, Optional} from '@angular/core';
-import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
-import {Router} from "@angular/router";
-import {RequestService} from "../../request.service";
-import {NzMessageService} from "ng-zorro-antd/message";
-import {NzTableQueryParams} from "ng-zorro-antd/table";
-import {ParseTableQuery} from "../../base/table";
-import {GroupEditComponent} from "../group-edit/group-edit.component";
+import { Component, Input, Optional } from '@angular/core';
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { Router } from "@angular/router";
+import { RequestService } from "../../request.service";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import { ParseTableQuery } from "../../base/table";
+import { GroupEditComponent } from "../group-edit/group-edit.component";
 
 @Component({
   selector: 'app-group',
@@ -25,10 +25,10 @@ export class GroupComponent {
 
 
   constructor(private ms: NzModalService,
-              @Optional() protected ref: NzModalRef,
-              private router: Router,
-              private rs: RequestService,
-              private msg: NzMessageService) {
+    @Optional() protected ref: NzModalRef,
+    private router: Router,
+    private rs: RequestService,
+    private msg: NzMessageService) {
     //this.load();
   }
 
@@ -53,15 +53,18 @@ export class GroupComponent {
       nzContent: GroupEditComponent,
     }).afterClose.subscribe(res => {
       if (res)
-        this.datum.unshift(res.data)
+      this.datum = [res].concat(this.datum);
     })
   }
 
   delete(index: number, id: number) {
-    console.log('delete', index, id)
-    this.datum.splice(index, 1);
     this.rs.get(`group/${id}/delete`).subscribe(res => {
       this.msg.success("删除成功")
+      if (this.datum.length > 1) {
+        this.datum = this.datum.filter(d => d.id !== id);
+      } else {
+        this.load();
+      }
     })
   }
 
@@ -82,7 +85,7 @@ export class GroupComponent {
     this.ms.create({
       nzTitle: '编辑分组',
       nzContent: GroupEditComponent,
-      nzComponentParams: {id: data.id}
+      nzComponentParams: { id: data.id }
     }).afterClose.subscribe(res => {
       if (res) Object.assign(data, res)
     })
@@ -93,5 +96,5 @@ export class GroupComponent {
   }
   cancel() {
     this.msg.info('click cancel');
-  }   
+  }
 }

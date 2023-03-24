@@ -1,4 +1,9 @@
-<nz-card nzTitle="设备状态" [nzExtra]="device.id">
+<ng-template #extra>
+  <button nz-button  (click)="handleReturn()">
+    返回
+  </button>
+</ng-template>
+<nz-card nzTitle="设备【{{device.id}}】状态" [nzExtra]="extra">
   <nz-row [nzGutter]="[10, 10]">
     <nz-col [nzXs]="12" [nzSm]="8" [nzMd]="6" [nzLg]="4" *ngFor="let prop of product.properties">
       <div class="prop">
@@ -49,38 +54,38 @@
 
     <nz-table #topicTable [nzFrontPagination]="false">
       <thead>
-      <tr>
-        <th>功能</th>
-        <th>主题</th>
-        <th>说明</th>
-      </tr>
+        <tr>
+          <th>功能</th>
+          <th>主题</th>
+          <th>说明</th>
+        </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>属性上传</td>
-        <td>up/property/{{device.product_id}}/{{device.id}}</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>属性设置</td>
-        <td>down/property/{{device.product_id}}/{{device.id}}</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>事件上传</td>
-        <td>up/event/{{device.product_id}}/{{device.id}}</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>指令下发</td>
-        <td>down/action/{{device.product_id}}/{{device.id}}</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>指令响应</td>
-        <td>up/action/{{device.product_id}}/{{device.id}}</td>
-        <td></td>
-      </tr>
+        <tr>
+          <td>属性上传</td>
+          <td>up/property/{{device.product_id}}/{{device.id}}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>属性设置</td>
+          <td>down/property/{{device.product_id}}/{{device.id}}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>事件上传</td>
+          <td>up/event/{{device.product_id}}/{{device.id}}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>指令下发</td>
+          <td>down/action/{{device.product_id}}/{{device.id}}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>指令响应</td>
+          <td>up/action/{{device.product_id}}/{{device.id}}</td>
+          <td></td>
+        </tr>
       </tbody>
     </nz-table>
 

@@ -1,5 +1,7 @@
 <ng-template #extra>
-
+  <button nz-button (click)="handleCancel()" style="margin-right:10px;">
+    取消
+  </button>
   <button nz-button nzType="primary" (click)="submit()">
     <i nz-icon nzType="save" nzTheme="outline"></i>
     保存
@@ -11,9 +13,9 @@
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="id">ID</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id">ID</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="id" placeholder="默认为随机生成"/>
+        <input nz-input formControlName="id" placeholder="默认为随机生成" />
       </nz-form-control>
     </nz-form-item>
 
@@ -32,7 +34,7 @@
     <nz-form-item *ngIf="group.value.type != 'gateway'">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="product_id">产品ID</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="product_id"/>
+        <input nz-input formControlName="product_id" />
         <a (click)="chooseProduct()">选择</a>
       </nz-form-control>
     </nz-form-item>
@@ -48,7 +50,7 @@
     <nz-form-item *ngIf="group.value.type == 'subset'">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="gateway_id">网关ID</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="gateway_id"/>
+        <input nz-input formControlName="gateway_id" />
         <a (click)="chooseGateway()">选择</a>
       </nz-form-control>
     </nz-form-item>
@@ -56,9 +58,9 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">名称</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="nameErrorTpl">
-        <input nz-input formControlName="name"/>
+        <input nz-input formControlName="name" />
         <ng-template #nameErrorTpl let-control>
-          <ng-container *ngIf="control.hasError('required')">请输入名称!</ng-container> 
+          <ng-container *ngIf="control.hasError('required')">请输入名称!</ng-container>
         </ng-template>
       </nz-form-control>
     </nz-form-item>
@@ -73,14 +75,14 @@
     <nz-form-item *ngIf="group.value.type != 'subset'">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username">MQTT账号</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="username"/>
+        <input nz-input formControlName="username" />
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item *ngIf="group.value.type != 'subset'">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password">MQTT密码</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="password"/>
+        <input nz-input formControlName="password" />
       </nz-form-control>
     </nz-form-item>
   </form>

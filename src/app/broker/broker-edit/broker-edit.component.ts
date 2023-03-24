@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
+import { isIncludeAdmin } from "../../../public";
 
 @Component({
   selector: 'app-brokers-edit',
@@ -45,28 +46,24 @@ export class BrokerEditComponent implements OnInit {
 
   submit() {
     if (this.group.valid) {
-
       let url = this.id ? `broker/${this.id}` : `broker/create`
       this.rs.post(url, this.group.value).subscribe(res => {
-        let path = "/broker/list"
-        if (location.pathname.startsWith("/admin"))
-          path = "/admin" + path
+        const path = `${isIncludeAdmin()}/broker/list`;
         this.router.navigateByUrl(path)
         this.msg.success("保存成功")
       })
-
-      return;
-    }
-    else {
+    } else {
       Object.values(this.group.controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
-
     }
- 
+  }
 
+  handleCancel() {
+    const path = `${isIncludeAdmin()}/broker/list`;
+    this.router.navigateByUrl(path)
   }
 }

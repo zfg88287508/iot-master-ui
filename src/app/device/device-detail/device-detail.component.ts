@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
-import {RequestService} from "../../request.service";
-import {ActivatedRoute, RouterState} from "@angular/router";
+import { Component } from '@angular/core';
+import { RequestService } from "../../request.service";
+import { ActivatedRoute, RouterState, Router } from "@angular/router";
+import { isIncludeAdmin } from "../../../public";
 
 @Component({
   selector: 'app-product-detail',
@@ -14,7 +15,7 @@ export class DeviceDetailComponent {
 
   values: any = {}
 
-  constructor(private rs: RequestService, private route: ActivatedRoute) {
+  constructor(private rs: RequestService, private route: ActivatedRoute, private router: Router) {
     this.id = route.snapshot.paramMap.get('id')
     this.load()
   }
@@ -32,5 +33,8 @@ export class DeviceDetailComponent {
     })
 
   }
-
+  handleReturn() {
+    const path = `${isIncludeAdmin()}/device/list`;
+    this.router.navigateByUrl(path);
+  }
 }

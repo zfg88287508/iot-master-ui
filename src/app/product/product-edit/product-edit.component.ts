@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
+import { isIncludeAdmin } from "../../../public";
 
 @Component({
   selector: 'app-products-edit',
@@ -92,7 +93,7 @@ export class ProductEditComponent implements OnInit {
       })
 
       return;
-    } 
+    }
 
   }
 
@@ -153,5 +154,10 @@ export class ProductEditComponent implements OnInit {
 
   constraintDel(i: number) {
     this.group.get('constraints').controls.splice(i, 1)
+  }
+
+  handleCancel() {
+    const path = `${isIncludeAdmin()}/product/list`;
+    this.router.navigateByUrl(path);
   }
 }
