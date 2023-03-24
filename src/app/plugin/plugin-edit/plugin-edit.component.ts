@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators,FormGroup} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {RequestService} from "../../request.service";
-import {NzMessageService} from "ng-zorro-antd/message";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { RequestService } from "../../request.service";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { isIncludeAdmin } from "../../../public";
 
 @Component({
   selector: 'app-plugin-edit',
@@ -14,10 +15,10 @@ export class PluginEditComponent implements OnInit {
   id: any = 0
 
   constructor(private fb: FormBuilder,
-              private router: Router,
-              private route: ActivatedRoute,
-              private rs: RequestService,
-              private msg: NzMessageService) {
+    private router: Router,
+    private route: ActivatedRoute,
+    private rs: RequestService,
+    private msg: NzMessageService) {
   }
 
 
@@ -46,30 +47,31 @@ export class PluginEditComponent implements OnInit {
   }
 
   submit() {
-     
+
     if (this.group.valid) {
- 
+
       let url = this.id ? `plugin/${this.id}` : `plugin/create`
       this.rs.post(url, this.group.value).subscribe(res => {
-        let path = "/plugin/list"
-        if (location.pathname.startsWith("/admin"))
-          path = "/admin" + path
+        const path = `${isIncludeAdmin()}/plugin/list`;
         this.router.navigateByUrl(path)
         this.msg.success("保存成功")
       })
- 
-     return;
-   }
-   else {
-    Object.values(this.group.controls).forEach(control => {
-      if (control.invalid) {
-        control.markAsDirty();
-        control.updateValueAndValidity({ onlySelf: true });
-      }
-    });
-     
-   }
+
+      return;
+    }
+    else {
+      Object.values(this.group.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+
+    }
+  }
+  handleCancel() {
+    const path = `${isIncludeAdmin()}/plugin/list`;
+    this.router.navigateByUrl(path);
   }
 
-  
 }

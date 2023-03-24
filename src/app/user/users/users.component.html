@@ -4,50 +4,43 @@
       <i nz-icon nzType="reload" [nzSpin]="loading"></i>
       刷新
     </button>
-    <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="add()">
-      <i nz-icon nzType="plus"  ></i>
-      新增
-    </button> 
     <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
+    <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="add()">
+      <i nz-icon nzType="plus"></i>
+      新增
+    </button>
   </nz-space>
 </app-toolbar>
- 
-<nz-table #basicTable
-          [nzData]="datum"
-          [nzFrontPagination]="false"
-          [nzLoading]="loading"
-          [nzTotal]="total"
-          [nzPageSize]="pageSize"
-          [nzPageIndex]="pageIndex"
-          (nzQueryParams)="onQuery($event)"
->
+
+<nz-table #basicTable [nzData]="datum" [nzFrontPagination]="false" [nzLoading]="loading" [nzTotal]="total"
+  [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQuery($event)">
   <thead>
-  <tr>
-    <th nzColumnKey="id" [nzSortFn]="true">ID</th>
-    <th nzColumnKey="username" [nzSortFn]="true">名称</th>
-    <th nzColumnKey="name">姓名</th>
-    <th nzColumnKey="email">邮箱</th>
-    <th nzColumnKey="created" [nzSortFn]="true">日期</th>
-    <th>操作</th>
-  </tr>
+    <tr>
+      <th nzColumnKey="id" [nzSortFn]="true">ID</th>
+      <th nzColumnKey="username" [nzSortFn]="true">名称</th>
+      <th nzColumnKey="name">姓名</th>
+      <th nzColumnKey="email">邮箱</th>
+      <th nzColumnKey="created" [nzSortFn]="true">日期</th>
+      <th>操作</th>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of basicTable.data; let i = index">
-    <td>{{data.id}}</td>
-    <td>{{data.username}}</td>
-    <td>{{data.name}}</td>
-    <td>{{data.email}}</td>
-    <td>{{data.created | date}}</td>
-    <td>
-      <a (click)="edit(data.id)">
-        <i nz-icon nzType="edit"></i>
-      </a>
-      <nz-divider nzType="vertical"></nz-divider>
-      <a nz-popconfirm nzPopconfirmTitle="确定删除?" (nzOnConfirm)="delete(i, data.id )"
-            (nzOnCancel)="cancel()" nzPopconfirmPlacement="topLeft">
-            <i nz-icon nzType="delete"></i>
-          </a>
-    </td>
-  </tr>
+    <tr *ngFor="let data of basicTable.data; let i = index">
+      <td>{{data.id}}</td>
+      <td>{{data.username}}</td>
+      <td>{{data.name}}</td>
+      <td>{{data.email}}</td>
+      <td>{{data.created | date}}</td>
+      <td>
+        <a (click)="edit(data.id)">
+          <i nz-icon nzType="edit"></i>
+        </a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-popconfirm nzPopconfirmTitle="确定删除?" (nzOnConfirm)="delete(i, data.id )" (nzOnCancel)="cancel()"
+          nzPopconfirmPlacement="topLeft">
+          <i nz-icon nzType="delete"></i>
+        </a>
+      </td>
+    </tr>
   </tbody>
 </nz-table>

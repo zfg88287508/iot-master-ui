@@ -5,6 +5,7 @@ import { RequestService } from '../../request.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { ParseTableQuery } from '../../base/table';
+import { isIncludeAdmin } from "../../../public";
 
 @Component({
   selector: 'app-users',
@@ -45,7 +46,7 @@ export class UsersComponent {
         this.loading = false;
       });
   }
-   
+
   create() {
     let path = '/user/create';
     if (location.pathname.startsWith('/admin')) path = '/admin' + path;
@@ -53,10 +54,13 @@ export class UsersComponent {
   }
 
   delete(index: number, id: number) {
-    console.log('delete', index, id);
-    this.datum.splice(index, 1);
     this.rs.get(`user/${id}/delete`).subscribe((res) => {
       this.msg.success('删除成功');
+      if (this.datum.length > 1) {
+        this.datum = this.datum.filter(d => d.id !== id);
+      } else {
+        this.load();
+      }
     });
   }
 
@@ -74,14 +78,13 @@ export class UsersComponent {
   }
 
   edit(id: any) {
-    let path = '/user/edit/' + id;
-    if (location.pathname.startsWith('/admin')) path = '/admin' + path;
+    const path = `${isIncludeAdmin()}/user/edit/${id}`;
     this.router.navigateByUrl(path);
   }
   add() {
-    this.router.navigateByUrl('/admin/user/create');
+    this.router.navigateByUrl(`${isIncludeAdmin()}/user/create`);
   }
   cancel() {
     this.msg.info('click cancel');
-  }   
+  }
 }

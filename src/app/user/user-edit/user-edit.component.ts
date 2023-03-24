@@ -3,6 +3,7 @@ import {FormBuilder,FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RequestService} from "../../request.service";
 import {NzMessageService} from "ng-zorro-antd/message";
+import { isIncludeAdmin } from "../../../public";
 
 @Component({
   selector: 'app-users-edit',
@@ -67,5 +68,9 @@ export class UserEditComponent implements OnInit {
      
    }
    
+  }
+  handleCancel() {
+    const path = `${isIncludeAdmin()}/user/list`;
+    this.router.navigateByUrl(path);
   }
 }
