@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import {ProductRoutingModule} from './product-routing.module';
 import {ProductsComponent} from "./products/products.component";
@@ -48,7 +49,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
         NzSpaceModule,
         NzCollapseModule,
         NzSelectModule,
-        NzTypographyModule
+        NzTypographyModule,
+        DragDropModule
     ]
 })
 export class ProductModule {

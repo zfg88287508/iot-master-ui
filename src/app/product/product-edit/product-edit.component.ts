@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute, Router } from "@angular/router";
 import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
@@ -13,8 +14,8 @@ import { isIncludeAdmin } from "../../../public";
 export class ProductEditComponent implements OnInit {
   group!: any;
   id: any = 0
-
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private rs: RequestService,
@@ -82,7 +83,6 @@ export class ProductEditComponent implements OnInit {
 
   submit() {
     if (this.group.valid) {
-
       let url = this.id ? `product/${this.id}` : `product/create`
       this.rs.post(url, this.group.value).subscribe(res => {
         let path = "/product/list"
@@ -159,5 +159,9 @@ export class ProductEditComponent implements OnInit {
   handleCancel() {
     const path = `${isIncludeAdmin()}/product/list`;
     this.router.navigateByUrl(path);
+  }
+
+  drop(event: CdkDragDrop<string[]>): void {
+    moveItemInArray(this.group.get('properties').controls, event.previousIndex, event.currentIndex);
   }
 }
