@@ -41,6 +41,8 @@ export class BrokerEditComponent implements OnInit {
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
       port: [obj.port || 1883, []],
+      cert: [obj.cert || '', []],
+      key: [obj.key || '', []],
     })
   }
 
