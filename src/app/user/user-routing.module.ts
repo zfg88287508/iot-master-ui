@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: 'detail/:id', component: UserDetailComponent},
   {path: 'edit/:id', component: UserEditComponent},
   {path: 'create', component: UserEditComponent},
+  {path: 'role/create', component: RoleEditComponent},
   {path: 'role', component: RoleComponent},
   {path: 'privillege/:id', component: RoleEditComponent },
   {path: 'me', component: MeComponent},

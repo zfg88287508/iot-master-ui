@@ -45,7 +45,7 @@ export class UsersComponent {
         this.loading = false;
       });
   }
-
+   
   create() {
     let path = '/user/create';
     if (location.pathname.startsWith('/admin')) path = '/admin' + path;
@@ -81,4 +81,7 @@ export class UsersComponent {
   add() {
     this.router.navigateByUrl('/admin/user/create');
   }
+  cancel() {
+    this.msg.info('click cancel');
+  }   
 }

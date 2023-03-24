@@ -23,6 +23,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { RoleComponent } from './role/role.component';
 import { RoleEditComponent } from './role-edit/role-edit.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';  
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 @NgModule({
   declarations: [
     UsersComponent,
@@ -39,8 +41,10 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzLayoutModule,
     NzMenuModule,
     NzIconModule,
+    NzPopconfirmModule,
     NzButtonModule,
     NzCardModule,
+    NzModalModule,
     NzSelectModule,
     FormsModule,
     ReactiveFormsModule,

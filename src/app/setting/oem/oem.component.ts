@@ -66,15 +66,28 @@ export class OemComponent implements OnInit {
     fileList = fileList.slice(-1);
 
     this.group.patchValue({Logo: fileList[0].originFileObj?.name})
-    // 2. Read from response and show file link
-    fileList = fileList.map(file => {
-      if (file.response) {
-        // Component will show file.url as link
-        file.url = file.response.url; 
-      }
-      return file;
-    });
+   
+    // fileList = fileList.map(file => {
+    //   if (file.response) {
+    //     // Component will show file.url as link
+    //     file.url = file.response.url; 
+    //   }
+    //   return file;
+    // });
 
-    this.fileList = fileList;
+    // this.fileList = fileList;
+    switch (info.file.status) {
+      case 'uploading': 
+      this.msg.info( '加载中')
+      break;
+      case 'done': 
+      this.msg.success('上传成功')
+        break;
+      case 'error':
+        this.msg.error('上传失败'); 
+        break;
+        default:
+          break
+    }
   }
 }

@@ -1,50 +1,90 @@
+<app-toolbar>
+  <nz-space>
+    <button
+      *nzSpaceItem
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      (click)="reload()"
+    >
+      <i nz-icon nzType="reload" [nzSpin]="loading"></i>
+      刷新
+    </button>
+    <button
+      *nzSpaceItem
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      (click)="add()"
+    >
+      <i nz-icon nzType="plus"></i>
+      新增
+    </button>
+    <button
+      *nzSpaceItem
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      (click)="searchPrivilege()"
+    >
+      <i nz-icon nzType="plus"></i>
+      权限查询
+    </button>
+    <nz-modal
+      [(nzVisible)]="isVisible"
+      nzTitle="角色权限"
+      (nzOnCancel)="handleCancel()"
+      (nzOnOk)="handleOk()"
+    >
+      <ng-container *nzModalContent>
+        <p>{{ mess }}</p>
+      </ng-container>
+    </nz-modal>
+    <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
+  </nz-space>
+</app-toolbar>
 
-   <app-toolbar>
-    <nz-space>
-      <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="reload()">
-        <i nz-icon nzType="reload" [nzSpin]="loading"></i>
-        刷新
-      </button>
- 
-
-      <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
-    </nz-space>
-  </app-toolbar>
-  
-  <nz-table #basicTable
-            [nzData]="datum"
-            [nzFrontPagination]="false"
-            [nzLoading]="loading"
-            [nzTotal]="total"
-            [nzPageSize]="pageSize"
-            [nzPageIndex]="pageIndex"
-            (nzQueryParams)="onQuery($event)"
-  >
-    <thead>
-    <tr> 
+<nz-table
+  #basicTable
+  [nzData]="datum"
+  [nzFrontPagination]="false"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzQueryParams)="onQuery($event)"
+>
+  <thead>
+    <tr>
       <th nzColumnKey="id" [nzSortFn]="true">id</th>
-      <th nzColumnKey="name">名称</th>  
-      <th nzColumnKey="privilleges">权限</th> 
+      <th nzColumnKey="name">名称</th>
+      <th nzColumnKey="privileges">权限</th>
       <th nzColumnKey="created" [nzSortFn]="true">创建时间</th>
       <th>操作</th>
     </tr>
-    </thead>
-    <tbody>
+  </thead>
+  <tbody>
     <tr *ngFor="let data of basicTable.data; let i = index">
-      <td>{{data.id}}</td>
-      <td>{{data.name}}</td>
-      <td>{{data.privilleges}}</td> 
-      <td>{{data.created | date}}</td>
+      <td>{{ data.id }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.privileges }}</td>
+      <td>{{ data.created | date }}</td>
       <td>
         <a (click)="edit(data.id)">
           <i nz-icon nzType="edit"></i>
         </a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="delete(i, data.id)">
+
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="确定删除?"
+          (nzOnConfirm)="delete(i, data.id)"
+          (nzOnCancel)="cancel()"
+          nzPopconfirmPlacement="topLeft"
+        >
           <i nz-icon nzType="delete"></i>
         </a>
       </td>
     </tr>
-    </tbody>
-  </nz-table>
-  
+  </tbody>
+</nz-table>

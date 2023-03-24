@@ -11,22 +11,31 @@
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">用户名</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="nameErrorTpl">
         <input nz-input formControlName="username"/>
+        <ng-template #nameErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请输入名称!</ng-container> 
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">姓名</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="idErrorTpl">
         <input nz-input formControlName="name"/>
+        <ng-template #idErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请输入姓名!</ng-container> 
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">邮箱</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="emailErrorTpl">
         <input nz-input formControlName="email"/>
+        <ng-template #emailErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请输入邮箱!</ng-container> 
+        </ng-template>
       </nz-form-control>
     </nz-form-item> 
 

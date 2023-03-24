@@ -6,7 +6,7 @@
     </button>
   </ng-template>
   
-  <nz-card  nzTitle ="编辑角色" [nzExtra]="extra">
+  <nz-card  [nzTitle]="id ? '编辑角色' : '创建角色'"  [nzExtra]="extra">
   
     <form nz-form [formGroup]="group" (ngSubmit)="submit()">
       <nz-form-item>
@@ -14,17 +14,17 @@
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="nameErrorTpl">
           <input nz-input formControlName="name"/>
           <ng-template #nameErrorTpl let-control>
-            <ng-container *ngIf="control.hasError('required')">请输入地址信息!</ng-container> 
+            <ng-container *ngIf="control.hasError('required')">请输入名称!</ng-container> 
           </ng-template>
         </nz-form-control>
       </nz-form-item>
   
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="Id" nzRequired>Id</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id" nzRequired>Id</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="idErrorTpl">
-          <input nz-input formControlName="Id"/>
+          <input nz-input formControlName="id"/>
           <ng-template #idErrorTpl let-control>
-            <ng-container *ngIf="control.hasError('required')">请输入地址信息!</ng-container> 
+            <ng-container *ngIf="control.hasError('required')">请输入id!</ng-container> 
           </ng-template>
         </nz-form-control>
       </nz-form-item>
@@ -32,10 +32,10 @@
        
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24"   nzRequired>权限</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24"   [nzErrorTip]="privillegesErrorTpl">
+        <nz-form-control [nzSm]="14" [nzXs]="24"   [nzErrorTip]="privilegesErrorTpl">
           <nz-select nzMode="multiple"    [nzOptions]="listOfOption" [(ngModel)]="listOfSelectedValue"
-          name="privilleges"  formControlName="privilleges"  nzShowSearch nzAllowClear></nz-select>
-          <ng-template #privillegesErrorTpl let-control>
+          name="privileges"  formControlName="privileges"  nzShowSearch nzAllowClear></nz-select>
+          <ng-template #privilegesErrorTpl let-control>
             <ng-container *ngIf="control.hasError('required')">请确定角色权限!</ng-container> 
           </ng-template>
         </nz-form-control>

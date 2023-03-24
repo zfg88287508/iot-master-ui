@@ -27,7 +27,7 @@ import { BatchComponent } from './batch/batch.component';
 import { GroupComponent } from './group/group.component';
 import { GroupEditComponent } from './group-edit/group-edit.component';
 import {NzModalModule} from "ng-zorro-antd/modal";
-
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   declarations: [
@@ -47,6 +47,7 @@ import {NzModalModule} from "ng-zorro-antd/modal";
     NzFormModule,
     NzInputModule,
     NzButtonModule,
+    NzPopconfirmModule,
     NzTableModule,
     NzDividerModule,
     BaseModule,

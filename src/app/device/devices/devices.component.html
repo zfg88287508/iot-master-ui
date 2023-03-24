@@ -45,9 +45,10 @@
         <i nz-icon nzType="edit"></i>
       </a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a (click)="delete(i, data.id)">
-        <i nz-icon nzType="delete"></i>
-      </a>
+      <a nz-popconfirm nzPopconfirmTitle="确定删除?" (nzOnConfirm)="delete(i, data.id )"
+            (nzOnCancel)="cancel()" nzPopconfirmPlacement="topLeft">
+            <i nz-icon nzType="delete"></i>
+          </a>
     </td>
     <td *ngIf="ref">
       <a (click)="select(data.id)">
