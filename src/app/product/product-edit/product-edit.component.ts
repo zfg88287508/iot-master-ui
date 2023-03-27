@@ -100,7 +100,7 @@ export class ProductEditComponent implements OnInit {
 
   propertyAdd($event: any) {
     $event.stopPropagation()
-    this.group.get('properties').push(
+    this.group.get('properties').controls.unshift(
       this.fb.group({
         name: ['', []],
         label: ['', []],
