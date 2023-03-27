@@ -88,8 +88,9 @@
                   <nz-option nzValue="rw" nzLabel="读写"></nz-option>
                 </nz-select>
               </td>
-              <td>
-                <span nz-icon nzType="delete" nzTheme="outline" (click)="propertyDel(i)"></span>
+              <td class="td-oper">
+                <span nz-icon nzType="copy" nzTheme="outline" title="复制当前行" (click)="handleCopyProperTy(i)"></span>
+                <span nz-icon nzType="delete" nzTheme="outline" title="删除" (click)="propertyDel(i)"></span>
               </td>
             </tr>
           </tbody>

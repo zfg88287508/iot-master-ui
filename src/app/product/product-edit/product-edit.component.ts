@@ -111,6 +111,11 @@ export class ProductEditComponent implements OnInit {
     )
   }
 
+  handleCopyProperTy(index :number){
+    const item = this.group.get('properties').controls[index];
+    this.group.get('properties').controls.splice(index, 0, item);
+    this.msg.success("复制成功");
+  }
 
   propertyDel(i: number) {
     this.group.get('properties').controls.splice(i, 1)
