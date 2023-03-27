@@ -5,10 +5,12 @@
       刷新
     </button>
     <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
-    <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="handleNew()">
-      <i nz-icon nzType="plus"></i>
-      创建产品
-    </button>
+    <ng-template [ngIf]="showAddBtn">
+      <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="handleNew()">
+        <i nz-icon nzType="plus"></i>
+        创建产品
+      </button>
+    </ng-template>
   </nz-space>
 </app-toolbar>
 

@@ -19,7 +19,8 @@ export class ProductsComponent {
   total = 1;
   pageSize = 20;
   pageIndex = 1;
-  query: any = {}
+  query: any = {};
+  showAddBtn: Boolean = false
 
 
   constructor(private ms: NzModalService,

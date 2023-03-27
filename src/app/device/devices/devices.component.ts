@@ -22,6 +22,7 @@ export class DevicesComponent {
   pageSize = 20;
   pageIndex = 1;
   query: any = {}
+  showAddBtn: Boolean = true
 
 
   constructor(private ms: NzModalService,

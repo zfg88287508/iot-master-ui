@@ -28,6 +28,7 @@ import { GroupComponent } from './group/group.component';
 import { GroupEditComponent } from './group-edit/group-edit.component';
 import {NzModalModule} from "ng-zorro-antd/modal";
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { SetIdComponent } from './set-id/set-id.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     DeviceDetailComponent,
     BatchComponent,
     GroupComponent,
-    GroupEditComponent
+    GroupEditComponent,
+    SetIdComponent
   ],
   imports: [
     CommonModule,

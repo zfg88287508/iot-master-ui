@@ -10,15 +10,13 @@
 
 <nz-card [nzTitle]="id ? '编辑设备' : '创建设备'" [nzExtra]="extra">
 
-  <form nz-form [formGroup]="group" (ngSubmit)="submit()">
-
+  <form nz-form [formGroup]="group">
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id">ID</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
         <input nz-input formControlName="id" placeholder="默认为随机生成" />
       </nz-form-control>
     </nz-form-item>
-
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type">类型</nz-form-label>
@@ -31,21 +29,7 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item *ngIf="group.value.type != 'gateway'">
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="product_id">产品ID</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <input nz-input formControlName="product_id" />
-        <a (click)="chooseProduct()">选择</a>
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item *ngIf="group.value.type != 'gateway'">
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="group_id">分组ID</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
-        <nz-input-number formControlName="group_id"></nz-input-number>
-        <a (click)="chooseGroup()">选择</a>
-      </nz-form-control>
-    </nz-form-item>
+    <app-set-id #childTag></app-set-id>
 
     <nz-form-item *ngIf="group.value.type == 'subset'">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="gateway_id">网关ID</nz-form-label>
@@ -56,7 +40,7 @@
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">名称</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">名称</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="nameErrorTpl">
         <input nz-input formControlName="name" />
         <ng-template #nameErrorTpl let-control>
