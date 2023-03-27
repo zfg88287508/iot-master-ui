@@ -49,7 +49,8 @@
       </ng-template>
       <nz-collapse-panel nzHeader="属性" [nzExtra]="propertyEx">
 
-        <nz-table formArrayName="properties" [nzFrontPagination]="false" [nzShowPagination]="false">
+        <nz-table [nzData]="group.get('properties').controls" formArrayName="properties" [nzFrontPagination]="false"
+          [nzShowPagination]="false">
           <thead>
             <tr>
               <th>名称（ID）</th>
