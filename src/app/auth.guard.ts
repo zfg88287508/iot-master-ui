@@ -7,16 +7,17 @@ export const authGuard: CanActivateFn = () => {
   const us = inject(UserService);
   const router = inject(Router);
 
-  if (us.user){
+  if (us.user) {
     console.log('auth ok')
     return true;
   }
-   return true;
+  //return true;
+
   if (us.getting) {
     console.log('auth getting')
     const sub = new Subject<any>()
 
-    us.userSub.subscribe(res=>{
+    us.userSub.subscribe(res => {
       console.log('auth getting ok')
       sub.next(true)
     }, error => {
