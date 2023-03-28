@@ -4,7 +4,6 @@ import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
-
 @Component({
   selector: 'app-alarms',
   templateUrl: './alarms.component.html',
@@ -19,8 +18,17 @@ export class AlarmsComponent {
   pageSize = 20;
   pageIndex = 1;
   query: any = {}
-
-
+  filterRead = [
+    { text: 'true', value: 'true' },
+    { text: 'false', value: 'false' }
+  ]
+  filterLevel = [
+    { text: '1', value: '1' },
+    { text: '2', value: '2' },
+    { text: '3', value: '3' },
+    { text: '4', value: '4' },
+    { text: '5', value: '5' },
+  ]
   constructor(private router: Router,
     private rs: RequestService,
     private msg: NzMessageService) {
@@ -43,10 +51,13 @@ export class AlarmsComponent {
   }
 
   delete(index: number, id: number) {
-    console.log('delete', index, id)
-    this.datum.splice(index, 1);
     this.rs.get(`alarm/${id}/delete`).subscribe(res => {
-      this.msg.success("删除成功")
+      this.msg.success("删除成功");
+      if (this.datum.length > 1) {
+        this.datum = this.datum.filter(d => d.id !== id);
+      } else {
+        this.load();
+      }
     })
   }
 

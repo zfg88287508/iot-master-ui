@@ -1,15 +1,17 @@
-import {NzTableQueryParams} from "ng-zorro-antd/table";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
 
 export function ParseTableQuery(query: NzTableQueryParams, body: any): void {
   // const body: any = {
   //   filter: {},
   //   //sort: {},
   // }
-
+  if (typeof body.filter === 'undefined') {
+    body.filter = {};
+  }
   //过滤器
   query.filter.forEach(f => {
     if (f.value.length > 1)
-      body.filter[f.key] = {$in: f.value};
+      body.filter[f.key] = { $in: f.value };
     else if (f.value.length === 1)
       body.filter[f.key] = f.value[0];
   })
