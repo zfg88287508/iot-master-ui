@@ -46,9 +46,13 @@ export class UserEditComponent implements OnInit {
 
   submit() {
     if (this.group.valid) {
-
-      let url = this.id ? `user/${this.id}` : `user/create`
-      this.rs.post(url, this.group.value).subscribe(res => {
+      let url = `user/create`;
+      const sendData = Object.assign({}, this.group.value);
+      if (this.id) {
+        url = `user/${this.id}`;
+        sendData.id = Number(this.id);
+      }
+      this.rs.post(url, sendData).subscribe(res => {
         let path = "/user/list"
         if (location.pathname.startsWith("/admin"))
           path = "/admin" + path
