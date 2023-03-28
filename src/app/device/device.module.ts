@@ -29,6 +29,7 @@ import { GroupEditComponent } from './group-edit/group-edit.component';
 import {NzModalModule} from "ng-zorro-antd/modal";
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { SetIdComponent } from './set-id/set-id.component';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { SetIdComponent } from './set-id/set-id.component';
     NzSwitchModule,
     NzSelectModule,
     NzModalModule,
+    NzSpinModule
   ]
 })
 export class DeviceModule {

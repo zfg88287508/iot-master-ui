@@ -20,7 +20,7 @@ export class ProductsComponent {
   pageSize = 20;
   pageIndex = 1;
   query: any = {};
-  showAddBtn: Boolean = false
+  showAddBtn: Boolean = true
 
 
   constructor(private ms: NzModalService,
@@ -92,5 +92,22 @@ export class ProductsComponent {
   }
   cancel() {
     this.msg.info('click cancel');
+  }
+  handleExport() {
+    const listColumns = ['ID', '名称', '说明', '日期'];
+    const data: any[][] = [];
+    data.push(listColumns);
+    this.datum.forEach(item => {
+      const arr = [];
+      arr.push(item.id);
+      arr.push(item.name);
+      arr.push(item.desc);
+      arr.push(String(item.created));
+      data.push(arr);
+    });
+    let csvContent = 'data:text/csv;charset=utf-8,';
+    data.forEach(row => { csvContent += row.join(',') + '\n'; });
+    let encodedUri = encodeURI(csvContent);
+    window.open(encodedUri);
   }
 }
