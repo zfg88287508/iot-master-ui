@@ -52,6 +52,11 @@ export class UserEditComponent implements OnInit {
         url = `user/${this.id}`;
         sendData.id = Number(this.id);
       }
+      const { roles } = sendData;
+      if (!roles || !roles.length) {
+        this.msg.warning('角色不可为空!');
+        return;
+      }
       this.rs.post(url, sendData).subscribe(res => {
         let path = "/user/list"
         if (location.pathname.startsWith("/admin"))
@@ -59,19 +64,14 @@ export class UserEditComponent implements OnInit {
         this.router.navigateByUrl(path)
         this.msg.success("保存成功")
       })
-
-      return;
-    }
-    else {
+    } else {
       Object.values(this.group.controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
-
     }
-
   }
   handleCancel() {
     const path = `${isIncludeAdmin()}/user/list`;
