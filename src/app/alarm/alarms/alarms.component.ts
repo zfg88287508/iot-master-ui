@@ -19,15 +19,13 @@ export class AlarmsComponent {
   pageIndex = 1;
   query: any = {}
   filterRead = [
-    { text: 'true', value: 'true' },
-    { text: 'false', value: 'false' }
+    { text: 'true', value: 1 },
+    { text: 'false', value: 0 }
   ]
   filterLevel = [
-    { text: '1', value: '1' },
-    { text: '2', value: '2' },
-    { text: '3', value: '3' },
-    { text: '4', value: '4' },
-    { text: '5', value: '5' },
+    { text: '1', value: 1 },
+    { text: '2', value: 2 },
+    { text: '3', value: 3 },
   ]
   constructor(private router: Router,
     private rs: RequestService,

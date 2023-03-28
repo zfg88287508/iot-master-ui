@@ -25,6 +25,7 @@ import { RoleEditComponent } from './role-edit/role-edit.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';  
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { HandlePrivilegesPipe } from '../handle-privileges.pipe';
 @NgModule({
   declarations: [
     UsersComponent,
@@ -33,7 +34,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     PasswordComponent,
     MeComponent,
     RoleComponent,
-    RoleEditComponent
+    RoleEditComponent,
+    HandlePrivilegesPipe
   ],
   imports: [
     CommonModule,

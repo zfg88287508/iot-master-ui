@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
 import { Router } from '@angular/router';
 import { RequestService } from '../../request.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -19,12 +18,11 @@ export class RoleComponent {
   pageIndex = 1;
   query: any = {};
   isVisible = false;
-  mess: any;
+  roleObj = {};
   constructor(
-    private ms: NzModalService,
     private router: Router,
     private rs: RequestService,
-    private msg: NzMessageService
+    private msg: NzMessageService,
   ) {
     this.load();
   }
@@ -60,29 +58,9 @@ export class RoleComponent {
       this.msg.success('删除成功');
     });
   }
-  searchPrivilege() {
-    this.loading = true;
-    this.rs
-      .get('privileges')
-      .subscribe((res) => {
-        this.mess = JSON.stringify(res.data);
-      })
-      .add(() => {
-        this.loading = false;
-      });
-    this.isVisible = true;
-  }
   onQuery($event: NzTableQueryParams) {
     ParseTableQuery($event, this.query);
     this.load();
-  }
-
-  handleCancel() {
-    this.isVisible = false;
-  }
-
-  handleOk() {
-    this.isVisible = false;
   }
 
   search($event: string) {

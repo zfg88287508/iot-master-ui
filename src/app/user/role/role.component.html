@@ -1,59 +1,19 @@
 <app-toolbar>
   <nz-space>
-    <button
-      *nzSpaceItem
-      nz-button
-      nzType="primary"
-      nzSize="large"
-      (click)="reload()"
-    >
+    <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="reload()">
       <i nz-icon nzType="reload" [nzSpin]="loading"></i>
       刷新
     </button>
-    <button
-      *nzSpaceItem
-      nz-button
-      nzType="primary"
-      nzSize="large"
-      (click)="add()"
-    >
+    <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
+    <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="add()">
       <i nz-icon nzType="plus"></i>
       新增
     </button>
-    <button
-      *nzSpaceItem
-      nz-button
-      nzType="primary"
-      nzSize="large"
-      (click)="searchPrivilege()"
-    >
-      <i nz-icon nzType="plus"></i>
-      权限查询
-    </button>
-    <nz-modal
-      [(nzVisible)]="isVisible"
-      nzTitle="角色权限"
-      (nzOnCancel)="handleCancel()"
-      (nzOnOk)="handleOk()"
-    >
-      <ng-container *nzModalContent>
-        <p>{{ mess }}</p>
-      </ng-container>
-    </nz-modal>
-    <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
   </nz-space>
 </app-toolbar>
 
-<nz-table
-  #basicTable
-  [nzData]="datum"
-  [nzFrontPagination]="false"
-  [nzLoading]="loading"
-  [nzTotal]="total"
-  [nzPageSize]="pageSize"
-  [nzPageIndex]="pageIndex"
-  (nzQueryParams)="onQuery($event)"
->
+<nz-table #basicTable [nzData]="datum" [nzFrontPagination]="false" [nzLoading]="loading" [nzTotal]="total"
+  [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQuery($event)">
   <thead>
     <tr>
       <th nzColumnKey="id" [nzSortFn]="true">id</th>
@@ -67,7 +27,7 @@
     <tr *ngFor="let data of basicTable.data; let i = index">
       <td>{{ data.id }}</td>
       <td>{{ data.name }}</td>
-      <td>{{ data.privileges }}</td>
+      <td>{{ data.privileges | handlePrivileges}}</td>
       <td>{{ data.created | date }}</td>
       <td>
         <a (click)="edit(data.id)">
@@ -75,13 +35,8 @@
         </a>
         <nz-divider nzType="vertical"></nz-divider>
 
-        <a
-          nz-popconfirm
-          nzPopconfirmTitle="确定删除?"
-          (nzOnConfirm)="delete(i, data.id)"
-          (nzOnCancel)="cancel()"
-          nzPopconfirmPlacement="topLeft"
-        >
+        <a nz-popconfirm nzPopconfirmTitle="确定删除?" (nzOnConfirm)="delete(i, data.id)" (nzOnCancel)="cancel()"
+          nzPopconfirmPlacement="topLeft">
           <i nz-icon nzType="delete"></i>
         </a>
       </td>

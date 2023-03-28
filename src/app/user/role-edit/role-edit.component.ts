@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../../request.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzSelectSizeType } from 'ng-zorro-antd/select';
+import { isIncludeAdmin } from "../../../public";
 
 @Component({
   selector: 'app-role-edit',
   templateUrl: './role-edit.component.html',
   styleUrls: ['./role-edit.component.scss'],
+  providers: [DatePipe]
 })
 export class RoleEditComponent implements OnInit {
   group!: FormGroup;
@@ -19,57 +21,62 @@ export class RoleEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private rs: RequestService,
-    private msg: NzMessageService
-  ) {}
+    private msg: NzMessageService,
+    private datePipe: DatePipe
+  ) { }
 
   listOfOption: Array<{ label: string; value: string }> = [];
-  listOfSelectedValue = ['管理员', '权限1'];
-  
+  listOfSelectedValue = [];
+
   ngOnInit(): void {
+    this.build();
     if (this.route.snapshot.paramMap.has('id')) {
       this.id = this.route.snapshot.paramMap.get('id');
       this.rs.get(`role/${this.id}`).subscribe((res) => {
-        //let data = res.data;
         this.build(res.data);
       });
     }
-
-    const children: string[] = [];
-    children.push(`管理员`);
-    children.push(`权限1`);
-    this.listOfOption = children.map((item) => ({
-      value: item,
-      label: item,
-    }));
-
-    this.build();
+    this.getRoleList();
   }
 
   build(obj?: any) {
     obj = obj || {};
+    const { name, id, privileges } = obj || {};
     this.group = this.fb.group({
-      name: [obj.username || '', [Validators.required]],
-      id: [obj.name || '', [Validators.required]],
-      privileges: [obj.privilleges || [[]], [Validators.required]],
+      name: [name || '', [Validators.required]],
+      id: [id || '', [Validators.required]],
+      privileges: [privileges || [], [Validators.required]],
       created: [obj.created || ''],
     });
   }
-
+  getRoleList() {
+    this.rs
+      .get('privileges')
+      .subscribe((res) => {
+        const { data } = res;
+        const listData = [];
+        for (const key in data) {
+          listData.push({
+            label: data[key],
+            value: key
+          })
+        }
+        this.listOfOption = listData;
+      })
+  }
   submit() {
-   
     if (this.group.valid) {
-         let url = this.id ? `role/${this.id}` : `role/create`
-      if(url===`role/create`) 
-      this.group.patchValue({created: new Date()})
+      let url = this.id ? `role/${this.id}` : `role/create`
+      if (url === `role/create`) {
+        const created = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss');
+        this.group.patchValue({ created })
+      }
 
       this.rs.post(url, this.group.value).subscribe(res => {
-        let path = "/user/role"
-        if (location.pathname.startsWith("/admin"))
-          path = "/admin" + path
-        this.router.navigateByUrl(path)
-        this.msg.success("保存成功")
+        const path = `${isIncludeAdmin()}/user/role`;
+        this.router.navigateByUrl(path);
+        this.msg.success("保存成功");
       })
-      return;
     } else {
       Object.values(this.group.controls).forEach((control) => {
         if (control.invalid) {
@@ -78,5 +85,9 @@ export class RoleEditComponent implements OnInit {
         }
       });
     }
+  }
+  handleCancel() {
+    const path = `${isIncludeAdmin()}/user/role`;
+    this.router.navigateByUrl(path);
   }
 }

@@ -11,7 +11,7 @@ export function ParseTableQuery(query: NzTableQueryParams, body: any): void {
   //过滤器
   query.filter.forEach(f => {
     if (f.value.length > 1)
-      body.filter[f.key] = { $in: f.value };
+      body.filter[f.key] = f.value;
     else if (f.value.length === 1)
       body.filter[f.key] = f.value[0];
   })

@@ -110,7 +110,7 @@ const routes: Routes = [
     NzModalModule,
     NzDrawerModule,
     NzIconModule,
-    NzDropDownModule,
+    NzDropDownModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent],
