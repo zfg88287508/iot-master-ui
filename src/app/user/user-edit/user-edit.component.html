@@ -41,9 +41,15 @@
       </nz-form-control>
     </nz-form-item>
 
-    <p>
-      权限分配
-    </p>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>角色</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="rolesErrorTpl">
+        <nz-select nzMode="multiple" [nzOptions]="listOfOption" name="roles" formControlName="roles" nzShowSearch
+          nzAllowClear></nz-select>
+        <ng-template #rolesErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请确定角色权限!</ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
   </form>
-
 </nz-card>
