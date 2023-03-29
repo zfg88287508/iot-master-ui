@@ -24,12 +24,13 @@ import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzTypographyModule } from "ng-zorro-antd/typography";
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { ProjectEditVariablesComponent } from '../project-edit-variables/project-edit-variables.component';
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductEditComponent,
     ProductDetailComponent,
+    ProjectEditVariablesComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +54,6 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzTypographyModule,
     DragDropModule,
     NzUploadModule,
-    NzSpinModule
   ]
 })
 export class ProductModule {

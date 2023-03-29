@@ -19,8 +19,8 @@ export class ProductEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private rs: RequestService,
-    private msg: NzMessageService) {
-  }
+    private msg: NzMessageService
+  ) { }
 
 
   ngOnInit(): void {
@@ -111,7 +111,7 @@ export class ProductEditComponent implements OnInit {
     )
   }
 
-  handleCopyProperTy(index :number){
+  handleCopyProperTy(index: number) {
     const item = this.group.get('properties').controls[index];
     this.group.get('properties').controls.splice(index, 0, item);
     this.msg.success("复制成功");
