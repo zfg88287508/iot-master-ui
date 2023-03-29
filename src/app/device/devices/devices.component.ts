@@ -1,11 +1,11 @@
 import { Component, Input, Optional } from '@angular/core';
-import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { NzModalRef } from "ng-zorro-antd/modal";
 import { Router } from "@angular/router";
 import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
-import { isIncludeAdmin } from "../../../public";
+import { isIncludeAdmin, readCsv } from "../../../public";
 
 @Component({
   selector: 'app-devices',
@@ -23,9 +23,11 @@ export class DevicesComponent {
   pageIndex = 1;
   query: any = {}
   showAddBtn: Boolean = true
+  columnKeyNameArr: any = ['name', 'desc', 'product_id', 'group_id', 'type']
+  uploading: Boolean = false;
 
 
-  constructor(private ms: NzModalService,
+  constructor(
     @Optional() protected ref: NzModalRef,
     private router: Router,
     private rs: RequestService,
@@ -124,5 +126,8 @@ export class DevicesComponent {
     data.forEach(row => { csvContent += row.join(',') + '\n'; });
     let encodedUri = encodeURI(csvContent);
     window.open(encodedUri);
+  }
+  handleReadCsv(e: any) {
+    readCsv(e, this, 'device/create');
   }
 }

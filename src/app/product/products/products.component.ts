@@ -5,13 +5,13 @@ import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
-import { isIncludeAdmin } from "../../../public";
-
+import { isIncludeAdmin, readCsv } from "../../../public";
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
+
 export class ProductsComponent {
 
   loading = true
@@ -21,7 +21,8 @@ export class ProductsComponent {
   pageIndex = 1;
   query: any = {};
   showAddBtn: Boolean = true
-
+  columnKeyNameArr: any = ['name', 'desc']
+  uploading: Boolean = false;
 
   constructor(private ms: NzModalService,
     @Optional() protected ref: NzModalRef,
@@ -110,4 +111,10 @@ export class ProductsComponent {
     let encodedUri = encodeURI(csvContent);
     window.open(encodedUri);
   }
+  handleReadCsv(e: any) {
+    readCsv(e, this, 'product/create');
+  }
 }
+
+
+

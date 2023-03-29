@@ -23,7 +23,8 @@ import { NzCollapseModule } from "ng-zorro-antd/collapse";
 import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzTypographyModule } from "ng-zorro-antd/typography";
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
-
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 @NgModule({
   declarations: [
     ProductsComponent,
@@ -50,7 +51,9 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NzCollapseModule,
     NzSelectModule,
     NzTypographyModule,
-    DragDropModule
+    DragDropModule,
+    NzUploadModule,
+    NzSpinModule
   ]
 })
 export class ProductModule {

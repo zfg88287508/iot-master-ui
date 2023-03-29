@@ -15,6 +15,19 @@
       <i nz-icon nzType="cloud-download"></i>
       导出
     </button>
+    <div *nzSpaceItem>
+      <button *ngIf="uploading" nz-button nzSize="large" nzType="primary" nzLoading>
+        <span nz-icon nzType="poweroff"></span>
+        文件上传中
+      </button>
+      <label *ngIf="!uploading" for="file" style="position: absolute;">
+        <div class="fileButton">
+          上传文件
+        </div>
+      </label>
+      <input *ngIf="!uploading" type="file" id="file" accept=".csv" style="margin-top:7px;width:76px;"
+        (change)="handleReadCsv($event)" />
+    </div>
   </nz-space>
 </app-toolbar>
 
