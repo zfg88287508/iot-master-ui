@@ -1,11 +1,11 @@
 <app-toolbar>
   <nz-space>
-    <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="reload()">
+    <button *nzSpaceItem nz-button nzType="primary" (click)="reload()">
       <i nz-icon nzType="reload" [nzSpin]="loading"></i>
       刷新
     </button>
     <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>
-    <button *nzSpaceItem nz-button nzType="primary" nzSize="large" (click)="handleNew()">
+    <button *nzSpaceItem nz-button nzType="primary" (click)="handleNew()">
       <i nz-icon nzType="plus"></i>
       创建总线
     </button>
