@@ -13,8 +13,8 @@
   </nz-space>
 </app-toolbar>
 
-<nz-table #basicTable [nzData]="datum" [nzFrontPagination]="false" [nzLoading]="loading" [nzTotal]="total"
-  [nzScroll]="getTableHeight()" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQuery($event)">
+<nz-table #basicTable [nzData]="datum" [nzLoading]="loading" [nzShowPagination]="false" [nzScroll]="getTableHeight()"
+  (nzQueryParams)="onQuery($event)">
   <thead>
     <tr>
       <th [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="handleAllChecked($event)"></th>
@@ -28,8 +28,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of basicTable.data; let i = index">
-      <td [nzChecked]="setOfCheckedId.has(data.id)"
-        (nzCheckedChange)="handleItemChecked(data.id, $event)"></td>
+      <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="handleItemChecked(data.id, $event)"></td>
       <td>{{data.id}}</td>
       <td>{{data.name}}</td>
       <td>{{data.desc}}</td>
@@ -48,3 +47,5 @@
     </tr>
   </tbody>
 </nz-table>
+<app-custom-pagination [pageIndex]="pageIndex" [pageSize]="pageSize" [total]="total"
+  (pageIndexChange)="pageIndexChange($event)" (pageSizeChange)="pageSizeChange($event)"></app-custom-pagination>
