@@ -5,7 +5,7 @@ import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
-import { isIncludeAdmin } from "../../../public";
+import { isIncludeAdmin, tableHeight } from "../../../public";
 
 @Component({
   selector: 'app-plugins',
@@ -83,5 +83,8 @@ export class PluginsComponent {
   handleNew() {
     const path = `${isIncludeAdmin()}/plugin/create`;
     this.router.navigateByUrl(path);
+  }
+  getTableHeight() {
+    return tableHeight(this);
   }
 }

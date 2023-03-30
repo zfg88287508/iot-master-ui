@@ -6,7 +6,6 @@ function isIncludeAdmin() {
 }
 
 function readCsv(e: any, that: any, url: string) {
-    console.log("🚀 ~ file: public.ts:9 ~ readCsv ~ this:", that)
     const file = e.target.files[0];
     if (file.type != "text/csv") {
         that.msg.error("文件类型错误");
@@ -52,12 +51,22 @@ function handleData(data: (string | any[])[], that: any, url: string) {
                 that.load();
             }
         }, (error: any) => {
-            console.log(error)
             that.uploading = false;
         })
     });
 }
+/**
+ * @desc 计算表格高度
+ */
+function tableHeight(that: any) {
+    const tbTop: any = document.querySelector('.ant-table')?.getBoundingClientRect().top || 0;
+    const allH = document.querySelector('.ant-layout')?.clientHeight || 0;
+    const pageHeight = 130;
+    const height = allH - tbTop - pageHeight;
+    return { y: `${height}px` };
+}
 export {
     isIncludeAdmin,
-    readCsv
+    readCsv,
+    tableHeight
 }

@@ -4,6 +4,7 @@ import { RequestService } from '../../request.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { ParseTableQuery } from '../../base/table';
+import { tableHeight } from "../../../public";
 
 @Component({
   selector: 'app-role',
@@ -81,5 +82,8 @@ export class RoleComponent {
   }
   cancel() {
     this.msg.info('点击取消');
+  }
+  getTableHeight() {
+    return tableHeight(this);
   }
 }

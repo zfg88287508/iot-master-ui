@@ -5,7 +5,7 @@ import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
-import { isIncludeAdmin, readCsv } from "../../../public";
+import { isIncludeAdmin, readCsv, tableHeight } from "../../../public";
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -113,6 +113,9 @@ export class ProductsComponent {
   }
   handleReadCsv(e: any) {
     readCsv(e, this, 'product/create');
+  }
+  getTableHeight() {
+    return tableHeight(this);
   }
 }
 

@@ -4,6 +4,7 @@ import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
+import { tableHeight } from "../../../public";
 @Component({
   selector: 'app-alarms',
   templateUrl: './alarms.component.html',
@@ -79,5 +80,9 @@ export class AlarmsComponent {
       data.read = true;
       //this.msg.success("删除成功")
     })
+  }
+
+  getTableHeight() {
+    return tableHeight(this);
   }
 }

@@ -5,7 +5,7 @@ import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
-import { isIncludeAdmin } from "../../../public";
+import { isIncludeAdmin, tableHeight } from "../../../public";
 @Component({
   selector: 'app-brokers',
   templateUrl: './brokers.component.html',
@@ -81,5 +81,8 @@ export class BrokersComponent {
   }
   cancel() {
     this.msg.info('click cancel');
+  }
+  getTableHeight() {
+    return tableHeight(this);
   }
 }

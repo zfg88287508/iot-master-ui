@@ -31,7 +31,7 @@
   </nz-space>
 </app-toolbar>
 
-<nz-table #basicTable [nzData]="datum" [nzFrontPagination]="false" [nzLoading]="loading" [nzTotal]="total"
+<nz-table #basicTable [nzData]="datum" [nzFrontPagination]="false" [nzLoading]="loading" [nzTotal]="total" [nzScroll]="getTableHeight()"
   [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQuery($event)">
   <thead>
     <tr>

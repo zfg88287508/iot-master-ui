@@ -19,6 +19,7 @@
           [nzTotal]="total"
           [nzPageSize]="pageSize"
           [nzPageIndex]="pageIndex"
+          [nzScroll]="getTableHeight()"
           (nzQueryParams)="onQuery($event)"
 >
   <thead>
