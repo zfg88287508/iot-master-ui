@@ -37,7 +37,7 @@ export class AlarmsComponent {
     private rs: RequestService,
     private modal: NzModalService,
     private msg: NzMessageService
-    ) {
+  ) {
     //this.load();
   }
 
@@ -75,6 +75,13 @@ export class AlarmsComponent {
 
   onQuery($event: NzTableQueryParams) {
     ParseTableQuery($event, this.query)
+    this.load();
+  }
+  pageIndexChange(pageIndex: number) {
+    console.log("pageIndex:", pageIndex)
+  }
+  pageSizeChange(pageSize: number) {
+    this.query.limit = pageSize;
     this.load();
   }
 

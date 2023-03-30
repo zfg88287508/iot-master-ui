@@ -78,7 +78,13 @@ export class RoleComponent {
     ParseTableQuery($event, this.query);
     this.load();
   }
-
+  pageIndexChange(pageIndex: number) {
+    console.log("pageIndex:", pageIndex)
+  }
+  pageSizeChange(pageSize: number) {
+    this.query.limit = pageSize;
+    this.load();
+  }
   search($event: string) {
     this.query.keyword = {
       name: $event,

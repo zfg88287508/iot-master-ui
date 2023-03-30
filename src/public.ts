@@ -61,7 +61,7 @@ function handleData(data: (string | any[])[], that: any, url: string) {
 function tableHeight(that: any) {
     const tbTop: any = document.querySelector('.ant-table')?.getBoundingClientRect().top || 0;
     const allH = document.querySelector('.ant-layout')?.clientHeight || 0;
-    const pageHeight = 130;
+    const pageHeight = 120;
     const height = allH - tbTop - pageHeight;
     return { y: `${height}px` };
 }

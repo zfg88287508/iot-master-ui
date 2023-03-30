@@ -9,8 +9,8 @@
   </nz-space>
 </app-toolbar>
 
-<nz-table #basicTable [nzData]="datum" [nzFrontPagination]="false" [nzLoading]="loading" [nzTotal]="total" [nzScroll]="getTableHeight()"
-  [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQuery($event)">
+<nz-table #basicTable [nzData]="datum" [nzShowPagination]="false" [nzLoading]="loading" [nzScroll]="getTableHeight()"
+  (nzQueryParams)="onQuery($event)">
   <thead>
     <tr>
       <th [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="handleAllChecked($event)"></th>
@@ -47,3 +47,6 @@
     </tr>
   </tbody>
 </nz-table>
+
+<app-custom-pagination [pageIndex]="pageIndex" [pageSize]="pageSize" [total]="total"
+  (pageIndexChange)="pageIndexChange($event)" (pageSizeChange)="pageSizeChange($event)"></app-custom-pagination>
