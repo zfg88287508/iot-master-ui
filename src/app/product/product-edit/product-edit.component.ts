@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute, Router } from "@angular/router";
@@ -14,6 +14,8 @@ import { isIncludeAdmin } from "../../../public";
 export class ProductEditComponent implements OnInit {
   group!: any;
   id: any = 0
+  allData: object = {};
+  @ViewChild('propertyChild') propertyChild: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -28,6 +30,7 @@ export class ProductEditComponent implements OnInit {
       this.id = this.route.snapshot.paramMap.get("id");
       this.rs.get(`product/${this.id}`).subscribe(res => {
         //let data = res.data;
+        this.allData = res.data || {};
         this.build(res.data)
       })
 
@@ -43,17 +46,6 @@ export class ProductEditComponent implements OnInit {
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
       version: [obj.version || '', []],
-      properties: this.fb.array(
-        obj.properties ? obj.properties.map((prop: any) =>
-          this.fb.group({
-            label: [prop.label || '', []],
-            name: [prop.name || '', []],
-            type: [prop.type || 'int', []],
-            unit: [prop.unit || '', []],
-            mode: [prop.mode || 'rw', []],
-          })
-        ) : []
-      ),
       parameters: this.fb.array(
         obj.parameters ? obj.parameters.map((prop: any) =>
           this.fb.group({
@@ -82,10 +74,13 @@ export class ProductEditComponent implements OnInit {
   }
 
   submit() {
+
     if (this.group.valid) {
       let url = this.id ? `product/${this.id}` : `product/create`
-      const propertys = this.group.get('properties').controls.map((item: { value: any; }) => item.value);
       const sendData = JSON.parse(JSON.stringify(this.group.value));
+      // 属性组件
+      const propertyGroup = this.propertyChild.group;
+      const propertys = propertyGroup.get('properties').controls.map((item: { value: any; }) => item.value);
       sendData.properties = propertys;
       this.rs.post(url, sendData).subscribe(res => {
         let path = "/product/list"
@@ -99,16 +94,19 @@ export class ProductEditComponent implements OnInit {
   }
 
   propertyAdd($event: any) {
-    $event.stopPropagation()
-    this.group.get('properties').controls.unshift(
-      this.fb.group({
-        name: ['', []],
-        label: ['', []],
-        type: ['int', []],
-        unit: ['', []],
-        mode: ['rw', []],
-      })
-    )
+    $event.stopPropagation();
+    if (this.propertyChild) {
+      this.propertyChild.group.get('properties').controls.unshift(
+        this.fb.group({
+          name: ['', []],
+          label: ['', []],
+          type: ['int', []],
+          unit: ['', []],
+          mode: ['rw', []],
+        })
+      )
+    }
+    
   }
 
   handleCopyProperTy(index: number) {

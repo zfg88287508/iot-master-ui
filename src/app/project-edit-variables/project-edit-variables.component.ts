@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NzMessageService } from "ng-zorro-antd/message";
 
@@ -8,12 +9,34 @@ import { NzMessageService } from "ng-zorro-antd/message";
   styleUrls: ['./project-edit-variables.component.scss']
 })
 export class ProjectEditVariablesComponent implements OnChanges {
-  @Input() group: any;
+  group!: any;
+  @Input() data: any = {};
   constructor(
-    private msg: NzMessageService
+    private msg: NzMessageService,
+    private fb: FormBuilder,
   ) { }
-  ngOnChanges() {
-    console.log(this.group)
+  ngOnChanges(changes: SimpleChanges): void {
+    let currentValue = {};
+    if (changes['data'] && changes['data'].currentValue) {
+      currentValue = changes['data'].currentValue;
+    }
+    this.build(currentValue)
+  }
+  build(obj?: any) {
+    obj = obj || {};
+    this.group = this.fb.group({
+      properties: this.fb.array(
+        obj.properties ? obj.properties.map((prop: any) =>
+          this.fb.group({
+            label: [prop.label || '', []],
+            name: [prop.name || '', []],
+            type: [prop.type || 'int', []],
+            unit: [prop.unit || '', []],
+            mode: [prop.mode || 'rw', []],
+          })
+        ) : []
+      ),
+    })
   }
   drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.group.get('properties').controls, event.previousIndex, event.currentIndex);

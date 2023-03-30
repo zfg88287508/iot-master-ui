@@ -1,4 +1,4 @@
-<nz-table [nzData]="group.get('properties').controls" [nzFrontPagination]="false"  [formGroup]="group"
+<nz-table [nzData]="group.get('properties').controls" [nzFrontPagination]="false" [formGroup]="group"
     [nzShowPagination]="false">
     <thead>
         <tr>
@@ -10,8 +10,8 @@
             <th></th>
         </tr>
     </thead>
-    <tbody cdkDropList (cdkDropListDropped)="drop($event)">
-        <tr *ngFor="let value of group.get('properties').controls; let i=index;" [formGroupName]="i" cdkDrag>
+    <tbody cdkDropList (cdkDropListDropped)="drop($event)" formGroupName="properties">
+        <tr *ngFor="let item of group.get('properties').controls; let i=index;" [formGroupName]="i" cdkDrag>
             <td>
                 <input nz-input formControlName="name" />
             </td>
