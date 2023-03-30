@@ -5,7 +5,7 @@ import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
-import { isIncludeAdmin, readCsv, tableHeight } from "../../../public";
+import { isIncludeAdmin, readCsv, tableHeight, onAllChecked, onItemChecked, batchdel, refreshCheckedStatus } from "../../../public";
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -23,8 +23,12 @@ export class ProductsComponent {
   showAddBtn: Boolean = true
   columnKeyNameArr: any = ['name', 'desc']
   uploading: Boolean = false;
-
-  constructor(private ms: NzModalService,
+  checked = false;
+  indeterminate = false;
+  setOfCheckedId = new Set<number>();
+  delResData: any = [];
+  constructor(
+    private modal: NzModalService,
     @Optional() protected ref: NzModalRef,
     private router: Router,
     private rs: RequestService,
@@ -42,6 +46,8 @@ export class ProductsComponent {
     this.rs.post("product/search", this.query).subscribe(res => {
       this.datum = res.data;
       this.total = res.total;
+      this.setOfCheckedId.clear();
+      refreshCheckedStatus(this);
     }).add(() => {
       this.loading = false;
     })
@@ -54,13 +60,17 @@ export class ProductsComponent {
     this.router.navigateByUrl(path)
   }
 
-  delete(index: number, id: number) {
+  delete(id: number, size?: number) {
     this.rs.get(`product/${id}/delete`).subscribe(res => {
-      this.msg.success("删除成功");
-      if (this.datum.length > 1) {
+      if (!size && this.datum.length > 1) {
+        this.msg.success("删除成功");
         this.datum = this.datum.filter(d => d.id !== id);
-      } else {
-        this.load();
+      } else if (size) {
+        this.delResData.push(res);
+        if (size === this.delResData.length) {
+          this.msg.success("删除成功");
+          this.load();
+        }
       }
     })
   }
@@ -116,6 +126,15 @@ export class ProductsComponent {
   }
   getTableHeight() {
     return tableHeight(this);
+  }
+  handleBatchDel() {
+    batchdel(this);
+  }
+  handleAllChecked(id: any) {
+    onAllChecked(id, this);
+  }
+  handleItemChecked(id: number, checked: boolean) {
+    onItemChecked(id, checked, this);
   }
 }
 

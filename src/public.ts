@@ -65,8 +65,49 @@ function tableHeight(that: any) {
     const height = allH - tbTop - pageHeight;
     return { y: `${height}px` };
 }
+function onAllChecked(checked: boolean, that: any): void {
+    that.datum.forEach((item: any) => updateCheckedSet(item.id, checked, that));
+    refreshCheckedStatus(that);
+}
+function onItemChecked(id: number, checked: boolean, that: any): void {
+    updateCheckedSet(id, checked, that);
+    refreshCheckedStatus(that);
+}
+
+function updateCheckedSet(id: number, checked: boolean, that: any) {
+    if (checked) {
+        that.setOfCheckedId.add(id);
+    } else {
+        that.setOfCheckedId.delete(id);
+    }
+}
+function refreshCheckedStatus(that: any) {
+    that.checked = that.datum.every((item: { id: any; }) => that.setOfCheckedId.has(item.id));
+    that.indeterminate = that.datum.some((item: { id: any; }) => that.setOfCheckedId.has(item.id)) && !that.checked;
+}
+function batchdel(that: any) {
+    that.delResData = [];
+    const size = that.setOfCheckedId.size;
+    if (!size) {
+        that.msg.warning('请先勾选删除项');
+        return;
+    }
+    const ids = Array.from(that.setOfCheckedId);
+    that.modal.confirm({
+        nzTitle: `确定删除勾选的${size}项？`,
+        nzOnOk: () => {
+            ids.forEach(id => {
+                that.delete(id, size);
+            });
+        }
+    });
+}
 export {
     isIncludeAdmin,
     readCsv,
-    tableHeight
+    tableHeight,
+    onAllChecked,
+    onItemChecked,
+    refreshCheckedStatus,
+    batchdel
 }

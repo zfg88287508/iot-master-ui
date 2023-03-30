@@ -9,6 +9,7 @@
       <i nz-icon nzType="plus"></i>
       新增
     </button>
+    <button *nzSpaceItem nz-button nzType="primary" nzDanger (click)="handleBatchDel()">批量删除</button>
   </nz-space>
 </app-toolbar>
 
@@ -16,6 +17,7 @@
   [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQuery($event)">
   <thead>
     <tr>
+      <th [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="handleAllChecked($event)"></th>
       <th nzColumnKey="id" [nzSortFn]="true">id</th>
       <th nzColumnKey="name">名称</th>
       <th nzColumnKey="privileges">权限</th>
@@ -25,6 +27,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of basicTable.data; let i = index">
+      <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="handleItemChecked(data.id, $event)"></td>
       <td>{{ data.id }}</td>
       <td>{{ data.name }}</td>
       <td>{{ data.privileges | handlePrivileges}}</td>
@@ -35,7 +38,7 @@
         </a>
         <nz-divider nzType="vertical"></nz-divider>
 
-        <a nz-popconfirm nzPopconfirmTitle="确定删除?" (nzOnConfirm)="delete(i, data.id)" (nzOnCancel)="cancel()"
+        <a nz-popconfirm nzPopconfirmTitle="确定删除?" (nzOnConfirm)="delete(data.id)" (nzOnCancel)="cancel()"
           nzPopconfirmPlacement="topLeft">
           <i nz-icon nzType="delete"></i>
         </a>
