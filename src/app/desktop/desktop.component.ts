@@ -43,7 +43,7 @@ export class DesktopComponent {
       nzBodyStyle: { padding: "0", overflow: "hidden" },
       nzContent: WindowComponent,
       nzComponentParams: {
-        url: app.entries[0].path
+        entries: app.entries || []
       }
     })
   }

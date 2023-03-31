@@ -49,8 +49,9 @@ export class AlarmsComponent {
   load() {
     this.loading = true
     this.rs.post("alarm/search", this.query).subscribe(res => {
-      this.datum = res.data;
-      this.total = res.total;
+      const { data, total } = res;
+      this.datum = data || [];
+      this.total = total || 0;
       this.setOfCheckedId.clear();
       refreshCheckedStatus(this);
     }).add(() => {
