@@ -41,6 +41,7 @@
     </nz-form-item>
 
     <nz-collapse>
+      <!-- 属性start -->
       <ng-template #propertyEx>
         <button type="button" nz-button nzType="primary" (click)="propertyAdd($event)">
           <i type="button" nz-icon nzType="plus"></i>
@@ -50,6 +51,7 @@
       <nz-collapse-panel nzHeader="属性" [nzExtra]="propertyEx">
         <app-project-edit-variables #propertyChild [data]="allData"></app-project-edit-variables>
       </nz-collapse-panel>
+      <!-- 属性end -->
 
       <ng-template #functionEx>
         <button type="button" nz-button nzType="primary">

@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {Router} from "@angular/router";
-import {RequestService} from "../request.service";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {WindowComponent} from "../window/window.component";
-import {OemService} from "../oem.service";
-import {AppService} from "../app.service";
+import { Component } from '@angular/core';
+import { Router } from "@angular/router";
+import { RequestService } from "../request.service";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { WindowComponent } from "../window/window.component";
+import { OemService } from "../oem.service";
+import { AppService } from "../app.service";
 
 declare var window: any;
 
@@ -17,11 +17,12 @@ export class DesktopComponent {
 
   drawVisible: any;
 
-  constructor(private router: Router,
-              private rs: RequestService,
-              private ms: NzModalService,
-              protected os: OemService,
-              protected _as: AppService) {
+  constructor(
+    private router: Router,
+    private rs: RequestService,
+    private ms: NzModalService,
+    protected os: OemService,
+    protected _as: AppService) {
 
     localStorage.setItem("main", "/desktop")
   }
@@ -39,7 +40,7 @@ export class DesktopComponent {
       nzMaskClosable: false,
       nzWidth: "90%",
       //nzStyle: {height: "90%"},
-      nzBodyStyle: {padding: "0", overflow: "hidden"},
+      nzBodyStyle: { padding: "0", overflow: "hidden" },
       nzContent: WindowComponent,
       nzComponentParams: {
         url: app.entries[0].path
