@@ -4,11 +4,11 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NzMessageService } from "ng-zorro-antd/message";
 
 @Component({
-  selector: 'app-project-edit-variables',
-  templateUrl: './project-edit-variables.component.html',
-  styleUrls: ['./project-edit-variables.component.scss']
+  selector: 'app-product-edit-properties',
+  templateUrl: './product-edit-properties.component.html',
+  styleUrls: ['./product-edit-properties.component.scss']
 })
-export class ProjectEditVariablesComponent implements OnChanges {
+export class ProductEditPropertiesComponent implements OnChanges {
   group!: any;
   @Input() data: any = {};
   constructor(
