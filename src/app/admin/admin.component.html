@@ -24,7 +24,7 @@
   <nz-layout>
     <nz-sider nzBreakpoint="sm" style="overflow-y: auto">
       <ul nz-menu nzTheme="dark" nzMode="inline">
-        <li nz-submenu [nzIcon]="app.nzIcon" [nzTitle]="app.name" *ngFor="let app of _as.apps">
+        <li nz-submenu [nzIcon]="app.nzIcon" [nzTitle]="app.name" *ngFor="let app of _as.apps" [nzOpen]="app.open">
           <ul>
             <li nz-menu-item nzMatchRouter nzMatchRouterExact *ngFor="let entry of app.entries">
               <a [routerLink]="['/admin'+entry.path]">
