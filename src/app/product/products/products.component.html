@@ -10,25 +10,25 @@
         <i nz-icon nzType="plus"></i>
         创建产品
       </button>
-    </ng-template>
-    <button *nzSpaceItem nz-button nzType="primary" (click)="handleExport()">
-      <i nz-icon nzType="cloud-download"></i>
-      导出
-    </button>
-    <div *nzSpaceItem style="position: relative;">
-      <button *ngIf="uploading" nz-button nzType="primary" nzLoading>
-        <span nz-icon nzType="poweroff"></span>
-        文件上传中
+      <button *nzSpaceItem nz-button nzType="primary" (click)="handleExport()">
+        <i nz-icon nzType="cloud-download"></i>
+        导出
       </button>
-      <label *ngIf="!uploading" for="file" style="position: absolute;">
-        <div class="fileButton">
-          上传文件
-        </div>
-      </label>
-      <input *ngIf="!uploading" type="file" id="file" accept=".csv" style="margin-top:3px;width:76px;"
-        (change)="handleReadCsv($event)" />
-    </div>
-    <button *nzSpaceItem nz-button nzType="primary" nzDanger (click)="handleBatchDel()">批量删除</button>
+      <div *nzSpaceItem style="position: relative;">
+        <button *ngIf="uploading" nz-button nzType="primary" nzLoading>
+          <span nz-icon nzType="poweroff"></span>
+          文件上传中
+        </button>
+        <label *ngIf="!uploading" for="file" style="position: absolute;">
+          <div class="fileButton">
+            上传文件
+          </div>
+        </label>
+        <input *ngIf="!uploading" type="file" id="file" accept=".csv" style="margin-top:3px;width:76px;"
+          (change)="handleReadCsv($event)" />
+      </div>
+      <button *nzSpaceItem nz-button nzType="primary" nzDanger (click)="handleBatchDel()">批量删除</button>
+    </ng-template>
   </nz-space>
 </app-toolbar>
 

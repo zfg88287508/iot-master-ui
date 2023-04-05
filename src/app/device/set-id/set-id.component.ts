@@ -21,6 +21,7 @@ export class SetIdComponent {
   chooseProduct() {
     this.ms.create({
       nzTitle: "选择产品",
+      nzWidth: '700px',
       nzContent: ProductsComponent,
       nzComponentParams: {
         showAddBtn: false
