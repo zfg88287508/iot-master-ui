@@ -1,7 +1,9 @@
 .td-oper span {
     cursor: pointer;
 }
-
+.td-oper span {
+    margin-right: 10px;
+}
 .td-oper span:last-of-type {
-    margin-left: 10px;
+    margin-right: 0;
 }
