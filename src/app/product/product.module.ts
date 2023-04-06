@@ -24,7 +24,7 @@ import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzTypographyModule } from "ng-zorro-antd/typography";
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { ProductEditPropertiesComponent } from './product-edit-variables/product-edit-properties.component';
+import { ProductEditPropertiesComponent } from './product-edit-properties/product-edit-properties.component';
 @NgModule({
   declarations: [
     ProductsComponent,
