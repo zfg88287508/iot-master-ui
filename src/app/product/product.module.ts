@@ -25,12 +25,22 @@ import { NzTypographyModule } from "ng-zorro-antd/typography";
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { ProductEditPropertiesComponent } from './product-edit-properties/product-edit-properties.component';
+import { ProductEditConstraintsComponent } from './product-edit-constraints/product-edit-constraints.component';
+import { ProductEditFunctionsComponent } from './product-edit-functions/product-edit-functions.component';
+import { ProductEditEventsComponent } from './product-edit-events/product-edit-events.component';
+import { ProductEditParametersComponent } from './product-edit-parameters/product-edit-parameters.component';
+import { ProductEditArgumentsComponent } from './product-edit-arguments/product-edit-arguments.component';
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductEditComponent,
     ProductDetailComponent,
-    ProductEditPropertiesComponent
+    ProductEditPropertiesComponent,
+    ProductEditConstraintsComponent,
+    ProductEditFunctionsComponent,
+    ProductEditEventsComponent,
+    ProductEditParametersComponent,
+    ProductEditArgumentsComponent
   ],
   imports: [
     CommonModule,
