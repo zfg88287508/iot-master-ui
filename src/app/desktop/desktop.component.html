@@ -4,6 +4,10 @@
       <img class="logo" [src]="os.oem.logo" alt="logo">
       <span class="title">{{os.oem.title}}</span>
     </div>
+    <a nz-button nzSize="small" routerLink="/admin" style="margin-right: 5px;">
+      <span nz-icon nzType="swap" nzTheme="outline"></span>
+      菜单模式
+    </a>
     <img class="avatar" src="/assets/user.svg" alt="logo" (click)="drawVisible=!drawVisible">
     <div class="user"></div>
   </nz-header>

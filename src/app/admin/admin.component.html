@@ -9,12 +9,15 @@
     <div class="fill">
     </div>
     <div class="user" nzTrigger="click" nz-dropdown [nzDropdownMenu]="menu">
+      <a nz-button nzSize="small" routerLink="/desktop" style="margin-right: 5px;">
+        <span nz-icon nzType="swap" nzTheme="outline"></span>
+        桌面模式
+      </a>
       <img class="avatar" src="/assets/user.svg" alt="logo">
-      管理员
+      {{userInfo.name}}
     </div>
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu>
-        <li nz-menu-item routerLink="/desktop">桌面模式</li>
         <li nz-menu-item routerLink="/admin/user/me">个人中心</li>
         <li nz-menu-item routerLink="/admin/user/password">修改密码</li>
         <li nz-menu-item (click)="logout()">退出</li>

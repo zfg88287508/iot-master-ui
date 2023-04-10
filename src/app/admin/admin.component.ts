@@ -11,7 +11,15 @@ import { RequestService } from "../request.service";
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-  constructor(protected _as: AppService, protected os: OemService, private router: Router, private us: UserService, private rs: RequestService) {
+  userInfo: any;
+  constructor(
+    protected _as: AppService,
+    protected os: OemService,
+    private router: Router,
+    private us: UserService,
+    private rs: RequestService
+  ) {
+    this.userInfo = us && us.user;
     localStorage.setItem("main", "/admin");
     const menuList = _as.apps;
     for (let index = 0; index < menuList.length; index++) {

@@ -16,14 +16,12 @@ declare var window: any;
 export class DesktopComponent {
 
   drawVisible: any;
-
   constructor(
     private router: Router,
     private rs: RequestService,
     private ms: NzModalService,
     protected os: OemService,
     protected _as: AppService) {
-
     localStorage.setItem("main", "/desktop")
   }
 
