@@ -65,6 +65,11 @@ const pages: Routes = [
     canActivate: [authGuard],
     loadChildren: () => import('./plugin/plugin.module').then(m => m.PluginModule)
   },
+  {
+    path: 'gateway',
+    canActivate: [authGuard],
+    loadChildren: () => import('./gateway/gateway.module').then(m => m.GatewayModule)
+  },
 ]
 
 const routes: Routes = [

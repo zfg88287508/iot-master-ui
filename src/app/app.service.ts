@@ -48,7 +48,18 @@ const internals: any[] = [{
     // {name: '创建用户', path: '/user/create'},
     {name: '角色权限', path: '/user/role'},
   ]
-}, {
+}, 
+{
+  icon: '/assets/gateway.png',
+  nzIcon: 'partition',
+  name: '网关管理',
+  internal: true,
+  entries: [
+    {name: '所有网关', path: '/gateway/list'},
+    {name: '创建网关', path: '/gateway/create'},
+  ]
+},
+{
   icon: '/assets/plugin.png',
   nzIcon: 'appstore-add',
   name: '插件管理',

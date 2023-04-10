@@ -40,7 +40,7 @@ export class GroupComponent {
 
   load() {
     this.loading = true
-    this.rs.post("group/search", this.query).subscribe(res => {
+    this.rs.post("device/group/search", this.query).subscribe(res => {
       this.datum = res.data;
       this.total = res.total;
     }).add(() => {
