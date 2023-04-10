@@ -30,7 +30,9 @@ import {NzModalModule} from "ng-zorro-antd/modal";
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { SetIdComponent } from './set-id/set-id.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { DeviceTypeComponent } from './group/device-type/device-type.component';
+import { DeviceTypeEditComponent } from './group/device-type-edit/device-type-edit.component';
 @NgModule({
   declarations: [
     DevicesComponent,
@@ -39,7 +41,9 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     BatchComponent,
     GroupComponent,
     GroupEditComponent,
-    SetIdComponent
+    SetIdComponent,
+    DeviceTypeComponent,
+    DeviceTypeEditComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +51,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzLayoutModule,
     NzMenuModule,
     NzIconModule,
+    NzDropDownModule,
     NzFormModule,
     NzInputModule,
     NzButtonModule,

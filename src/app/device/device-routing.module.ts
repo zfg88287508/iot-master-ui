@@ -6,7 +6,8 @@ import {PageNotFoundComponent} from "../base/page-not-found/page-not-found.compo
 import {DeviceDetailComponent} from "./device-detail/device-detail.component";
 import {BatchComponent} from "./batch/batch.component";
 import {GroupComponent} from "./group/group.component";
-
+import { DeviceTypeComponent } from './group/device-type/device-type.component';
+import { DeviceTypeEditComponent } from './group/device-type-edit/device-type-edit.component';
 const routes: Routes = [
   {path: '', pathMatch: "full", redirectTo: "list"},
   {path: 'list', component: DevicesComponent},
@@ -15,6 +16,9 @@ const routes: Routes = [
   {path: 'create', component: DeviceEditComponent},
   {path: 'batch', component: BatchComponent},
   {path: 'group', component: GroupComponent},
+  {path: 'group/type', component:DeviceTypeComponent}, 
+  {path: 'group/type/create', component:DeviceTypeEditComponent}, 
+  {path: 'group/type/edit/:id', component:DeviceTypeEditComponent}, 
   {path: '**', component: PageNotFoundComponent}
 ];
 

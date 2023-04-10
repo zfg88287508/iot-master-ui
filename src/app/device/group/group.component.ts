@@ -73,7 +73,10 @@ export class GroupComponent {
     ParseTableQuery($event, this.query)
     this.load();
   }
-
+  type(){
+    const path = `admin/device/group/type`;
+    this.router.navigateByUrl(path);
+  }
   search($event: string) {
     this.query.keyword = {
       name: $event

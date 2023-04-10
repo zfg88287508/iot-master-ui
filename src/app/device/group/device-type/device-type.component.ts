@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Router } from '@angular/router';
-import { RequestService } from '../../request.service';
+import { RequestService } from 'src/app/request.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { ParseTableQuery } from '../../base/table';
+import { ParseTableQuery } from 'src/app/base/table';
 import {
   isIncludeAdmin,
   tableHeight,
@@ -12,14 +12,13 @@ import {
   onItemChecked,
   batchdel,
   refreshCheckedStatus,
-} from '../../../public';
-
+} from 'src/public';  
 @Component({
-  selector: 'app-gateways',
-  templateUrl: './gateways.component.html',
-  styleUrls: ['./gateways.component.scss'],
+  selector: 'app-device-type',
+  templateUrl: './device-type.component.html',
+  styleUrls: ['./device-type.component.scss']
 })
-export class GatewaysComponent {
+export class DeviceTypeComponent {
   loading = true;
   datum: any[] = [];
   total = 1;
@@ -31,13 +30,23 @@ export class GatewaysComponent {
   setOfCheckedId = new Set<number>();
   delResData: any = [];
 
+  // handleCancel(){}
+  // submit(){}
+  // listOfOption = ['Apples', 'Nails', 'Bananas', 'Helicopters'];
+  // listOfSelectedValue: string[] = [];
+
+  // isNotSelected(value: string): boolean {
+  //   return this.listOfSelectedValue.indexOf(value) === -1;
+  // }
+
+
   constructor(
     private modal: NzModalService,
     private router: Router,
     private rs: RequestService,
     private msg: NzMessageService
   ) {
-    this.load();
+    //this.load();
   }
 
   reload() {
@@ -48,9 +57,9 @@ export class GatewaysComponent {
   load() {
     this.loading = true;
     this.rs
-      .post('gateway/search', this.query)
+      .post('device/type/search', this.query)
       .subscribe((res) => {
-        console.log(res);
+     //   console.log(res);
         this.datum = res.data||[];
         this.total = res.total;
         this.setOfCheckedId.clear();
@@ -62,13 +71,13 @@ export class GatewaysComponent {
   }
 
   create() {
-    let path = '/gateway/create';
+    let path = '/device/group/type/create';
     if (location.pathname.startsWith('/admin')) path = '/admin' + path;
     this.router.navigateByUrl(path);
   }
 
   delete(id: number, size?: number) {
-    this.rs.get(`gateway/${id}/delete`).subscribe((res) => {
+    this.rs.get(`device/type/${id}/delete`).subscribe((res) => {
       if (!size && this.datum.length > 1) {
         this.msg.success('删除成功');
         this.datum = this.datum.filter((d) => d.id !== id);
@@ -101,17 +110,17 @@ export class GatewaysComponent {
     this.load();
   }
   use(id: any) {
-    this.rs.get(`gateway/${id}/enable`).subscribe((res) => {
+    this.rs.get(`device/type/${id}/enable`).subscribe((res) => {
       this.load();
     });
   }
   forbid(id: any) {
-    this.rs.get(`gateway/${id}/disable`).subscribe((res) => {
+    this.rs.get(`device/type/${id}/disable`).subscribe((res) => {
       this.load();
     });
   }
   edit(id: any) {
-    const path = `${isIncludeAdmin()}/gateway/edit/${id}`;
+    const path = `${isIncludeAdmin()}/device/group/type/edit/${id}`;
     this.router.navigateByUrl(path);
   }
   cancel() {
@@ -119,7 +128,7 @@ export class GatewaysComponent {
   }
 
   handleNew() {
-    const path = `${isIncludeAdmin()}/gateway/create`;
+    const path = `${isIncludeAdmin()}/device/type/create`;
     this.router.navigateByUrl(path);
   }
   getTableHeight() {
