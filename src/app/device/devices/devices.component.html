@@ -15,28 +15,50 @@
       <i nz-icon nzType="cloud-download"></i>
       导出
     </button>
-    <div *nzSpaceItem style="position: relative;">
+    <div *nzSpaceItem style="position: relative">
       <button *ngIf="uploading" nz-button nzType="primary" nzLoading>
         <span nz-icon nzType="poweroff"></span>
         文件上传中
       </button>
-      <label *ngIf="!uploading" for="file" style="position: absolute;">
-        <div class="fileButton">
-          上传文件
-        </div>
+      <label *ngIf="!uploading" for="file" style="position: absolute">
+        <div class="fileButton">上传文件</div>
       </label>
-      <input *ngIf="!uploading" type="file" id="file" accept=".csv" style="margin-top:3px;width:76px;"
-        (change)="handleReadCsv($event)" />
+      <input
+        *ngIf="!uploading"
+        type="file"
+        id="file"
+        accept=".csv"
+        style="margin-top: 3px; width: 76px"
+        (change)="handleReadCsv($event)"
+      />
     </div>
-    <button *nzSpaceItem nz-button nzType="primary" nzDanger (click)="handleBatchDel()">批量删除</button>
+    <button
+      *nzSpaceItem
+      nz-button
+      nzType="primary"
+      nzDanger
+      (click)="handleBatchDel()"
+    >
+      批量删除
+    </button>
   </nz-space>
 </app-toolbar>
 
-<nz-table #basicTable [nzData]="datum" [nzShowPagination]="false" [nzLoading]="loading" [nzScroll]="getTableHeight()"
-  (nzQueryParams)="onQuery($event)">
+<nz-table
+  #basicTable
+  [nzData]="datum"
+  [nzShowPagination]="false"
+  [nzLoading]="loading"
+  [nzScroll]="getTableHeight()"
+  (nzQueryParams)="onQuery($event)"
+>
   <thead>
     <tr>
-      <th [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="handleAllChecked($event)"></th>
+      <th
+        [nzChecked]="checked"
+        [nzIndeterminate]="indeterminate"
+        (nzCheckedChange)="handleAllChecked($event)"
+      ></th>
       <th nzColumnKey="id" [nzSortFn]="true">ID</th>
       <th nzColumnKey="product_id">产品ID</th>
       <th nzColumnKey="group_id">分组ID</th>
@@ -47,14 +69,20 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of basicTable.data; let i = index" (dblclick)="open(data.id)">
-      <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="handleItemChecked(data.id, $event)"></td>
-      <td>{{data.id}}</td>
-      <td>{{data.product_id}}</td>
-      <td>{{data.group_id}}</td>
-      <td>{{data.name}}</td>
-      <td>{{data.desc}}</td>
-      <td>{{data.created | date}}</td>
+    <tr
+      *ngFor="let data of basicTable.data; let i = index"
+      (dblclick)="open(data.id)"
+    >
+      <td
+        [nzChecked]="setOfCheckedId.has(data.id)"
+        (nzCheckedChange)="handleItemChecked(data.id, $event)"
+      ></td>
+      <td>{{ data.id }}</td>
+      <td>{{ data.product_id }}</td>
+      <td>{{ data.group_id }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.desc }}</td>
+      <td>{{ data.created | date }}</td>
       <td *ngIf="!ref">
         <a (click)="open(data.id)" title="详情">
           <i nz-icon nzType="eye"></i>
@@ -64,19 +92,31 @@
           <i nz-icon nzType="edit"></i>
         </a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a nz-popconfirm nzPopconfirmTitle="确定删除?" (nzOnConfirm)="delete(data.id)" (nzOnCancel)="cancel()"
-          nzPopconfirmPlacement="topLeft">
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="确定删除?"
+          (nzOnConfirm)="delete(data.id)"
+          (nzOnCancel)="cancel()"
+          nzPopconfirmPlacement="topLeft"
+        >
           <i nz-icon nzType="delete"></i>
         </a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="use(data.id)">启用</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="forbid(data.id)">禁用</a>
       </td>
       <td *ngIf="ref">
-        <a (click)="select(data.id)">
-          选择
-        </a>
+        <a (click)="select(data.id)"> 选择 </a>
       </td>
     </tr>
   </tbody>
 </nz-table>
 
-<app-custom-pagination [pageIndex]="pageIndex" [pageSize]="pageSize" [total]="total"
-  (pageIndexChange)="pageIndexChange($event)" (pageSizeChange)="pageSizeChange($event)"></app-custom-pagination>
+<app-custom-pagination
+  [pageIndex]="pageIndex"
+  [pageSize]="pageSize"
+  [total]="total"
+  (pageIndexChange)="pageIndexChange($event)"
+  (pageSizeChange)="pageSizeChange($event)"
+></app-custom-pagination>

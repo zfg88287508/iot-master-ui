@@ -45,6 +45,16 @@ export class DevicesComponent {
     this.load()
   }
 
+  use(id: any) {
+    this.rs.get(`device/${id}/enable`).subscribe((res) => {
+      this.load();
+    });
+  }
+  forbid(id: any) {
+    this.rs.get(`device/${id}/disable`).subscribe((res) => {
+      this.load();
+    });
+  }
   load() {
     //筛选网关
     if (this.chooseGateway)
