@@ -7,12 +7,19 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
   selector: 'app-edit-table',
   templateUrl: './edit-table.component.html',
   styleUrls: ['./edit-table.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => EditTableComponent),
+      multi: true
+    }
+  ]
 })
-export class EditTableComponent implements OnChanges {
+export class EditTableComponent implements OnInit, ControlValueAccessor {
   group!: any;
   itemObj: object = {};
   constListData: any = [];
-  tableData = [];
+  tableData: Array<object> = [];
   onChanged: any = () => { }
   onTouched: any = () => { }
 
@@ -31,12 +38,18 @@ export class EditTableComponent implements OnChanges {
     private msg: NzMessageService,
     private fb: FormBuilder
   ) { }
-  ngOnChanges(changes: SimpleChanges): void {
-    let currentValue = {};
-    if (changes['data'] && changes['data'].currentValue) {
-      currentValue = changes['data'].currentValue;
-    }
-    this.build(currentValue)
+  ngOnInit(): void {
+    this.build([]);
+  }
+  writeValue(data: any): void {
+    this.tableData = data;
+    this.build(data);
+  }
+  registerOnChange(fn: any): void {
+    this.onChanged = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 
   build(obj?: any) {
@@ -44,12 +57,16 @@ export class EditTableComponent implements OnChanges {
     obj = obj || [];
     this.group = this.fb.group({
       properties: this.fb.array(
-        obj.properties ? obj.properties.map((prop: any) =>
+        obj ? obj.map((prop: any) =>
           this.fb.group(Object.assign(itemObj, prop))
         ) : []
       ),
     })
 
+  }
+  change() {
+    this.onChanged(this.tableData);
+    this.onTouched();
   }
   handleCopyProperTy(index: number) {
     const oitem = this.group.get('properties').controls[index].value;
@@ -61,9 +78,6 @@ export class EditTableComponent implements OnChanges {
   }
   get aliases() {
     return this.group.get('properties') as FormArray;
-  }
-  add() {
-    this.aliases.push(this.fb.group(Object.assign(this.itemObj)));
   }
   drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.group.get('properties').controls, event.previousIndex, event.currentIndex);

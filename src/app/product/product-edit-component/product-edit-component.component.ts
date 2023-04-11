@@ -90,6 +90,7 @@ export class ProductEditComponentComponent implements OnInit {
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
       version: [obj.version || '', []],
+      properties: [obj.properties || [], []],
       parameters: this.fb.array(
         obj.parameters ? obj.parameters.map((prop: any) =>
           this.fb.group({

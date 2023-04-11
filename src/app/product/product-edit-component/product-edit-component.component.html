@@ -38,7 +38,7 @@
     </ng-template>
     <nz-collapse-panel nzHeader="属性" [nzExtra]="propertyEx">
       <!-- <app-product-edit-properties #propertyChild [data]="allData"></app-product-edit-properties> -->
-      <app-edit-table #propertyChild [listData]="listData" [data]="allData"></app-edit-table>
+      <app-edit-table formControlName="properties" #propertyChild [listData]="listData" [data]="allData"></app-edit-table>
     </nz-collapse-panel>
     <!-- 属性end -->
 
