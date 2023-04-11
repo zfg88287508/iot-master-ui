@@ -1,30 +1,37 @@
 import { Component, Input, Optional } from '@angular/core';
-import { NzModalRef } from "ng-zorro-antd/modal";
-import { Router } from "@angular/router";
-import { RequestService } from "../../request.service";
-import { NzMessageService } from "ng-zorro-antd/message";
-import { NzTableQueryParams } from "ng-zorro-antd/table";
-import { NzModalService } from "ng-zorro-antd/modal";
-import { ParseTableQuery } from "../../base/table";
-import { isIncludeAdmin, readCsv, tableHeight, onAllChecked, onItemChecked, batchdel, refreshCheckedStatus } from "../../../public";
+import { NzModalRef } from 'ng-zorro-antd/modal';
+import { Router } from '@angular/router';
+import { RequestService } from '../../request.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { ParseTableQuery } from '../../base/table';
+import {
+  isIncludeAdmin,
+  readCsv,
+  tableHeight,
+  onAllChecked,
+  onItemChecked,
+  batchdel,
+  refreshCheckedStatus,
+} from '../../../public';
 
 @Component({
   selector: 'app-devices',
   templateUrl: './devices.component.html',
-  styleUrls: ['./devices.component.scss']
+  styleUrls: ['./devices.component.scss'],
 })
 export class DevicesComponent {
-
   @Input() chooseGateway = false;
 
-  loading = true
-  datum: any[] = []
+  loading = true;
+  datum: any[] = [];
   total = 1;
   pageSize = 20;
   pageIndex = 1;
-  query: any = {}
-  showAddBtn: Boolean = true
-  columnKeyNameArr: any = ['name', 'desc', 'product_id', 'group_id', 'type']
+  query: any = {};
+  showAddBtn: Boolean = true;
+  columnKeyNameArr: any = ['name', 'desc', 'product_id', 'group_id', 'type'];
   uploading: Boolean = false;
   checked = false;
   indeterminate = false;
@@ -36,70 +43,73 @@ export class DevicesComponent {
     private modal: NzModalService,
     private router: Router,
     private rs: RequestService,
-    private msg: NzMessageService) {
+    private msg: NzMessageService
+  ) {
     //this.load();
   }
 
   reload() {
     this.datum = [];
-    this.load()
+    this.load();
   }
-
-  use(id: any) {
-    this.rs.get(`device/${id}/enable`).subscribe((res) => {
-      this.load();
-    });
-  }
-  forbid(id: any) {
-    this.rs.get(`device/${id}/disable`).subscribe((res) => {
-      this.load();
-    });
-  }
+ 
   load() {
     //筛选网关
-    if (this.chooseGateway)
-      this.query.filter = { type: 'gateway' }
+    if (this.chooseGateway) this.query.filter = { type: 'gateway' };
 
-    this.loading = true
-    this.rs.post("device/search", this.query).subscribe(res => {
-      this.datum = res.data;
-      this.total = res.total;
-      this.setOfCheckedId.clear();
-      refreshCheckedStatus(this);
-    }).add(() => {
-      this.loading = false;
-    })
+    this.loading = true;
+    this.rs
+      .post('device/search', this.query)
+      .subscribe((res) => {
+        this.datum = res.data;
+        this.datum.filter(
+          (item) =>
+            (item.disabled =
+              item.disabled === undefined ? false : item.disabled)
+        );
+        this.total = res.total;
+        this.setOfCheckedId.clear();
+        refreshCheckedStatus(this);
+      })
+      .add(() => {
+        this.loading = false;
+      });
   }
-
+  enabled(mes: any, id: any) {
+    //启用禁用
+    // this.rs.post(`device/${id}`, { disabled: mes }).subscribe((res) => {
+    //   this.msg.success('修改成功');
+    //   this.load();
+    // });
+  }
   create() {
-    let path = "/device/create"
-    if (location.pathname.startsWith("/admin"))
-      path = "/admin" + path
-    this.router.navigateByUrl(path)
+    let path = '/device/create';
+    if (location.pathname.startsWith('/admin')) path = '/admin' + path;
+    this.router.navigateByUrl(path);
   }
 
   delete(id: number, size?: number) {
-    this.rs.get(`device/${id}/delete`).subscribe(res => {
+    this.rs.get(`device/${id}/delete`).subscribe((res) => {
       if (!size && this.datum.length > 1) {
-        this.msg.success("删除成功");
-        this.datum = this.datum.filter(d => d.id !== id);
+        this.msg.success('删除成功');
+        this.datum = this.datum.filter((d) => d.id !== id);
       } else if (size) {
         this.delResData.push(res);
         if (size === this.delResData.length) {
-          this.msg.success("删除成功");
+          this.msg.success('删除成功');
           this.load();
         }
       }
-    })
+    });
   }
 
   onQuery($event: NzTableQueryParams) {
-    ParseTableQuery($event, this.query)
+    ParseTableQuery($event, this.query);
     this.load();
   }
 
   pageIndexChange(pageIndex: number) {
-    console.log("pageIndex:", pageIndex)
+    console.log('pageIndex:', pageIndex);
   }
   pageSizeChange(pageSize: number) {
     this.query.limit = pageSize;
@@ -107,7 +117,7 @@ export class DevicesComponent {
   }
   search($event: string) {
     this.query.keyword = {
-      name: $event
+      name: $event,
     };
     this.query.skip = 0;
     this.load();
@@ -115,11 +125,11 @@ export class DevicesComponent {
 
   open(id: any) {
     if (this.chooseGateway) {
-      this.select(id)
-      return
+      this.select(id);
+      return;
     }
     const path = `${isIncludeAdmin()}/device/detail/${id}`;
-    this.router.navigateByUrl(path)
+    this.router.navigateByUrl(path);
   }
 
   edit(id: any) {
@@ -131,7 +141,7 @@ export class DevicesComponent {
     this.router.navigateByUrl(path);
   }
   select(id: any) {
-    this.ref && this.ref.close(id)
+    this.ref && this.ref.close(id);
   }
   cancel() {
     this.msg.info('click cancel');
@@ -140,7 +150,7 @@ export class DevicesComponent {
     const listColumns = ['ID', '产品ID', '分组ID', '名称', '说明', '日期'];
     const data: any[][] = [];
     data.push(listColumns);
-    this.datum.forEach(item => {
+    this.datum.forEach((item) => {
       const arr = [];
       arr.push(item.id);
       arr.push(item.product_id);
@@ -151,7 +161,9 @@ export class DevicesComponent {
       data.push(arr);
     });
     let csvContent = 'data:text/csv;charset=utf-8,';
-    data.forEach(row => { csvContent += row.join(',') + '\n'; });
+    data.forEach((row) => {
+      csvContent += row.join(',') + '\n';
+    });
     let encodedUri = encodeURI(csvContent);
     window.open(encodedUri);
   }

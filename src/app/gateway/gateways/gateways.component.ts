@@ -36,9 +36,7 @@ export class GatewaysComponent {
     private router: Router,
     private rs: RequestService,
     private msg: NzMessageService
-  ) {
-    this.load();
-  }
+  ) {}
 
   reload() {
     this.datum = [];
@@ -50,8 +48,8 @@ export class GatewaysComponent {
     this.rs
       .post('gateway/search', this.query)
       .subscribe((res) => {
-        console.log(res);
-        this.datum = res.data||[];
+       // console.log(res);
+        this.datum = res.data || [];
         this.total = res.total;
         this.setOfCheckedId.clear();
         refreshCheckedStatus(this);
@@ -100,16 +98,23 @@ export class GatewaysComponent {
     this.query.skip = 0;
     this.load();
   }
-  use(id: any) {
-    this.rs.get(`gateway/${id}/enable`).subscribe((res) => {
-      this.load();
+  enabled(mes: any, data: any) {
+    //启用禁用
+    data.disabled = mes;
+    this.rs.post(`gateway/${data.id}`, data).subscribe((res) => {
+      this.msg.success('修改成功');
+      if (mes)
+        this.rs.get(`gateway/${data.id}/enable`).subscribe((res) => {
+          this.load();
+        });
+      else
+        this.rs.get(`gateway/${data.id}/disable`).subscribe((res) => {
+          this.load();
+        });
+        this.load();
     });
   }
-  forbid(id: any) {
-    this.rs.get(`gateway/${id}/disable`).subscribe((res) => {
-      this.load();
-    });
-  }
+   
   edit(id: any) {
     const path = `${isIncludeAdmin()}/gateway/edit/${id}`;
     this.router.navigateByUrl(path);

@@ -65,6 +65,7 @@
       <th nzColumnKey="name" [nzSortFn]="true">名称</th>
       <th nzColumnKey="desc">说明</th>
       <th nzColumnKey="created" [nzSortFn]="true">日期</th>
+      <th >启用</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -84,6 +85,10 @@
       <td>{{ data.desc }}</td>
       <td>{{ data.created | date }}</td>
       <td *ngIf="!ref">
+        <nz-switch  nzSize="small" (ngModelChange)="enabled($event,data.id)" [(ngModel)]=" data.disabled" ></nz-switch> 
+     
+      </td>
+      <td *ngIf="!ref">
         <a (click)="open(data.id)" title="详情">
           <i nz-icon nzType="eye"></i>
         </a>
@@ -101,10 +106,7 @@
         >
           <i nz-icon nzType="delete"></i>
         </a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="use(data.id)">启用</a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="forbid(data.id)">禁用</a>
+        
       </td>
       <td *ngIf="ref">
         <a (click)="select(data.id)"> 选择 </a>

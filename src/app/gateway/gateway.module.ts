@@ -19,6 +19,7 @@ import { GatewayEditComponent } from './gateway-edit/gateway-edit.component';
 import { GatewayRoutingModule } from './gateway-routing.module';
 import { GatewayDetailComponent } from './gateway-detail/gateway-detail.component';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';  
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [GatewaysComponent, GatewayEditComponent, GatewayDetailComponent],
   imports: [
@@ -32,6 +33,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
     NzFormModule,
     NzPopconfirmModule,
     ReactiveFormsModule,
+    FormsModule,
     NzInputModule,
     NzInputNumberModule,
     NzButtonModule,

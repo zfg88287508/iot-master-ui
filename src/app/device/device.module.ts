@@ -32,7 +32,8 @@ import { SetIdComponent } from './set-id/set-id.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { DeviceTypeComponent } from './group/device-type/device-type.component';
-import { DeviceTypeEditComponent } from './group/device-type-edit/device-type-edit.component';
+import { DeviceTypeEditComponent } from './group/device-type-edit/device-type-edit.component'; 
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     DevicesComponent,
@@ -52,6 +53,7 @@ import { DeviceTypeEditComponent } from './group/device-type-edit/device-type-ed
     NzMenuModule,
     NzIconModule,
     NzDropDownModule,
+    FormsModule,
     NzFormModule,
     NzInputModule,
     NzButtonModule,

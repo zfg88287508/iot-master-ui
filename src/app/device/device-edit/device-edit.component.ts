@@ -1,33 +1,33 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { RequestService } from "../../request.service";
-import { NzMessageService } from "ng-zorro-antd/message";
-import { NzModalService } from "ng-zorro-antd/modal";
-import { DevicesComponent } from "../devices/devices.component";
-import { isIncludeAdmin } from "../../../public";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RequestService } from '../../request.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { DevicesComponent } from '../devices/devices.component';
+import { isIncludeAdmin } from '../../../public';
 @Component({
   selector: 'app-products-edit',
   templateUrl: './device-edit.component.html',
-  styleUrls: ['./device-edit.component.scss']
+  styleUrls: ['./device-edit.component.scss'],
 })
 export class DeviceEditComponent implements OnInit {
   group!: FormGroup;
-  id: any = 0
+  id: any = 0;
   @ViewChild('childTag') childTag: any;
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private rs: RequestService,
     private ms: NzModalService,
-    private msg: NzMessageService) {
-
-  }
+    private msg: NzMessageService
+  ) {}
 
   ngOnInit(): void {
-    if (this.route.snapshot.paramMap.has("id")) {
-      this.id = this.route.snapshot.paramMap.get("id");
-      this.rs.get(`device/${this.id}`).subscribe(res => {
+    if (this.route.snapshot.paramMap.has('id')) {
+      this.id = this.route.snapshot.paramMap.get('id');
+      this.rs.get(`device/${this.id}`).subscribe((res) => {
         //let data = res.data;
         if (this.childTag) {
           // 给子组件设值
@@ -35,18 +35,17 @@ export class DeviceEditComponent implements OnInit {
           const IdObj = {
             product_id: product_id || '',
             group_id: group_id || '',
-          }
+          };
           this.childTag.IdObj = JSON.parse(JSON.stringify(IdObj));
         }
-        this.build(res.data)
-      })
-
+        this.build(res.data);
+      });
     }
 
-    this.build()
+    this.build();
   }
   build(obj?: any) {
-    obj = obj || {}
+    obj = obj || {};
     this.group = this.fb.group({
       id: [obj.id || '', []],
       product_id: [obj.product_id || '', []],
@@ -57,21 +56,22 @@ export class DeviceEditComponent implements OnInit {
       desc: [obj.desc || '', []],
       username: [obj.username || '', []],
       password: [obj.password || '', []],
-    })
+      disabled: [obj.disabled || false, []],
+    });
   }
 
   submit() {
     if (this.group.valid) {
       const { IdObj } = this.childTag;
       const sendData = Object.assign({}, this.group.value, IdObj);
-      let url = this.id ? `device/${this.id}` : `device/create`
-      this.rs.post(url, sendData).subscribe(res => {
+      let url = this.id ? `device/${this.id}` : `device/create`;
+      this.rs.post(url, sendData).subscribe((res) => {
         const path = `${isIncludeAdmin()}/device/list`;
         this.router.navigateByUrl(path);
-        this.msg.success("保存成功");
-      })
+        this.msg.success('保存成功');
+      });
     } else {
-      Object.values(this.group.controls).forEach(control => {
+      Object.values(this.group.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
@@ -81,19 +81,21 @@ export class DeviceEditComponent implements OnInit {
   }
 
   chooseGateway() {
-    this.ms.create({
-      nzTitle: "选择网关",
-      nzContent: DevicesComponent,
-      nzComponentParams: {
-        chooseGateway: true,
-        showAddBtn: false
-      },
-      nzFooter: null
-    }).afterClose.subscribe(res => {
-      if (res) {
-        this.group.patchValue({ gateway_id: res })
-      }
-    })
+    this.ms
+      .create({
+        nzTitle: '选择网关',
+        nzContent: DevicesComponent,
+        nzComponentParams: {
+          chooseGateway: true,
+          showAddBtn: false,
+        },
+        nzFooter: null,
+      })
+      .afterClose.subscribe((res) => {
+        if (res) {
+          this.group.patchValue({ gateway_id: res });
+        }
+      });
   }
 
   handleCancel() {

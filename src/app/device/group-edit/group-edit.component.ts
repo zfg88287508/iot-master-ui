@@ -25,7 +25,7 @@ export class GroupEditComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('init', this.id)
+    //console.log('init', this.id)
     if (this.id) {
       this.rs.get(`device/group/${this.id}`).subscribe(res => {
         //let data = res.data;
