@@ -8,7 +8,7 @@
 
 <nz-card nzTitle="Web" [nzExtra]="extra">
 
-  <!-- <form nz-form [formGroup]="group" (ngSubmit)="submit()">
+  <!-- <form nz-form [formGroup]="device-group" (ngSubmit)="submit()">
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="port">端口</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
@@ -17,13 +17,13 @@
     </nz-form-item> -->
 
 
-    <form nz-form [formGroup]="group" (ngSubmit)="submit()"> 
+    <form nz-form [formGroup]="group" (ngSubmit)="submit()">
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="Addr">地址</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback [nzErrorTip]="AddrErrorTpl">
         <input nz-input name="Addr"    formControlName="Addr"/>
         <ng-template #AddrErrorTpl let-control>
-          <ng-container *ngIf="control.hasError('required')">请输入地址信息!</ng-container> 
+          <ng-container *ngIf="control.hasError('required')">请输入地址信息!</ng-container>
         </ng-template>
       </nz-form-control>
     </nz-form-item>
@@ -31,25 +31,25 @@
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="Gzip"  >压缩</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback  > 
-        <nz-switch [ngModel]="false"  name="Gzip"  formControlName="Gzip"></nz-switch>  
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback  >
+        <nz-switch [ngModel]="false"  name="Gzip"  formControlName="Gzip"></nz-switch>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="Cors"  >跨域</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback  > 
-        <nz-switch [ngModel]="false"  name="Cors"  formControlName="Cors"></nz-switch>  
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback  >
+        <nz-switch [ngModel]="false"  name="Cors"  formControlName="Cors"></nz-switch>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="Debug"  >调试</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback  > 
-        <nz-switch [ngModel]="false"  name="Debug"  formControlName="Debug"></nz-switch>  
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback  >
+        <nz-switch [ngModel]="false"  name="Debug"  formControlName="Debug"></nz-switch>
       </nz-form-control>
     </nz-form-item>
 
-    
+
   </form>
 </nz-card>

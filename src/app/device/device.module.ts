@@ -24,15 +24,15 @@ import {NzTabsModule} from "ng-zorro-antd/tabs";
 import {NzSwitchModule} from "ng-zorro-antd/switch";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import { BatchComponent } from './batch/batch.component';
-import { GroupComponent } from './group/group.component';
-import { GroupEditComponent } from './group-edit/group-edit.component';
+import { DeviceGroupComponent } from './device-group/device-group.component';
+import { DeviceGroupEditComponent } from './device-group-edit/device-group-edit.component';
 import {NzModalModule} from "ng-zorro-antd/modal";
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { SetIdComponent } from './set-id/set-id.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { DeviceTypeComponent } from './group/device-type/device-type.component';
-import { DeviceTypeEditComponent } from './group/device-type-edit/device-type-edit.component'; 
+import { DeviceTypeComponent } from './device-type/device-type.component';
+import { DeviceTypeEditComponent } from './device-type-edit/device-type-edit.component';
 import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
@@ -40,8 +40,8 @@ import { FormsModule } from '@angular/forms';
     DeviceEditComponent,
     DeviceDetailComponent,
     BatchComponent,
-    GroupComponent,
-    GroupEditComponent,
+    DeviceGroupComponent,
+    DeviceGroupEditComponent,
     SetIdComponent,
     DeviceTypeComponent,
     DeviceTypeEditComponent

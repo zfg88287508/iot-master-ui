@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { ProductsComponent } from '../../product/products/products.component';
-import { GroupComponent } from '../group/group.component';
+import { DeviceGroupComponent } from '../device-group/device-group.component';
 import { RequestService } from 'src/app/request.service';
 @Component({
   selector: 'app-set-id',

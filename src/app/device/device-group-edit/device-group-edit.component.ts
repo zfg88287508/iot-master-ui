@@ -6,11 +6,11 @@ import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
 import { NzMessageService } from "ng-zorro-antd/message";
 
 @Component({
-  selector: 'app-group-edit',
-  templateUrl: './group-edit.component.html',
-  styleUrls: ['./group-edit.component.scss']
+  selector: 'app-device-group-edit',
+  templateUrl: './device-group-edit.component.html',
+  styleUrls: ['./device-group-edit.component.scss']
 })
-export class GroupEditComponent implements OnInit {
+export class DeviceGroupEditComponent implements OnInit {
   @Input() id = 0;
 
   group: any = {};
@@ -44,7 +44,7 @@ export class GroupEditComponent implements OnInit {
   }
 
   submit() {
-    let url = this.id ? `device/group/${this.id}` : `device/group/create`;  
+    let url = this.id ? `device/group/${this.id}` : `device/group/create`;
     this.rs.post(url, this.group.value).subscribe(res => {
       this.ref.close(res.data);
       this.msg.success("保存成功");

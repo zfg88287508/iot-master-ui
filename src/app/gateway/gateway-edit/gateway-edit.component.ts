@@ -51,7 +51,7 @@ export class GatewayEditComponent implements OnInit {
       let url = this.id ? `gateway/${this.id}` : `gateway/create`;
       this.rs.post(url, this.group.value).subscribe((res) => {
         //启用禁用
-        // if (this.group.value.disabled) {
+        // if (this.device-group.value.disabled) {
         //   this.rs.get(`gateway/${this.id}/enable`).subscribe((res) => {});
         // } else {
         //   this.rs.get(`gateway/${this.id}/disable`).subscribe((res) => {});

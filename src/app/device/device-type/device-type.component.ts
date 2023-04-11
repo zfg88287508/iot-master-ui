@@ -12,7 +12,7 @@ import {
   onItemChecked,
   batchdel,
   refreshCheckedStatus,
-} from 'src/public';  
+} from 'src/public';
 @Component({
   selector: 'app-device-type',
   templateUrl: './device-type.component.html',
@@ -74,7 +74,7 @@ export class DeviceTypeComponent {
     this.router.navigateByUrl(path);
   }
   create() {
-    let path = '/device/group/type/create';
+    let path = '/device/device-group/type/create';
     if (location.pathname.startsWith('/admin')) path = '/admin' + path;
     this.router.navigateByUrl(path);
   }

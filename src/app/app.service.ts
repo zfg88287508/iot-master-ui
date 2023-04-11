@@ -29,6 +29,7 @@ const internals: any[] = [{
     {name: '创建设备', path: '/device/create'},
     {name: '批量创建', path: '/device/batch'},
     {name: '设备分组', path: '/device/group'},
+    {name: '设备类型', path: '/device/type'},
   ]
 }, {
   icon: '/assets/alarm.png',
@@ -48,7 +49,7 @@ const internals: any[] = [{
     // {name: '创建用户', path: '/user/create'},
     {name: '角色权限', path: '/user/role'},
   ]
-}, 
+},
 {
   icon: '/assets/gateway.png',
   nzIcon: 'partition',

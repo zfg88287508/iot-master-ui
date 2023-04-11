@@ -5,14 +5,14 @@ import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
-import { GroupEditComponent } from "../group-edit/group-edit.component";
+import { DeviceGroupEditComponent } from "../device-group-edit/device-group-edit.component";
 
 @Component({
-  selector: 'app-group',
-  templateUrl: './group.component.html',
-  styleUrls: ['./group.component.scss']
+  selector: 'app-device-group',
+  templateUrl: './device-group.component.html',
+  styleUrls: ['./device-group.component.scss']
 })
-export class GroupComponent {
+export class DeviceGroupComponent {
 
   @Input() choose = false;
 
@@ -41,7 +41,7 @@ export class GroupComponent {
   load() {
     this.loading = true
     this.rs.post("device/group/search", this.query).subscribe(res => {
-      this.datum = res.data||[]; 
+      this.datum = res.data||[];
       this.total = res.total;
     }).add(() => {
       this.loading = false;
@@ -51,7 +51,7 @@ export class GroupComponent {
   create() {
     this.ms.create({
       nzTitle: '创建分组',
-      nzContent: GroupEditComponent,
+      nzContent: DeviceGroupEditComponent,
     }).afterClose.subscribe(res => {
       if (res)
      { this.datum = [res].concat(this.datum);  }
@@ -88,7 +88,7 @@ export class GroupComponent {
   edit(data: any) {
     this.ms.create({
       nzTitle: '编辑分组',
-      nzContent: GroupEditComponent,
+      nzContent: DeviceGroupEditComponent,
       nzComponentParams: { id: data.id }
     }).afterClose.subscribe(res => {
       if (res) {//Object.assign(data, res)
