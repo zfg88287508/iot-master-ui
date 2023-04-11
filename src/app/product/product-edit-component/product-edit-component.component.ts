@@ -1,7 +1,6 @@
 
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute, Router } from "@angular/router";
 import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
@@ -86,8 +85,43 @@ export class ProductEditComponentComponent implements OnInit {
       defaultValue: 0
     }
   ]
+  constraintslistData = [
+    {
+      title: '等级',
+      keyName: 'level'
+    },
+    {
+      title: '标题',
+      keyName: 'title'
+    },
+    {
+      title: '模板',
+      keyName: 'template'
+    },
+    {
+      title: '表达式',
+      keyName: 'expression'
+    },
+    {
+      title: '延迟',
+      keyName: 'delay',
+      type: 'number'
+    },
+    {
+      title: '再次提醒',
+      keyName: 'again',
+      type: 'number'
+    },
+    {
+      title: '总提醒次数',
+      keyName: 'total',
+      type: 'number'
+    }
+  ]
   @ViewChild('propertyChild') propertyChild: any;
   @ViewChild('parametersChild') parametersChild: any;
+  @ViewChild('constraintsChild') constraintsChild: any;
+
   @Input() id!: any;
   constructor(
     private fb: FormBuilder,
@@ -117,19 +151,7 @@ export class ProductEditComponentComponent implements OnInit {
       version: [obj.version || '', []],
       properties: [obj.properties || [], []],
       parameters: [obj.parameters || [], []],
-      constraints: this.fb.array(
-        obj.constraints ? obj.constraints.map((prop: any) =>
-          this.fb.group({
-            level: [prop.level || 1, []],
-            title: [prop.title || '', []],
-            template: [prop.template || '', []],
-            expression: [prop.expression || '', []],
-            delay: [prop.delay || 0, []],
-            again: [prop.again || 0, []],
-            total: [prop.total || 0, []],
-          })
-        ) : []
-      ),
+      constraints: [obj.constraints || [], []],
     })
   }
 
@@ -139,9 +161,10 @@ export class ProductEditComponentComponent implements OnInit {
       let url = this.id ? `product/${this.id}` : `product/create`
       const sendData = JSON.parse(JSON.stringify(this.group.value));
       // 属性组件
-      const { propertys, parameters } = this.getValueData();
+      const { propertys, parameters, constraints } = this.getValueData();
       sendData.properties = propertys;
       sendData.parameters = parameters;
+      sendData.constraints = constraints;
       this.rs.post(url, sendData).subscribe(res => {
         let path = "/product/list"
         if (location.pathname.startsWith("/admin"))
@@ -157,7 +180,10 @@ export class ProductEditComponentComponent implements OnInit {
     const propertys = propertyGroup.get('keyName').controls.map((item: { value: any; }) => item.value);
     const parametersGroup = this.parametersChild.group;
     const parameters = parametersGroup.get('keyName').controls.map((item: { value: any; }) => item.value);
-    return { propertys, parameters };
+    const constraintsGroup = this.constraintsChild.group;
+    const constraints = constraintsGroup.get('keyName').controls.map((item: { value: any; }) => item.value);
+
+    return { propertys, parameters, constraints };
   }
   propertyAdd($event: any) {
     $event.stopPropagation();
@@ -175,17 +201,6 @@ export class ProductEditComponentComponent implements OnInit {
 
   }
 
-  handleCopyProperTy(index: number) {
-    const item = this.group.get('properties').controls[index];
-    this.group.get('properties').controls.splice(index, 0, item);
-    this.msg.success("复制成功");
-  }
-
-  propertyDel(i: number) {
-    this.group.get('properties').controls.splice(i, 1)
-  }
-
-
   parameterAdd($event: any) {
     $event.stopPropagation()
     if (this.parametersChild) {
@@ -201,39 +216,25 @@ export class ProductEditComponentComponent implements OnInit {
     }
   }
 
-
-  parameterDel(i: number) {
-    this.group.get('parameters').controls.splice(i, 1)
-  }
-
-
-
   constraintAdd($event: any) {
-    $event.stopPropagation()
-    this.group.get('constraints').push(
-      this.fb.group({
-        level: [1, []],
-        title: ['', []],
-        template: ['', []],
-        expression: ['', []],
-        delay: [0, []],
-        again: [0, []],
-        total: [0, []],
-      })
-    )
-  }
-
-
-  constraintDel(i: number) {
-    this.group.get('constraints').controls.splice(i, 1)
+    $event.stopPropagation();
+    if (this.constraintsChild) {
+      this.constraintsChild.group.get('keyName').controls.unshift(
+        this.fb.group({
+          level: [1, []],
+          title: ['', []],
+          template: ['', []],
+          expression: ['', []],
+          delay: [0, []],
+          again: [0, []],
+          total: [0, []],
+        })
+      )
+    }
   }
 
   handleCancel() {
     const path = `${isIncludeAdmin()}/product/list`;
     this.router.navigateByUrl(path);
-  }
-
-  drop(event: CdkDragDrop<string[]>): void {
-    moveItemInArray(this.group.get('properties').controls, event.previousIndex, event.currentIndex);
   }
 }

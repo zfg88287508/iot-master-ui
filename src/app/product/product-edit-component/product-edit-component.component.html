@@ -83,44 +83,7 @@
     <nz-collapse-panel nzHeader="约束" [nzExtra]="constraintEx">
 
       <span nz-typography nzType="warning">表达式计算不成立时，产生报警信息</span>
-      <nz-table formArrayName="constraints">
-        <tr>
-          <th>等级</th>
-          <th>标题</th>
-          <th>模板</th>
-          <th>表达式</th>
-          <th>延迟s</th>
-          <th>再次提醒s</th>
-          <th>总提醒次数</th>
-        </tr>
-        <tr *ngFor="let value of group.get('constraints').controls; let i=index;" [formGroupName]="i">
-          <td>
-            <nz-input-number formControlName="level"></nz-input-number>
-          </td>
-          <td>
-            <input nz-input formControlName="title" />
-          </td>
-          <td>
-            <input nz-input formControlName="template" />
-          </td>
-          <td>
-            <input nz-input formControlName="expression" />
-          </td>
-          <td>
-            <nz-input-number formControlName="delay"></nz-input-number>
-          </td>
-          <td>
-            <nz-input-number formControlName="again"></nz-input-number>
-          </td>
-          <td>
-            <nz-input-number formControlName="total"></nz-input-number>
-          </td>
-          <td>
-            <span nz-icon nzType="delete" nzTheme="outline" (click)="constraintDel(i)"></span>
-          </td>
-        </tr>
-      </nz-table>
-
+      <app-edit-table formControlName="constraints" #constraintsChild [listData]="constraintslistData" [data]="allData"></app-edit-table>
     </nz-collapse-panel>
 
   </nz-collapse>
