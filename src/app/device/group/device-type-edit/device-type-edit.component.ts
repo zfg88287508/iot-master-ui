@@ -37,9 +37,9 @@
     build(obj?: any) {
       obj = obj || {}
       this.group = this.fb.group({ 
-        name: [obj.name || '', [Validators.required]], 
+        name: [obj.name || '' ,[]], 
         desc: [obj.desc || '', []], 
-        
+        id: [obj.id || '', [Validators.required]], 
       })
     }
   
@@ -47,8 +47,9 @@
   
       if (this.group.valid) {
   
-        let url = this.id ? `device/type/${this.id}` : `device/type/create`
-        this.rs.post(url, this.group.value).subscribe(res => {
+        let url = this.id ? `device/type/${this.id}` : `device/type/create`; 
+        this.group.patchValue({id: Number(this.group.value.id)  })
+        this.rs.post(url, this.group.value).subscribe(res => { 
           const path = `${isIncludeAdmin()}/device/group/type`;
           this.router.navigateByUrl(path)
           this.msg.success("保存成功")

@@ -30,6 +30,7 @@ import { ProductEditFunctionsComponent } from './product-edit-functions/product-
 import { ProductEditEventsComponent } from './product-edit-events/product-edit-events.component';
 import { ProductEditParametersComponent } from './product-edit-parameters/product-edit-parameters.component';
 import { ProductEditArgumentsComponent } from './product-edit-arguments/product-edit-arguments.component';
+import { ProductEditComponentComponent } from './product-edit-component/product-edit-component.component'; 
 @NgModule({
   declarations: [
     ProductsComponent,
@@ -40,7 +41,8 @@ import { ProductEditArgumentsComponent } from './product-edit-arguments/product-
     ProductEditFunctionsComponent,
     ProductEditEventsComponent,
     ProductEditParametersComponent,
-    ProductEditArgumentsComponent
+    ProductEditArgumentsComponent,
+    ProductEditComponentComponent 
   ],
   imports: [
     CommonModule,

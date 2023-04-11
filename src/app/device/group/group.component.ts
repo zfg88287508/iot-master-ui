@@ -41,7 +41,7 @@ export class GroupComponent {
   load() {
     this.loading = true
     this.rs.post("device/group/search", this.query).subscribe(res => {
-      this.datum = res.data;
+      this.datum = res.data||[]; 
       this.total = res.total;
     }).add(() => {
       this.loading = false;
@@ -54,12 +54,12 @@ export class GroupComponent {
       nzContent: GroupEditComponent,
     }).afterClose.subscribe(res => {
       if (res)
-      this.datum = [res].concat(this.datum);
+     { this.datum = [res].concat(this.datum);  }
     })
   }
 
   delete(index: number, id: number) {
-    this.rs.get(`group/${id}/delete`).subscribe(res => {
+    this.rs.get(`device/group/${id}/delete`).subscribe(res => {
       this.msg.success("删除成功")
       if (this.datum.length > 1) {
         this.datum = this.datum.filter(d => d.id !== id);
@@ -91,7 +91,9 @@ export class GroupComponent {
       nzContent: GroupEditComponent,
       nzComponentParams: { id: data.id }
     }).afterClose.subscribe(res => {
-      if (res) Object.assign(data, res)
+      if (res) {//Object.assign(data, res)
+      this.load()
+      }
     })
   }
 
