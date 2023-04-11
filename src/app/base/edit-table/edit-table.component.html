@@ -5,10 +5,11 @@
             <th>操作</th>
         </tr>
     </thead>
-    <tbody cdkDropList (cdkDropListDropped)="drop($event)" formArrayName="properties">
+    <tbody cdkDropList (cdkDropListDropped)="drop($event)" formArrayName="keyName">
         <tr *ngFor="let trData of aliases.controls; let i=index;" [formGroupName]="i" cdkDrag>
             <td *ngFor="let item of constListData">
-                <nz-input-number *ngIf="item['type']==='number'" [formControlName]="item['keyName']"></nz-input-number>
+                <nz-input-number *ngIf="item['type']==='number'" [formControlName]="item['keyName']">
+                </nz-input-number>
                 <nz-select *ngIf="item['type']==='select'" [formControlName]="item['keyName']">
                     <nz-option *ngFor="let option of item['listOfOption']" [nzLabel]="option.label"
                         [nzValue]="option.value"></nz-option>

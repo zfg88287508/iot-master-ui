@@ -11,6 +11,7 @@ import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzTableModule } from "ng-zorro-antd/table";
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -47,7 +48,8 @@ import { EditTableComponent } from './edit-table/edit-table.component';
     NzSelectModule,
     NzTableModule,
     NzIconModule,
-    NzSpaceModule
+    NzSpaceModule,
+    NzInputNumberModule
   ],
   providers: [
 

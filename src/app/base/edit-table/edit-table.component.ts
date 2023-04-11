@@ -29,7 +29,7 @@ export class EditTableComponent implements OnInit, ControlValueAccessor {
     const itemObj: any = {};
     for (let index = 0; index < dt.length; index++) {
       const { keyName } = dt[index];
-      itemObj[keyName] = '';
+      itemObj[keyName] = itemObj.defaultValue || '';
     }
     this.itemObj = itemObj;
     this.constListData = dt;
@@ -56,7 +56,7 @@ export class EditTableComponent implements OnInit, ControlValueAccessor {
     const itemObj = JSON.parse(JSON.stringify(this.itemObj));
     obj = obj || [];
     this.group = this.fb.group({
-      properties: this.fb.array(
+      keyName: this.fb.array(
         obj ? obj.map((prop: any) =>
           this.fb.group(Object.assign(itemObj, prop))
         ) : []
@@ -69,17 +69,17 @@ export class EditTableComponent implements OnInit, ControlValueAccessor {
     this.onTouched();
   }
   handleCopyProperTy(index: number) {
-    const oitem = this.group.get('properties').controls[index].value;
+    const oitem = this.group.get('keyName').controls[index].value;
     this.aliases.insert(index, this.fb.group(oitem));
     this.msg.success("复制成功");
   }
   propertyDel(i: number) {
-    this.group.get('properties').controls.splice(i, 1)
+    this.group.get('keyName').controls.splice(i, 1)
   }
   get aliases() {
-    return this.group.get('properties') as FormArray;
+    return this.group.get('keyName') as FormArray;
   }
   drop(event: CdkDragDrop<string[]>): void {
-    moveItemInArray(this.group.get('properties').controls, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.group.get('keyName').controls, event.previousIndex, event.currentIndex);
   }
 }

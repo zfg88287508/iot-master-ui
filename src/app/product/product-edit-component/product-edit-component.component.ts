@@ -62,7 +62,32 @@ export class ProductEditComponentComponent implements OnInit {
       value: 'rw'
     }]
   }]
+  parameterslistData = [
+    {
+      title: '名称(ID)',
+      keyName: 'name'
+    }, {
+      title: '显示',
+      keyName: 'label'
+    }, {
+      title: '最大值',
+      keyName: 'max',
+      type: 'number',
+      defaultValue: 0
+    }, {
+      title: '最小值',
+      keyName: 'min',
+      type: 'number',
+      defaultValue: 0
+    }, {
+      title: '默认值',
+      keyName: 'default',
+      type: 'number',
+      defaultValue: 0
+    }
+  ]
   @ViewChild('propertyChild') propertyChild: any;
+  @ViewChild('parametersChild') parametersChild: any;
   @Input() id!: any;
   constructor(
     private fb: FormBuilder,
@@ -91,17 +116,7 @@ export class ProductEditComponentComponent implements OnInit {
       desc: [obj.desc || '', []],
       version: [obj.version || '', []],
       properties: [obj.properties || [], []],
-      parameters: this.fb.array(
-        obj.parameters ? obj.parameters.map((prop: any) =>
-          this.fb.group({
-            name: [prop.name || '', []],
-            label: [prop.label || '', []],
-            min: [prop.min || 0, []],
-            max: [prop.max || 0, []],
-            default: [prop.default || 0, []],
-          })
-        ) : []
-      ),
+      parameters: [obj.parameters || [], []],
       constraints: this.fb.array(
         obj.constraints ? obj.constraints.map((prop: any) =>
           this.fb.group({
@@ -124,9 +139,9 @@ export class ProductEditComponentComponent implements OnInit {
       let url = this.id ? `product/${this.id}` : `product/create`
       const sendData = JSON.parse(JSON.stringify(this.group.value));
       // 属性组件
-      const propertyGroup = this.propertyChild.group;
-      const propertys = propertyGroup.get('properties').controls.map((item: { value: any; }) => item.value);
+      const { propertys, parameters } = this.getValueData();
       sendData.properties = propertys;
+      sendData.parameters = parameters;
       this.rs.post(url, sendData).subscribe(res => {
         let path = "/product/list"
         if (location.pathname.startsWith("/admin"))
@@ -137,11 +152,17 @@ export class ProductEditComponentComponent implements OnInit {
     }
 
   }
-
+  getValueData() {
+    const propertyGroup = this.propertyChild.group;
+    const propertys = propertyGroup.get('keyName').controls.map((item: { value: any; }) => item.value);
+    const parametersGroup = this.parametersChild.group;
+    const parameters = parametersGroup.get('keyName').controls.map((item: { value: any; }) => item.value);
+    return { propertys, parameters };
+  }
   propertyAdd($event: any) {
     $event.stopPropagation();
     if (this.propertyChild) {
-      this.propertyChild.group.get('properties').controls.unshift(
+      this.propertyChild.group.get('keyName').controls.unshift(
         this.fb.group({
           name: ['', []],
           label: ['', []],
@@ -167,15 +188,17 @@ export class ProductEditComponentComponent implements OnInit {
 
   parameterAdd($event: any) {
     $event.stopPropagation()
-    this.group.get('parameters').push(
-      this.fb.group({
-        name: ['', []],
-        label: ['', []],
-        min: [0, []],
-        max: [0, []],
-        default: [0, []],
-      })
-    )
+    if (this.parametersChild) {
+      this.parametersChild.group.get('keyName').controls.unshift(
+        this.fb.group({
+          name: ['', []],
+          label: ['', []],
+          min: [0, []],
+          max: [0, []],
+          default: [0, []],
+        })
+      )
+    }
   }
 
 
