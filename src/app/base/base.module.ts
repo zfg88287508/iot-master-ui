@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { SearchBoxComponent } from './search-box/search-box.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DragDropModule } from '@angular/cdk/drag-drop'
+
 import { NzInputModule } from "ng-zorro-antd/input";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
-import { FormsModule } from "@angular/forms";
+import { NzFormModule } from "ng-zorro-antd/form";
+import { NzSelectModule } from "ng-zorro-antd/select";
+import { NzTableModule } from "ng-zorro-antd/table";
+import { NzIconModule } from "ng-zorro-antd/icon";
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
 import { DatePipe } from "./date.pipe";
 import { CustomPaginationComponent } from './custom-pagination/custom-pagination.component';
-
-
+import { EditTableComponent } from './edit-table/edit-table.component';
 @NgModule({
   declarations: [
     DatePipe,
@@ -18,13 +25,15 @@ import { CustomPaginationComponent } from './custom-pagination/custom-pagination
     ToolbarComponent,
     SearchBoxComponent,
     CustomPaginationComponent,
+    EditTableComponent,
   ],
   exports: [
     DatePipe,
     PageNotFoundComponent,
     ToolbarComponent,
     SearchBoxComponent,
-    CustomPaginationComponent
+    CustomPaginationComponent,
+    EditTableComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +41,13 @@ import { CustomPaginationComponent } from './custom-pagination/custom-pagination
     NzButtonModule,
     NzPaginationModule,
     FormsModule,
+    ReactiveFormsModule,
+    NzFormModule,
+    DragDropModule,
+    NzSelectModule,
+    NzTableModule,
+    NzIconModule,
+    NzSpaceModule
   ],
   providers: [
 

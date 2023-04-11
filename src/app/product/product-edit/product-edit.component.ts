@@ -14,7 +14,54 @@ import { isIncludeAdmin } from "../../../public";
 export class ProductEditComponent implements OnInit {
   group!: any;
   id: any = 0
-  allData: object = {};
+  allData: { properties: Array<object> } = { properties: [] };
+  listData = [{
+    title: '名称(ID)',
+    keyName: 'name'
+  }, {
+    title: '显示',
+    keyName: 'label'
+  }, {
+    title: '类型',
+    keyName: 'type',
+    type: 'select',
+    listOfOption: [{
+      label: '整数',
+      value: 'int'
+    }, {
+      label: '浮点数',
+      value: 'float'
+    }, {
+      label: '布尔型',
+      value: 'bool'
+    }, {
+      label: '文本',
+      value: 'text'
+    }, {
+      label: '枚举',
+      value: 'enum'
+    }, {
+      label: '数组',
+      value: 'array'
+    }, {
+      label: '对象',
+      value: 'object'
+    }]
+  }, {
+    title: '单位',
+    keyName: 'unit'
+  }, {
+    title: '模式',
+    keyName: 'mode',
+    type: 'select',
+    listOfOption: [{
+      label: '只读',
+      value: 'r'
+    }, {
+      label: '读写',
+      value: 'rw'
+    }]
+  }]
   @ViewChild('propertyChild') propertyChild: any;
   constructor(
     private fb: FormBuilder,
@@ -46,6 +93,7 @@ export class ProductEditComponent implements OnInit {
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
       version: [obj.version || '', []],
+      properties: [obj.properties || []],
       parameters: this.fb.array(
         obj.parameters ? obj.parameters.map((prop: any) =>
           this.fb.group({
@@ -106,7 +154,7 @@ export class ProductEditComponent implements OnInit {
         })
       )
     }
-    
+
   }
 
   handleCopyProperTy(index: number) {
