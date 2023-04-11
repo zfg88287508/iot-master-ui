@@ -27,7 +27,7 @@ export class GroupEditComponent implements OnInit {
   ngOnInit(): void {
     console.log('init', this.id)
     if (this.id) {
-      this.rs.get(`group/${this.id}`).subscribe(res => {
+      this.rs.get(`device/group/${this.id}`).subscribe(res => {
         //let data = res.data;
         this.build(res.data)
       })
@@ -44,7 +44,7 @@ export class GroupEditComponent implements OnInit {
   }
 
   submit() {
-    let url = this.id ? `group/${this.id}` : `group/create`;
+    let url = this.id ? `device/group/${this.id}` : `device/group/create`;  
     this.rs.post(url, this.group.value).subscribe(res => {
       this.ref.close(res.data);
       this.msg.success("保存成功");
