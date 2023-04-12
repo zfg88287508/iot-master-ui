@@ -4,10 +4,10 @@
       <img class="logo" [src]="os.oem.logo" alt="logo">
       <span class="title">{{os.oem.title}}</span>
     </div>
-    <a nz-button nzSize="small" routerLink="/admin" style="margin-right: 5px;">
+    <!-- <a nz-button nzSize="small" routerLink="/admin" style="margin-right: 5px;">
       <span nz-icon nzType="swap" nzTheme="outline"></span>
       菜单模式
-    </a>
+    </a> -->
     <img class="avatar" src="/assets/user.svg" alt="logo" (click)="drawVisible=!drawVisible">
     <div class="user"></div>
   </nz-header>
@@ -30,6 +30,7 @@
 </nz-layout>
 <nz-drawer nzTitle="个人中心" [nzVisible]="drawVisible" (nzOnClose)="drawVisible=false">
   <ng-container *nzDrawerContent>
-    用户中心
+    <p><a>用户中心</a></p>
+    <p><a routerLink="/admin">菜单模式</a></p>
   </ng-container>
 </nz-drawer>
