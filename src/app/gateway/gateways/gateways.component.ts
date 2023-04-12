@@ -98,22 +98,7 @@ export class GatewaysComponent {
     this.query.skip = 0;
     this.load();
   }
-  enabled(mes: any, data: any) {
-    //启用禁用
-    data.disabled = mes;
-    this.rs.post(`gateway/${data.id}`, data).subscribe((res) => {
-      this.msg.success('修改成功');
-      if (mes)
-        this.rs.get(`gateway/${data.id}/enable`).subscribe((res) => {
-          this.load();
-        });
-      else
-        this.rs.get(`gateway/${data.id}/disable`).subscribe((res) => {
-          this.load();
-        });
-        this.load();
-    });
-  }
+ 
    
   edit(id: any) {
     const path = `${isIncludeAdmin()}/gateway/edit/${id}`;

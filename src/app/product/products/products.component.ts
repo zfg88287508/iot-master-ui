@@ -13,7 +13,7 @@ import { isIncludeAdmin, readCsv, tableHeight, onAllChecked, onItemChecked, batc
 })
 
 export class ProductsComponent {
-
+  href!:string
   loading = true
   datum: any[] = []
   total = 1;
@@ -111,24 +111,27 @@ export class ProductsComponent {
     this.msg.info('click cancel');
   }
   handleExport() {
-    const listColumns = ['ID', '名称', '说明', '日期'];
-    const data: any[][] = [];
-    data.push(listColumns);
-    this.datum.forEach(item => {
-      const arr = [];
-      arr.push(item.id);
-      arr.push(item.name);
-      arr.push(item.desc);
-      arr.push(String(item.created));
-      data.push(arr);
-    });
-    let csvContent = 'data:text/csv;charset=utf-8,';
-    data.forEach(row => { csvContent += row.join(',') + '\n'; });
-    let encodedUri = encodeURI(csvContent);
-    window.open(encodedUri);
+    this.href = `/api/product/export`;
+    // const listColumns = ['ID', '名称', '说明', '日期'];
+    // const data: any[][] = [];
+    // data.push(listColumns);
+    // this.datum.forEach(item => {
+    //   const arr = [];
+    //   arr.push(item.id);
+    //   arr.push(item.name);
+    //   arr.push(item.desc);
+    //   arr.push(String(item.created));
+    //   data.push(arr);
+    // });
+    // let csvContent = 'data:text/csv;charset=utf-8,';
+    // data.forEach(row => { csvContent += row.join(',') + '\n'; });
+    // let encodedUri = encodeURI(csvContent);
+    // window.open(encodedUri);
   }
+  handleImport() {}
   handleReadCsv(e: any) {
-    readCsv(e, this, 'product/create');
+   // this.rs.post(`product/import`,this).subscribe((res)=>{console.log(res.data)})
+    //readCsv(e, this, 'product/create');
   }
   getTableHeight() {
     return tableHeight(this);

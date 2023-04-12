@@ -6,6 +6,7 @@ import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
 import { DeviceGroupEditComponent } from "../device-group-edit/device-group-edit.component";
+import { readCsv } from 'src/public';
 
 @Component({
   selector: 'app-device-group',
@@ -15,7 +16,7 @@ import { DeviceGroupEditComponent } from "../device-group-edit/device-group-edit
 export class DeviceGroupComponent {
 
   @Input() choose = false;
-
+  uploading: Boolean = false;
   loading = true
   datum: any[] = []
   total = 1;
@@ -23,6 +24,7 @@ export class DeviceGroupComponent {
   pageIndex = 1;
   query: any = {};
   showAddBtn: Boolean = true;
+  href!: string;
 
 
   constructor(private ms: NzModalService,
@@ -47,7 +49,29 @@ export class DeviceGroupComponent {
       this.loading = false;
     })
   }
-
+  handleExport(){
+    // const listColumns = ['ID', '名称', '说明',  '日期'];
+    // const data: any[][] = [];
+    // data.push(listColumns);
+    // this.datum.forEach((item) => {
+    //   const arr = [];
+    //   arr.push(item.id);
+    //   arr.push(item.name);
+    //   arr.push(item.desc); 
+    //   arr.push(String(item.created));
+    //   data.push(arr);
+    // });
+    // let csvContent = 'data:text/csv;charset=utf-8,';
+    // data.forEach((row) => {
+    //   csvContent += row.join(',') + '\n';
+    // });
+    // let encodedUri = encodeURI(csvContent);
+    // window.open(encodedUri);
+    this.href = `/api/device/group/import`;
+  }
+  handleReadCsv(e: any) {
+    readCsv(e, this, 'device/group/create');
+  }
   create() {
     this.ms.create({
       nzTitle: '创建分组',

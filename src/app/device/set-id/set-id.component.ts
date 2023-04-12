@@ -26,7 +26,7 @@ export class SetIdComponent {
       .subscribe((res) => {
         this.datum = res.data || [];
         this.datum.filter((item) =>
-          this.listOfOption.push({ label: item.name, value: item.id })
+          this.listOfOption.push({ label:item.id+' / '+ item.name, value: item.id })
         );
       })
       .add(() => {});

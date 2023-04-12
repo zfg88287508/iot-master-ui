@@ -5,7 +5,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { NzModalService } from "ng-zorro-antd/modal";
 import { ParseTableQuery } from '../../base/table';
-import { tableHeight, onAllChecked, onItemChecked, batchdel, refreshCheckedStatus } from "../../../public";
+import { tableHeight, onAllChecked, onItemChecked, batchdel, refreshCheckedStatus, readCsv } from "../../../public";
 
 @Component({
   selector: 'app-role',
@@ -13,7 +13,9 @@ import { tableHeight, onAllChecked, onItemChecked, batchdel, refreshCheckedStatu
   styleUrls: ['./role.component.scss'],
 })
 export class RoleComponent {
+  href!:string
   loading = true;
+  uploading: Boolean = false;
   datum: any[] = [];
   total = 1;
   pageSize = 20;
@@ -73,6 +75,29 @@ export class RoleComponent {
         }
       }
     });
+  }
+  handleExport(){
+    this.href = `/api/role/export`; 
+    // const listColumns = ['ID', '名称', '说明',  '日期'];
+    // const data: any[][] = [];
+    // data.push(listColumns);
+    // this.datum.forEach((item) => {
+    //   const arr = [];
+    //   arr.push(item.id);
+    //   arr.push(item.name);
+    //   arr.push(item.desc); 
+    //   arr.push(String(item.created));
+    //   data.push(arr);
+    // });
+    // let csvContent = 'data:text/csv;charset=utf-8,';
+    // data.forEach((row) => {
+    //   csvContent += row.join(',') + '\n';
+    // });
+    // let encodedUri = encodeURI(csvContent);
+    // window.open(encodedUri);
+  }
+  handleReadCsv(e: any) {
+    readCsv(e, this, 'role/create');
   }
   onQuery($event: NzTableQueryParams) {
     ParseTableQuery($event, this.query);

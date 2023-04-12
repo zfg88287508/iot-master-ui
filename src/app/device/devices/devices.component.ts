@@ -37,6 +37,7 @@ export class DevicesComponent {
   indeterminate = false;
   setOfCheckedId = new Set<number>();
   delResData: any = [];
+  href!: string;
 
   constructor(
     @Optional() protected ref: NzModalRef,
@@ -52,7 +53,7 @@ export class DevicesComponent {
     this.datum = [];
     this.load();
   }
- 
+
   load() {
     //筛选网关
     if (this.chooseGateway) this.query.filter = { type: 'gateway' };
@@ -75,13 +76,7 @@ export class DevicesComponent {
         this.loading = false;
       });
   }
-  enabled(mes: any, id: any) {
-    //启用禁用
-    // this.rs.post(`device/${id}`, { disabled: mes }).subscribe((res) => {
-    //   this.msg.success('修改成功');
-    //   this.load();
-    // });
-  }
+
   create() {
     let path = '/device/create';
     if (location.pathname.startsWith('/admin')) path = '/admin' + path;
@@ -147,25 +142,26 @@ export class DevicesComponent {
     this.msg.info('click cancel');
   }
   handleExport() {
-    const listColumns = ['ID', '产品ID', '分组ID', '名称', '说明', '日期'];
-    const data: any[][] = [];
-    data.push(listColumns);
-    this.datum.forEach((item) => {
-      const arr = [];
-      arr.push(item.id);
-      arr.push(item.product_id);
-      arr.push(item.group_id);
-      arr.push(item.name);
-      arr.push(item.desc);
-      arr.push(String(item.created));
-      data.push(arr);
-    });
-    let csvContent = 'data:text/csv;charset=utf-8,';
-    data.forEach((row) => {
-      csvContent += row.join(',') + '\n';
-    });
-    let encodedUri = encodeURI(csvContent);
-    window.open(encodedUri);
+    // const listColumns = ['ID', '产品ID', '分组ID', '名称', '说明', '日期'];
+    // const data: any[][] = [];
+    // data.push(listColumns);
+    // this.datum.forEach((item) => {
+    //   const arr = [];
+    //   arr.push(item.id);
+    //   arr.push(item.product_id);
+    //   arr.push(item.group_id);
+    //   arr.push(item.name);
+    //   arr.push(item.desc);
+    //   arr.push(String(item.created));
+    //   data.push(arr);
+    // });
+    // let csvContent = 'data:text/csv;charset=utf-8,';
+    // data.forEach((row) => {
+    //   csvContent += row.join(',') + '\n';
+    // });
+    // let encodedUri = encodeURI(csvContent);
+    // window.open(encodedUri);
+    this.href = `/api/device/export`;
   }
   handleReadCsv(e: any) {
     readCsv(e, this, 'device/create');

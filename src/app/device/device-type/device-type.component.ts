@@ -12,6 +12,7 @@ import {
   onItemChecked,
   batchdel,
   refreshCheckedStatus,
+  readCsv,
 } from 'src/public';
 @Component({
   selector: 'app-device-type',
@@ -20,6 +21,7 @@ import {
 })
 export class DeviceTypeComponent {
   loading = true;
+  uploading: Boolean = false;
   datum: any[] = [];
   total = 1;
   pageSize = 20;
@@ -29,6 +31,7 @@ export class DeviceTypeComponent {
   indeterminate = false;
   setOfCheckedId = new Set<number>();
   delResData: any = [];
+  href!: string;
 
   // handleCancel(){}
   // submit(){}
@@ -69,12 +72,9 @@ export class DeviceTypeComponent {
         this.loading = false;
       });
   }
-  group(){
-    const path = `admin/device/group`;
-    this.router.navigateByUrl(path);
-  }
+   
   create() {
-    let path = '/device/device-group/type/create';
+    let path = '/device/type/create';
     if (location.pathname.startsWith('/admin')) path = '/admin' + path;
     this.router.navigateByUrl(path);
   }
@@ -93,7 +93,29 @@ export class DeviceTypeComponent {
       }
     });
   }
-
+  handleExport(){
+    // const listColumns = ['ID', '名称', '说明',  '日期'];
+    // const data: any[][] = [];
+    // data.push(listColumns);
+    // this.datum.forEach((item) => {
+    //   const arr = [];
+    //   arr.push(item.id);
+    //   arr.push(item.name);
+    //   arr.push(item.desc); 
+    //   arr.push(String(item.created));
+    //   data.push(arr);
+    // });
+    // let csvContent = 'data:text/csv;charset=utf-8,';
+    // data.forEach((row) => {
+    //   csvContent += row.join(',') + '\n';
+    // });
+    // let encodedUri = encodeURI(csvContent);
+    // window.open(encodedUri);
+    this.href = `/api/device/type/export`;
+  }
+  handleReadCsv(e: any) {
+    readCsv(e, this, 'device/type/create');
+  }
   onQuery($event: NzTableQueryParams) {
     ParseTableQuery($event, this.query);
     this.load();
@@ -123,7 +145,7 @@ export class DeviceTypeComponent {
     });
   }
   edit(id: any) {
-    const path = `${isIncludeAdmin()}/device/group/type/edit/${id}`;
+    const path = `${isIncludeAdmin()}/device/type/edit/${id}`;
     this.router.navigateByUrl(path);
   }
   cancel() {

@@ -20,8 +20,9 @@ import { GatewayRoutingModule } from './gateway-routing.module';
 import { GatewayDetailComponent } from './gateway-detail/gateway-detail.component';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';  
 import { FormsModule } from '@angular/forms';
+import { GatewayBatchComponent } from './gateway-batch/gateway-batch.component';
 @NgModule({
-  declarations: [GatewaysComponent, GatewayEditComponent, GatewayDetailComponent],
+  declarations: [GatewaysComponent, GatewayEditComponent, GatewayDetailComponent, GatewayBatchComponent],
   imports: [
     CommonModule,
     NzLayoutModule,

@@ -11,9 +11,11 @@
         创建设备
       </button>
     </ng-template>
-    <button *nzSpaceItem nz-button nzType="primary" (click)="handleExport()">
-      <i nz-icon nzType="cloud-download"></i>
-      导出
+    <button nz-button nzType="primary" *nzSpaceItem class="btn">
+      <span nz-icon nzType="cloud-upload" nzTheme="outline"></span>
+      <a (click)="handleExport()" download="filename" [href]="href"
+        >导出</a
+      >
     </button>
     <div *nzSpaceItem style="position: relative">
       <button *ngIf="uploading" nz-button nzType="primary" nzLoading>
@@ -21,7 +23,10 @@
         文件上传中
       </button>
       <label *ngIf="!uploading" for="file" style="position: absolute">
-        <div class="fileButton">上传文件</div>
+        <div class="fileButton">
+          <span nz-icon nzType="cloud-download" nzTheme="outline"></span>
+          导入
+        </div>
       </label>
       <input
         *ngIf="!uploading"
@@ -64,8 +69,9 @@
       <th nzColumnKey="group_id">分组ID</th>
       <th nzColumnKey="name" [nzSortFn]="true">名称</th>
       <th nzColumnKey="desc">说明</th>
+      <th nzColumnKey="disabled">启用</th>
       <th nzColumnKey="created" [nzSortFn]="true">日期</th>
-      <th >启用</th>
+       
       <th>操作</th>
     </tr>
   </thead>
@@ -83,11 +89,9 @@
       <td>{{ data.group_id }}</td>
       <td>{{ data.name }}</td>
       <td>{{ data.desc }}</td>
+      <td>{{ data.disabled ||false}}</td>
       <td>{{ data.created | date }}</td>
-      <td *ngIf="!ref">
-        <nz-switch  nzSize="small" (ngModelChange)="enabled($event,data.id)" [(ngModel)]=" data.disabled" ></nz-switch> 
-     
-      </td>
+       
       <td *ngIf="!ref">
         <a (click)="open(data.id)" title="详情">
           <i nz-icon nzType="eye"></i>
@@ -106,7 +110,6 @@
         >
           <i nz-icon nzType="delete"></i>
         </a>
-        
       </td>
       <td *ngIf="ref">
         <a (click)="select(data.id)"> 选择 </a>

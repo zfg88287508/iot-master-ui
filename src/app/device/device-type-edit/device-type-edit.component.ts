@@ -50,7 +50,7 @@
         let url = this.id ? `device/type/${this.id}` : `device/type/create`; 
         this.group.patchValue({id: Number(this.group.value.id)  })
         this.rs.post(url, this.group.value).subscribe(res => { 
-          const path = `${isIncludeAdmin()}/device/group/type`;
+          const path = `${isIncludeAdmin()}/device/type`;
           this.router.navigateByUrl(path)
           this.msg.success("保存成功")
         })
@@ -68,7 +68,7 @@
       }
     }
     handleCancel() {
-      const path = `${isIncludeAdmin()}/device/group/type`;
+      const path = `${isIncludeAdmin()}/device/type`;
       this.router.navigateByUrl(path);
     }
   

@@ -5,14 +5,14 @@ import { RequestService } from "../../request.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
-import { isIncludeAdmin, tableHeight, onAllChecked, onItemChecked, refreshCheckedStatus, batchdel } from "../../../public";
+import { isIncludeAdmin,readCsv, tableHeight, onAllChecked, onItemChecked, refreshCheckedStatus, batchdel } from "../../../public";
 @Component({
   selector: 'app-brokers',
   templateUrl: './brokers.component.html',
   styleUrls: ['./brokers.component.scss']
 })
 export class BrokersComponent {
-
+  uploading: Boolean = false;
   loading = true
   datum: any[] = []
   total = 1;
@@ -23,6 +23,7 @@ export class BrokersComponent {
   indeterminate = false;
   setOfCheckedId = new Set<number>();
   delResData: any = [];
+  href!: string;
   constructor(
     private modal: NzModalService,
     private router: Router,
@@ -40,7 +41,7 @@ export class BrokersComponent {
   load() {
     this.loading = true
     this.rs.post("broker/search", this.query).subscribe(res => {
-      this.datum = res.data;
+      this.datum = res.data||[];
       this.total = res.total;
       this.setOfCheckedId.clear();
       refreshCheckedStatus(this);
@@ -58,9 +59,10 @@ export class BrokersComponent {
 
   delete(id: number, size?: number) {
     this.rs.get(`broker/${id}/delete`).subscribe(res => {
-      if (!size && this.datum.length > 1) {
+      if (!size  ) {
         this.msg.success("删除成功");
         this.datum = this.datum.filter(d => d.id !== id);
+        this.load();
       } else if (size) {
         this.delResData.push(res);
         if (size === this.delResData.length) {
@@ -70,7 +72,30 @@ export class BrokersComponent {
       }
     })
   }
-
+  handleExport(){
+    // const listColumns = ['ID', '名称', '说明', '端口', '日期'];
+    // const data: any[][] = [];
+    // data.push(listColumns);
+    // this.datum.forEach((item) => {
+    //   const arr = [];
+    //   arr.push(item.id);
+    //   arr.push(item.name);
+    //   arr.push(item.desc);
+    //   arr.push(item.port); 
+    //   arr.push(String(item.created));
+    //   data.push(arr);
+    // });
+    // let csvContent = 'data:text/csv;charset=utf-8,';
+    // data.forEach((row) => {
+    //   csvContent += row.join(',') + '\n';
+    // });
+    // let encodedUri = encodeURI(csvContent);
+    // window.open(encodedUri);
+    this.href = `/api/broker/export`;
+  }
+  handleReadCsv(e: any) {
+    readCsv(e, this, 'broker/create');
+  }
   onQuery($event: NzTableQueryParams) {
     ParseTableQuery($event, this.query)
     this.load();

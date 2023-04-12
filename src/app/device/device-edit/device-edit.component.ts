@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,6 +15,7 @@ import { isIncludeAdmin } from '../../../public';
 export class DeviceEditComponent implements OnInit {
   group!: FormGroup;
   id: any = 0;
+  listOfOption: any[] = [];
   @ViewChild('childTag') childTag: any;
   constructor(
     private fb: FormBuilder,
@@ -22,11 +24,22 @@ export class DeviceEditComponent implements OnInit {
     private rs: RequestService,
     private ms: NzModalService,
     private msg: NzMessageService
-  ) {}
+  ) {
+
+    this.rs.get('device/type/list').subscribe((res) => {
+      res.data.filter((item: { name: any; desc: any; id: any }) =>
+        this.listOfOption.push({
+          value: item.name,
+          label: item.id + ' / ' + item.desc,
+        })
+      );
+    });
+  }
 
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.has('id')) {
       this.id = this.route.snapshot.paramMap.get('id');
+       
       this.rs.get(`device/${this.id}`).subscribe((res) => {
         //let data = res.data;
         if (this.childTag) {
@@ -54,8 +67,6 @@ export class DeviceEditComponent implements OnInit {
       type: [obj.type || 'device', []],
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
-      username: [obj.username || '', []],
-      password: [obj.password || '', []],
       disabled: [obj.disabled || false, []],
     });
   }
@@ -66,6 +77,17 @@ export class DeviceEditComponent implements OnInit {
       const sendData = Object.assign({}, this.group.value, IdObj);
       let url = this.id ? `device/${this.id}` : `device/create`;
       this.rs.post(url, sendData).subscribe((res) => {
+        //启用禁用
+        // if (this.group.value.disabled) {
+        //   this.rs.get(`device/${this.id}/enable`).subscribe((res) => {
+        //     this.msg.success('启用');
+        //   });
+        // } else {
+        //   this.rs.get(`device/${this.id}/disable`).subscribe((res) => {
+        //     this.msg.success('禁用');
+        //   });
+        // }
+
         const path = `${isIncludeAdmin()}/device/list`;
         this.router.navigateByUrl(path);
         this.msg.success('保存成功');
