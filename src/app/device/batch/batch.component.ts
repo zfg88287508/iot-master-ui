@@ -26,7 +26,7 @@ export class BatchComponent implements OnInit {
     obj = obj || {}
     this.group = this.fb.group({
       product_id: [obj.product_id || '', []],
-      group_id: [obj.group_id || 0, []],
+      group_id: [obj.group_id || '', []],
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
       amount: [obj.amount || 1, []],

@@ -39,7 +39,7 @@ export class DeviceEditComponent implements OnInit {
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.has('id')) {
       this.id = this.route.snapshot.paramMap.get('id');
-       
+
       this.rs.get(`device/${this.id}`).subscribe((res) => {
         //let data = res.data;
         if (this.childTag) {
@@ -63,7 +63,7 @@ export class DeviceEditComponent implements OnInit {
       id: [obj.id || '', []],
       product_id: [obj.product_id || '', []],
       gateway_id: [obj.gateway_id || '', []],
-      group_id: [obj.group_id || 0, []],
+      group_id: [obj.group_id || '', []],
       type: [obj.type || 'device', []],
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
