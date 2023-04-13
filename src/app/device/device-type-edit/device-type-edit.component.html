@@ -13,7 +13,7 @@
 
     <form nz-form [formGroup]="group" (ngSubmit)="submit()">
 
-      <nz-form-item>
+      <nz-form-item *ngIf="!id">
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id"  nzRequired
           >id</nz-form-label
         >

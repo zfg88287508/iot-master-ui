@@ -9,7 +9,7 @@
       创建
     </button>
     <button nz-button nzType="primary" *nzSpaceItem class="btn">
-      <span nz-icon nzType="cloud-upload" nzTheme="outline"></span>
+      <span nz-icon nzType="cloud-download" nzTheme="outline"></span>
       <a (click)="handleExport()" download="filename" [href]="href"
         >导出</a
       >
@@ -21,17 +21,16 @@
       </button>
       <label *ngIf="!uploading" for="file" style="position: absolute">
         <div class="fileButton">
-          <span nz-icon nzType="cloud-download" nzTheme="outline"></span>
+          <span nz-icon nzType="cloud-upload" nzTheme="outline"></span>
           导入
         </div>
       </label>
       <input
         *ngIf="!uploading"
         type="file"
-        id="file"
-        accept=".csv"
+        id="file" 
         style="margin-top: 3px; width: 76px"
-        (change)="handleReadCsv($event)"
+        (change)="handleImport($event)"
       />
     </div>
     <app-search-box *nzSpaceItem (onSearch)="search($event)"></app-search-box>

@@ -29,10 +29,10 @@ export class DeviceEditComponent implements OnInit {
     this.rs.get('device/type/list').subscribe((res) => {
       res.data.filter((item: { name: any; desc: any; id: any }) =>
         this.listOfOption.push({
-          value: item.name,
+          value: item.id,
           label: item.id + ' / ' + item.desc,
         })
-      );
+      ); 
     });
   }
 
@@ -64,7 +64,7 @@ export class DeviceEditComponent implements OnInit {
       product_id: [obj.product_id || '', []],
       gateway_id: [obj.gateway_id || '', []],
       group_id: [obj.group_id || '', []],
-      type: [obj.type || 'device', []],
+      type_id: [obj.type_id || '2', []],
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
       disabled: [obj.disabled || false, []],
@@ -86,8 +86,7 @@ export class DeviceEditComponent implements OnInit {
         //   this.rs.get(`device/${this.id}/disable`).subscribe((res) => {
         //     this.msg.success('禁用');
         //   });
-        // }
-
+        // } 
         const path = `${isIncludeAdmin()}/device/list`;
         this.router.navigateByUrl(path);
         this.msg.success('保存成功');

@@ -72,29 +72,14 @@ export class BrokersComponent {
       }
     })
   }
-  handleExport(){
-    // const listColumns = ['ID', '名称', '说明', '端口', '日期'];
-    // const data: any[][] = [];
-    // data.push(listColumns);
-    // this.datum.forEach((item) => {
-    //   const arr = [];
-    //   arr.push(item.id);
-    //   arr.push(item.name);
-    //   arr.push(item.desc);
-    //   arr.push(item.port); 
-    //   arr.push(String(item.created));
-    //   data.push(arr);
-    // });
-    // let csvContent = 'data:text/csv;charset=utf-8,';
-    // data.forEach((row) => {
-    //   csvContent += row.join(',') + '\n';
-    // });
-    // let encodedUri = encodeURI(csvContent);
-    // window.open(encodedUri);
+  handleExport(){ 
     this.href = `/api/broker/export`;
   }
-  handleReadCsv(e: any) {
-    readCsv(e, this, 'broker/create');
+  handleImport(e: any) {
+    const file: File = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file)
+     this.rs.post(`brocker/import`,formData).subscribe((res)=>{console.log(res )})
   }
   onQuery($event: NzTableQueryParams) {
     ParseTableQuery($event, this.query)

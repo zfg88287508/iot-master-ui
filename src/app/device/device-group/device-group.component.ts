@@ -6,7 +6,7 @@ import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ParseTableQuery } from "../../base/table";
 import { DeviceGroupEditComponent } from "../device-group-edit/device-group-edit.component";
-import { readCsv } from 'src/public';
+import { batchdel, onAllChecked, onItemChecked, readCsv, refreshCheckedStatus } from 'src/public';
 
 @Component({
   selector: 'app-device-group',
@@ -22,8 +22,12 @@ export class DeviceGroupComponent {
   total = 1;
   pageSize = 20;
   pageIndex = 1;
+  indeterminate = false;
   query: any = {};
   showAddBtn: Boolean = true;
+  checked = false;
+  setOfCheckedId = new Set<number>();
+  delResData: any = [];
   href!: string;
 
 
@@ -45,32 +49,30 @@ export class DeviceGroupComponent {
     this.rs.post("device/group/search", this.query).subscribe(res => {
       this.datum = res.data||[];
       this.total = res.total;
+      this.setOfCheckedId.clear();
+        refreshCheckedStatus(this);
     }).add(() => {
       this.loading = false;
     })
   }
-  handleExport(){
-    // const listColumns = ['ID', '名称', '说明',  '日期'];
-    // const data: any[][] = [];
-    // data.push(listColumns);
-    // this.datum.forEach((item) => {
-    //   const arr = [];
-    //   arr.push(item.id);
-    //   arr.push(item.name);
-    //   arr.push(item.desc); 
-    //   arr.push(String(item.created));
-    //   data.push(arr);
-    // });
-    // let csvContent = 'data:text/csv;charset=utf-8,';
-    // data.forEach((row) => {
-    //   csvContent += row.join(',') + '\n';
-    // });
-    // let encodedUri = encodeURI(csvContent);
-    // window.open(encodedUri);
+  handleExport(){ 
     this.href = `/api/device/group/import`;
   }
-  handleReadCsv(e: any) {
-    readCsv(e, this, 'device/group/create');
+  handleImport(e: any) {
+    const file: File = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file)
+     this.rs.post(`device/group/import`,formData).subscribe((res)=>{console.log(res )}) 
+  }
+  handleBatchDel() {
+    batchdel(this);
+  }
+  
+  handleAllChecked(id: any) {
+    onAllChecked(id, this);
+  }
+  handleItemChecked(id: number, checked: boolean) {
+    onItemChecked(id, checked, this);
   }
   create() {
     this.ms.create({
@@ -82,15 +84,20 @@ export class DeviceGroupComponent {
     })
   }
 
-  delete(index: number, id: number) {
-    this.rs.get(`device/group/${id}/delete`).subscribe(res => {
-      this.msg.success("删除成功")
-      if (this.datum.length > 1) {
-        this.datum = this.datum.filter(d => d.id !== id);
-      } else {
-        this.load();
+  delete( id: number,size:number) {
+     
+    this.rs.get(`device/group/${id}/delete`).subscribe((res) => {
+      if (!size ) {
+        this.msg.success('删除成功');
+        this.datum = this.datum.filter((d) => d.id !== id);
+      } else if (size) {this.delResData=[]
+        this.delResData.push(res);
+        if (size === this.delResData.length) {
+          this.msg.success('删除成功');
+          this.load();
+        }
       }
-    })
+    });
   }
 
   onQuery($event: NzTableQueryParams) {

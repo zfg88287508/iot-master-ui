@@ -93,28 +93,11 @@ export class DeviceTypeComponent {
       }
     });
   }
-  handleExport(){
-    // const listColumns = ['ID', '名称', '说明',  '日期'];
-    // const data: any[][] = [];
-    // data.push(listColumns);
-    // this.datum.forEach((item) => {
-    //   const arr = [];
-    //   arr.push(item.id);
-    //   arr.push(item.name);
-    //   arr.push(item.desc); 
-    //   arr.push(String(item.created));
-    //   data.push(arr);
-    // });
-    // let csvContent = 'data:text/csv;charset=utf-8,';
-    // data.forEach((row) => {
-    //   csvContent += row.join(',') + '\n';
-    // });
-    // let encodedUri = encodeURI(csvContent);
-    // window.open(encodedUri);
+  handleExport(){ 
     this.href = `/api/device/type/export`;
   }
-  handleReadCsv(e: any) {
-    readCsv(e, this, 'device/type/create');
+  handleImport(e: any) {
+    this.rs.post(`device/type/import`,e).subscribe((res)=>{console.log(res.data)})
   }
   onQuery($event: NzTableQueryParams) {
     ParseTableQuery($event, this.query);

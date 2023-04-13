@@ -111,28 +111,15 @@ export class ProductsComponent {
     this.msg.info('click cancel');
   }
   handleExport() {
-    this.href = `/api/product/export`;
-    // const listColumns = ['ID', '名称', '说明', '日期'];
-    // const data: any[][] = [];
-    // data.push(listColumns);
-    // this.datum.forEach(item => {
-    //   const arr = [];
-    //   arr.push(item.id);
-    //   arr.push(item.name);
-    //   arr.push(item.desc);
-    //   arr.push(String(item.created));
-    //   data.push(arr);
-    // });
-    // let csvContent = 'data:text/csv;charset=utf-8,';
-    // data.forEach(row => { csvContent += row.join(',') + '\n'; });
-    // let encodedUri = encodeURI(csvContent);
-    // window.open(encodedUri);
+    this.href = `/api/product/export`; 
   }
-  handleImport() {}
-  handleReadCsv(e: any) {
-   // this.rs.post(`product/import`,this).subscribe((res)=>{console.log(res.data)})
-    //readCsv(e, this, 'product/create');
-  }
+   
+  handleImport(e: any) { 
+     const file: File = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file)
+     this.rs.post(`product/import`,formData).subscribe((res)=>{console.log(res )}) 
+   }
   getTableHeight() {
     return tableHeight(this);
   }

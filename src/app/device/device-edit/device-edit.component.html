@@ -18,11 +18,11 @@
     </nz-form-item>
 
     <nz-form-item >
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type"
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type_id"
         >类型ID</nz-form-label
       >
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip=""  *ngIf="listOfOption[0]">
-        <nz-select  formControlName="type" [nzOptions]="listOfOption"  > 
+        <nz-select  formControlName="type_id" [nzOptions]="listOfOption"  > 
         </nz-select>
       </nz-form-control>
     </nz-form-item>

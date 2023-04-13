@@ -34,6 +34,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { DeviceTypeComponent } from './device-type/device-type.component';
 import { DeviceTypeEditComponent } from './device-type-edit/device-type-edit.component';
 import { FormsModule } from '@angular/forms';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 @NgModule({
   declarations: [
     DevicesComponent,
@@ -54,6 +55,7 @@ import { FormsModule } from '@angular/forms';
     NzIconModule,
     NzDropDownModule,
     FormsModule,
+    NzUploadModule,
     NzFormModule,
     NzInputModule,
     NzButtonModule,
