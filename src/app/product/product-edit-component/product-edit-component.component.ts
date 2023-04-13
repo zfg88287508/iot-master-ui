@@ -134,7 +134,6 @@ export class ProductEditComponentComponent implements OnInit {
   ngOnInit(): void {
     if (this.id) {
       this.rs.get(`product/${this.id}`).subscribe(res => {
-        //let data = res.data;
         this.allData = res.data || {};
         this.build(res.data)
       })

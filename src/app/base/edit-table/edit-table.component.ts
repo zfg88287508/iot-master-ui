@@ -39,11 +39,17 @@ export class EditTableComponent implements OnInit, ControlValueAccessor {
     private fb: FormBuilder
   ) { }
   ngOnInit(): void {
-    this.build([]);
+    this.build();
   }
   writeValue(data: any): void {
+    const itemObj = JSON.parse(JSON.stringify(this.itemObj));
     this.tableData = data;
-    this.build(data);
+    if (data && data.length) {
+      data.forEach((item: any) => {
+        const newGroup = this.fb.group(Object.assign(itemObj, item));
+        this.aliases.push(newGroup);
+      });
+    }
   }
   registerOnChange(fn: any): void {
     this.onChanged = fn;
@@ -52,18 +58,10 @@ export class EditTableComponent implements OnInit, ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  build(obj?: any) {
-    const itemObj = JSON.parse(JSON.stringify(this.itemObj));
-    obj = obj || [];
-    this.group = this.fb.group({
-      keyName: this.fb.array(
-        obj ? obj.map((prop: any) =>
-          this.fb.group(Object.assign(itemObj, prop))
-        ) : []
-      ),
-    })
-
+  build() {
+    this.group = this.fb.group({ keyName: this.fb.array([]) });
   }
+
   change() {
     this.onChanged(this.tableData);
     this.onTouched();
@@ -76,7 +74,7 @@ export class EditTableComponent implements OnInit, ControlValueAccessor {
   propertyDel(i: number) {
     this.group.get('keyName').controls.splice(i, 1)
   }
-  get aliases() {
+  get aliases(): FormArray {
     return this.group.get('keyName') as FormArray;
   }
   drop(event: CdkDragDrop<string[]>): void {
