@@ -48,7 +48,7 @@ export class GatewaysComponent {
     this.rs
       .post('gateway/search', this.query)
       .subscribe((res) => {
-       // console.log(res);
+        // console.log(res);
         this.datum = res.data || [];
         this.total = res.total;
         this.setOfCheckedId.clear();
@@ -98,8 +98,7 @@ export class GatewaysComponent {
     this.query.skip = 0;
     this.load();
   }
- 
-   
+
   edit(id: any) {
     const path = `${isIncludeAdmin()}/gateway/edit/${id}`;
     this.router.navigateByUrl(path);

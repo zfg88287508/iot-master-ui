@@ -45,8 +45,7 @@ export class RoleEditComponent implements OnInit {
     this.group = this.fb.group({
       name: [name || '', [Validators.required]],
       id: [id || '', [Validators.required]],
-      privileges: [privileges || [], [Validators.required]],
-      created: [obj.created || ''],
+      privileges: [privileges || [], [Validators.required]]
     });
   }
   getRoleList() {
@@ -67,11 +66,6 @@ export class RoleEditComponent implements OnInit {
   submit() {
     if (this.group.valid) {
       let url = this.id ? `role/${this.id}` : `role/create`
-      if (url === `role/create`) {
-        const created = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss');
-        this.group.patchValue({ created })
-      }
-
       this.rs.post(url, this.group.value).subscribe(res => {
         const path = `${isIncludeAdmin()}/user/role`;
         this.router.navigateByUrl(path);

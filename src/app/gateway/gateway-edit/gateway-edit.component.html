@@ -49,9 +49,9 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
+    <nz-form-item *ngIf="id">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="disabled"
-        >禁用</nz-form-label
+        >启用</nz-form-label
       >
 
       <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
