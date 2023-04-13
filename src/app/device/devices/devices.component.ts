@@ -147,6 +147,7 @@ export class DevicesComponent {
   handleImport(e: any) {
    
     const file: File = e.target.files[0];
+    if(file) console.log(file.name)
     const formData = new FormData();
     formData.append('file', file)
      this.rs.post(`device/import`,formData).subscribe((res)=>{console.log(res )})

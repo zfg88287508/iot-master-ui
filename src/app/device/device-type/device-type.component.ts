@@ -97,7 +97,10 @@ export class DeviceTypeComponent {
     this.href = `/api/device/type/export`;
   }
   handleImport(e: any) {
-    this.rs.post(`device/type/import`,e).subscribe((res)=>{console.log(res.data)})
+    const file: File = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file)
+     this.rs.post(`device/type/import`,formData).subscribe((res)=>{console.log(res )}) 
   }
   onQuery($event: NzTableQueryParams) {
     ParseTableQuery($event, this.query);
