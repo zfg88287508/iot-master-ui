@@ -26,6 +26,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { HandlePrivilegesPipe } from '../handle-privileges.pipe';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 @NgModule({
   declarations: [
     UsersComponent,
@@ -43,7 +45,9 @@ import { HandlePrivilegesPipe } from '../handle-privileges.pipe';
     NzLayoutModule,
     NzMenuModule,
     NzIconModule,
+    NzTagModule,
     NzPopconfirmModule,
+    NzSwitchModule ,
     NzButtonModule,
     NzCardModule,
     NzModalModule,

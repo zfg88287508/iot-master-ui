@@ -10,7 +10,21 @@
 
 <nz-card [nzTitle]="id ? '编辑角色' : '创建角色'" [nzExtra]="extra">
 
+   
+
   <form nz-form [formGroup]="group" (ngSubmit)="submit()">
+
+
+    <nz-form-item *ngIf="!id">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id" nzRequired>Id</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="idErrorTpl">
+        <input nz-input formControlName="id" />
+        <ng-template #idErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请输入id!</ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">名称</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="nameErrorTpl">
@@ -21,17 +35,7 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id" nzRequired>Id</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="idErrorTpl">
-        <input nz-input formControlName="id" />
-        <ng-template #idErrorTpl let-control>
-          <ng-container *ngIf="control.hasError('required')">请输入id!</ng-container>
-        </ng-template>
-      </nz-form-control>
-    </nz-form-item>
-
-
+      
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>权限</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="privilegesErrorTpl">

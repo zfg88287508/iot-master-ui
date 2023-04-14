@@ -62,6 +62,8 @@ export class RoleEditComponent implements OnInit {
         }
         this.listOfOption = listData;
       })
+
+     
   }
   submit() {
     if (this.group.valid) {

@@ -46,7 +46,7 @@ export class RoleComponent {
     this.rs
       .post('role/search', this.query)
       .subscribe((res) => {
-        this.datum = res.data;
+        this.datum = res.data||[];
         this.total = res.total;
         this.setOfCheckedId.clear();
         refreshCheckedStatus(this);

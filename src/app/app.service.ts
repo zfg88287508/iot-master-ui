@@ -30,6 +30,7 @@ const internals: any[] = [{
     {name: '批量创建', path: '/device/batch'},
     {name: '设备分组', path: '/device/group'},
     {name: '设备类型', path: '/device/type'},
+    {name: '设备区域', path: '/device/area'}
   ]
 }, {
   icon: '/assets/alarm.png',

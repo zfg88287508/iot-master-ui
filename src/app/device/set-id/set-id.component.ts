@@ -11,26 +11,11 @@ import { RequestService } from 'src/app/request.service';
 export class SetIdComponent {
   IdObj = {
     product_id: '',
-    group_id: 0,
+    //group_id: '',
   };
-  group_id = '';
-  datum: any[] = [];
-  listOfOption: any[] = [];
-  constructor(private ms: NzModalService, private rs: RequestService) {
-    this.postGroup();
-  }
 
-  postGroup() {
-    this.rs
-      .post('device/group/search', {})
-      .subscribe((res) => {
-        this.datum = res.data || [];
-        this.datum.filter((item) =>
-          this.listOfOption.push({ label:item.id+' / '+ item.name, value: item.id })
-        );
-      })
-      .add(() => {});
-  }
+  constructor(private ms: NzModalService, private rs: RequestService) {}
+
   chooseProduct() {
     this.ms
       .create({
@@ -46,9 +31,7 @@ export class SetIdComponent {
         this.IdObj.product_id = product_id;
       });
   }
-  chooseGroup() {
-    this.IdObj.group_id = Number(this.group_id);
-  }
+
   // chooseGroup() {
   //   this.ms.create({
   //     nzTitle: "选择分组",

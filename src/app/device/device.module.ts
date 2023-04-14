@@ -35,6 +35,9 @@ import { DeviceTypeComponent } from './device-type/device-type.component';
 import { DeviceTypeEditComponent } from './device-type-edit/device-type-edit.component';
 import { FormsModule } from '@angular/forms';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { DeviceAreaComponent } from './device-area/device-area.component';
+import { DeviceAreaEditComponent } from './device-area-edit/device-area-edit.component';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 @NgModule({
   declarations: [
     DevicesComponent,
@@ -45,13 +48,16 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     DeviceGroupEditComponent,
     SetIdComponent,
     DeviceTypeComponent,
-    DeviceTypeEditComponent
+    DeviceTypeEditComponent,
+    DeviceAreaComponent,
+    DeviceAreaEditComponent
   ],
   imports: [
     CommonModule,
     DeviceRoutingModule,
     NzLayoutModule,
     NzMenuModule,
+    NzTagModule,
     NzIconModule,
     NzDropDownModule,
     FormsModule,

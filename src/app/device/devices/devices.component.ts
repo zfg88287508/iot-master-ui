@@ -62,7 +62,7 @@ export class DevicesComponent {
     this.rs
       .post('device/search', this.query)
       .subscribe((res) => {
-        this.datum = res.data;  
+        this.datum = res.data||[];   
         this.datum.filter(
           (item) =>
             (item.disabled =

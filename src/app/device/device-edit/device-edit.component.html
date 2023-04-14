@@ -17,17 +17,27 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item >
+    <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type_id"
         >类型ID</nz-form-label
       >
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip=""  *ngIf="listOfOption[0]">
-        <nz-select  formControlName="type_id" [nzOptions]="listOfOption"  > 
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <nz-select formControlName="type_id" [nzOptions]="typeID">
         </nz-select>
       </nz-form-control>
     </nz-form-item>
 
     <app-set-id #childTag></app-set-id>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="group_id"
+        >分组ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+        <nz-select formControlName="group_id" [nzOptions]="groupID">
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
 
     <nz-form-item *ngIf="group.value.type == 'subset'">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="gateway_id"
@@ -59,8 +69,6 @@
         <textarea nz-input formControlName="desc"></textarea>
       </nz-form-control>
     </nz-form-item>
-
-   
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="disabled"

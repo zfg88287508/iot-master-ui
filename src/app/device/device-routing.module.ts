@@ -8,6 +8,8 @@ import {BatchComponent} from "./batch/batch.component";
 import {DeviceGroupComponent} from "./device-group/device-group.component";
 import { DeviceTypeComponent } from './device-type/device-type.component';
 import { DeviceTypeEditComponent } from './device-type-edit/device-type-edit.component';
+import { DeviceAreaComponent } from './device-area/device-area.component';
+import { DeviceAreaEditComponent } from './device-area-edit/device-area-edit.component';
 const routes: Routes = [
   {path: '', pathMatch: "full", redirectTo: "list"},
   {path: 'list', component: DevicesComponent},
@@ -19,6 +21,9 @@ const routes: Routes = [
   {path: 'type', component:DeviceTypeComponent},
   {path: 'type/create', component:DeviceTypeEditComponent},
   {path: 'type/edit/:id', component:DeviceTypeEditComponent},
+  {path: 'area', component:DeviceAreaComponent},
+  {path: 'area/create', component:DeviceAreaEditComponent},
+  {path: 'area/edit/:id', component:DeviceAreaEditComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
