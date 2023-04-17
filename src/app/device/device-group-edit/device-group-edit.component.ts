@@ -12,7 +12,7 @@ import { NzMessageService } from "ng-zorro-antd/message";
 })
 export class DeviceGroupEditComponent implements OnInit {
   @Input() id = 0;
-
+  areaID: any[] = [];
   group: any = {};
 
   constructor(private fb: FormBuilder,
@@ -33,13 +33,26 @@ export class DeviceGroupEditComponent implements OnInit {
       })
     }
     this.build()
+
+    this.rs
+    .post('device/area/search', {})
+    .subscribe((res) => {  
+      const data: any[] = [];
+
+      res.data.filter((item: { id: string; name: string }) =>
+        data.push({ label: item.id + ' / ' + item.name, value: item.id })
+      );
+      this.areaID = data;
+    })
+    .add(() => {});
   }
 
   build(obj?: any) {
     obj = obj || {}
     this.group = this.fb.group({
       name: [obj.name || '', [Validators.required]],
-      desc: [obj.desc || '', []],
+      desc: [obj.desc || '', []], 
+      area_id: [obj.area_id || '', []],
     })
   }
 

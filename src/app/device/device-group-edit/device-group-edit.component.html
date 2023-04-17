@@ -16,6 +16,15 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="area_id"
+      >区域ID</nz-form-label
+    >
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+      <nz-select formControlName="area_id" [nzOptions]="areaID">
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
   <!-- <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type">类型</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
