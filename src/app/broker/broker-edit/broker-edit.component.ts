@@ -38,6 +38,7 @@ export class BrokerEditComponent implements OnInit {
   build(obj?: any) {
     obj = obj || {}
     this.group = this.fb.group({
+      id:[obj.id || '', [ ]],
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
       port: [obj.port || 1883, []],
@@ -48,6 +49,7 @@ export class BrokerEditComponent implements OnInit {
 
   submit() {
     if (this.group.valid) {
+        
       let url = this.id ? `broker/${this.id}` : `broker/create`
       this.rs.post(url, this.group.value).subscribe(res => {
         const path = `${isIncludeAdmin()}/broker/list`;

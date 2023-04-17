@@ -42,7 +42,16 @@ export class GatewaysComponent {
     this.datum = [];
     this.load();
   }
-
+  disable(mess: number, id: any) {
+    if (mess)
+      this.rs.get(`gateway/${id}/disable`).subscribe((res) => {
+        this.reload();
+      });
+    else
+      this.rs.get(`gateway/${id}/enable`).subscribe((res) => {
+        this.reload();
+      });
+  }
   load() {
     this.loading = true;
     this.rs
@@ -67,7 +76,7 @@ export class GatewaysComponent {
 
   delete(id: number, size?: number) {
     this.rs.get(`gateway/${id}/delete`).subscribe((res) => {
-      if (!size && this.datum.length > 1) {
+      if (!size  ) {
         this.msg.success('删除成功');
         this.datum = this.datum.filter((d) => d.id !== id);
       } else if (size) {
@@ -104,7 +113,7 @@ export class GatewaysComponent {
     this.router.navigateByUrl(path);
   }
   cancel() {
-    this.msg.info('click cancel');
+    this.msg.info('取消操作');
   }
 
   handleNew() {

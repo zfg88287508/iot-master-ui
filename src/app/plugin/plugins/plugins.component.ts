@@ -55,7 +55,7 @@ export class PluginsComponent {
 
   delete(id: number, size?: number) {
     this.rs.get(`plugin/${id}/delete`).subscribe(res => {
-      if (!size && this.datum.length > 1) {
+      if (!size  ) {
         this.msg.success("删除成功");
         this.datum = this.datum.filter(d => d.id !== id);
       } else if (size) {
@@ -92,7 +92,7 @@ export class PluginsComponent {
     this.router.navigateByUrl(path)
   }
   cancel() {
-    this.msg.info('click cancel');
+    this.msg.info('取消操作');
   }
 
   handleNew() {

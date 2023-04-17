@@ -53,7 +53,16 @@ export class DevicesComponent {
     this.datum = [];
     this.load();
   }
-
+  disable(mess: number, id: any) {
+    if (mess)
+      this.rs.get(`device/${id}/disable`).subscribe((res) => {
+        this.reload();
+      });
+    else
+      this.rs.get(`device/${id}/enable`).subscribe((res) => {
+        this.reload();
+      });
+  }
   load() {
     //筛选网关
     if (this.chooseGateway) this.query.filter = { type: 'gateway' };
@@ -62,7 +71,7 @@ export class DevicesComponent {
     this.rs
       .post('device/search', this.query)
       .subscribe((res) => {
-        this.datum = res.data||[];   
+        this.datum = res.data || [];
         this.datum.filter(
           (item) =>
             (item.disabled =
@@ -85,7 +94,7 @@ export class DevicesComponent {
 
   delete(id: number, size?: number) {
     this.rs.get(`device/${id}/delete`).subscribe((res) => {
-      if (!size && this.datum.length > 1) {
+      if (!size  ) {
         this.msg.success('删除成功');
         this.datum = this.datum.filter((d) => d.id !== id);
       } else if (size) {
@@ -139,19 +148,19 @@ export class DevicesComponent {
     this.ref && this.ref.close(id);
   }
   cancel() {
-    this.msg.info('click cancel');
+    this.msg.info('取消操作');
   }
-  handleExport() { 
+  handleExport() {
     this.href = `/api/device/export`;
   }
   handleImport(e: any) {
-   
     const file: File = e.target.files[0];
-    if(file) console.log(file.name)
+    if (file) console.log(file.name);
     const formData = new FormData();
-    formData.append('file', file)
-     this.rs.post(`device/import`,formData).subscribe((res)=>{console.log(res )})
-    
+    formData.append('file', file);
+    this.rs.post(`device/import`, formData).subscribe((res) => {
+      console.log(res);
+    });
   }
   getTableHeight() {
     return tableHeight(this);

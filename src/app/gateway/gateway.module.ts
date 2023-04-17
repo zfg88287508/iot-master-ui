@@ -21,6 +21,7 @@ import { GatewayDetailComponent } from './gateway-detail/gateway-detail.componen
 import { NzSwitchModule } from 'ng-zorro-antd/switch';  
 import { FormsModule } from '@angular/forms';
 import { GatewayBatchComponent } from './gateway-batch/gateway-batch.component';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 @NgModule({
   declarations: [GatewaysComponent, GatewayEditComponent, GatewayDetailComponent, GatewayBatchComponent],
   imports: [
@@ -31,6 +32,7 @@ import { GatewayBatchComponent } from './gateway-batch/gateway-batch.component';
     GatewayRoutingModule ,
     NzSwitchModule,
     NzCardModule,
+    NzTagModule,
     NzFormModule,
     NzPopconfirmModule,
     ReactiveFormsModule,

@@ -64,7 +64,7 @@ export class RoleComponent {
 
   delete(id: number, size?: number) {
     this.rs.get(`role/${id}/delete`).subscribe((res) => {
-      if (!size && this.datum.length > 1) {
+      if (!size  ) {
         this.msg.success("删除成功");
         this.datum = this.datum.filter(d => d.id !== id);
       } else if (size) {

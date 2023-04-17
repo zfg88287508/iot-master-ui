@@ -62,7 +62,7 @@ export class ProductsComponent {
 
   delete(id: number, size?: number) {
     this.rs.get(`product/${id}/delete`).subscribe(res => {
-      if (!size && this.datum.length > 1) {
+      if (!size  ) {
         this.msg.success("删除成功");
         this.datum = this.datum.filter(d => d.id !== id);
       } else if (size) {
@@ -108,13 +108,13 @@ export class ProductsComponent {
     this.ref && this.ref.close(id)
   }
   cancel() {
-    this.msg.info('click cancel');
+    this.msg.info('取消操作');
   }
   handleExport() {
     this.href = `/api/product/export`; 
   }
    
-  handleImport(e: any) { 
+  handleImport(e: any) {  
      const file: File = e.target.files[0];
     const formData = new FormData();
     formData.append('file', file)

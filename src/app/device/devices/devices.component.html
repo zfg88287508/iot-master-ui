@@ -125,6 +125,14 @@
         >
           <i nz-icon nzType="delete"></i>
         </a>
+        <nz-divider nzType="vertical"></nz-divider>
+       
+        <a *ngIf="!data.disabled" (click)="disable(1,data.id)">
+         启用
+        </a>
+        <a   *ngIf="data.disabled" (click)="disable(0,data.id)">
+          禁用
+        </a>
       </td>
       <td *ngIf="ref">
         <a (click)="select(data.id)"> 选择 </a>

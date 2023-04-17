@@ -149,6 +149,6 @@ export class DeviceGroupComponent {
     this.ref && this.ref.close(id);
   }
   cancel() {
-    this.msg.info('click cancel');
+    this.msg.info('取消操作');
   }
 }

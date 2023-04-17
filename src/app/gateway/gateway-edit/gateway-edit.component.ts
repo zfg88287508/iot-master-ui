@@ -41,7 +41,7 @@ export class GatewayEditComponent implements OnInit {
       name: [obj.name || '', [Validators.required]],
       username: [obj.username || '', []],
       password: [obj.password || '', []],
-      disabled: [obj.disabled || false, []],
+      // disabled: [obj.disabled || false, []],
       desc: [obj.desc || '', []],
     });
   }
@@ -50,12 +50,7 @@ export class GatewayEditComponent implements OnInit {
     if (this.group.valid) {
       let url = this.id ? `gateway/${this.id}` : `gateway/create`;
       this.rs.post(url, this.group.value).subscribe((res) => {
-        //启用禁用
-        if (this.group.value.disabled) {
-          this.rs.get(`gateway/${this.id}/enable`).subscribe((res) => { this.msg.success('启用');});
-        } else {
-          this.rs.get(`gateway/${this.id}/disable`).subscribe((res) => {this.msg.success('禁用');});
-        }
+      
         const path = `${isIncludeAdmin()}/gateway/list`;
         this.router.navigateByUrl(path);
         this.msg.success('保存成功');

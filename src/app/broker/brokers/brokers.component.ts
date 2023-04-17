@@ -79,7 +79,7 @@ export class BrokersComponent {
     const file: File = e.target.files[0];
     const formData = new FormData();
     formData.append('file', file)
-     this.rs.post(`brocker/import`,formData).subscribe((res)=>{console.log(res )})
+     this.rs.post(`broker/import`,formData).subscribe((res)=>{console.log(res )})
   }
   onQuery($event: NzTableQueryParams) {
     ParseTableQuery($event, this.query)
@@ -109,7 +109,7 @@ export class BrokersComponent {
     this.router.navigateByUrl(path);
   }
   cancel() {
-    this.msg.info('click cancel');
+    this.msg.info('取消操作');
   }
   getTableHeight() {
     return tableHeight(this);

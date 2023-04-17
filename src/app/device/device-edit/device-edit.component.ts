@@ -83,7 +83,7 @@ export class DeviceEditComponent implements OnInit {
       type_id: [obj.type_id || '', []],
       name: [obj.name || '', [Validators.required]],
       desc: [obj.desc || '', []],
-      disabled: [obj.disabled || false, []],
+      // disabled: [obj.disabled || false, []],
     });
   }
 
@@ -93,16 +93,7 @@ export class DeviceEditComponent implements OnInit {
       const sendData = Object.assign({}, this.group.value, IdObj);
       let url = this.id ? `device/${this.id}` : `device/create`;
       this.rs.post(url, sendData).subscribe((res) => {
-        //启用禁用
-        // if (this.group.value.disabled) {
-        //   this.rs.get(`device/${this.id}/enable`).subscribe((res) => {
-        //     this.msg.success('启用');
-        //   });
-        // } else {
-        //   this.rs.get(`device/${this.id}/disable`).subscribe((res) => {
-        //     this.msg.success('禁用');
-        //   });
-        // }
+       
         const path = `${isIncludeAdmin()}/device/list`;
         this.router.navigateByUrl(path);
         this.msg.success('保存成功');

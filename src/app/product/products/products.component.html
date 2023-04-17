@@ -16,6 +16,7 @@
         <a (click)="handleExport()" download="filename" [href]="href">导出</a>
       </button>
 
+     
       <div *nzSpaceItem style="position: relative">
         <button *ngIf="uploading" nz-button nzType="primary" nzLoading>
           <span nz-icon nzType="poweroff"></span>
@@ -30,9 +31,10 @@
         <input
           *ngIf="!uploading"
           type="file"
+          id="file" 
           style="margin-top: 3px; width: 76px"
           (change)="handleImport($event)"
-        /> 
+        />
       </div>
       <button
         *nzSpaceItem

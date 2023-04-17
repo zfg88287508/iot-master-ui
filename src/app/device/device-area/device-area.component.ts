@@ -127,7 +127,7 @@
       this.router.navigateByUrl(path);
     }
     cancel() {
-      this.msg.info('click cancel');
+      this.msg.info('取消操作');
     }
   
     handleNew() {
