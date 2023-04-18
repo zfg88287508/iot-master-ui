@@ -3,6 +3,7 @@ import { RequestService } from "../../request.service";
 import { ActivatedRoute, RouterState, Router } from "@angular/router";
 import { isIncludeAdmin } from "../../../public";
 import { IMqttMessage, MqttService } from 'ngx-mqtt';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,6 +16,7 @@ export class DeviceDetailComponent {
   product: any = {}
 
   values: any = {}
+  propertyMqtt: Subscription | undefined;
 
   constructor(
     private rs: RequestService,
@@ -26,12 +28,15 @@ export class DeviceDetailComponent {
     this.load()
   }
 
+  ngOnDestroy(): void {
+    this.propertyMqtt?.unsubscribe();
+  }
   load() {
     this.rs.get(`device/${this.id}`).subscribe(res => {
       this.device = res.data;
       this.rs.get(`product/${this.device.product_id}`).subscribe(res => {
         this.product = res.data;
-        this.mqttService.observe(`up/property/${this.device.product_id}/${this.id}`).subscribe((message: IMqttMessage) => {
+        this.propertyMqtt = this.mqttService.observe(`up/property/${this.device.product_id}/${this.id}`).subscribe((message: IMqttMessage) => {
           const property = message.payload.toString();
           this.values = property;
         });
