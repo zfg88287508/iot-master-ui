@@ -33,8 +33,14 @@ import { NzNotificationModule } from "ng-zorro-antd/notification";
 import { authGuard } from "./auth.guard";
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { MqttModule } from 'ngx-mqtt';
 registerLocaleData(zh);
 
+const MQTT_SERVICE_OPTIONS: any = {
+  hostname: 'demo.iot-master.com',//mqtt服务器ip    
+  port: 8888,//mqtt服务器端口
+  path: '/mqtt',//此处填写访问路径
+};
 const pages: Routes = [
   {
     path: 'broker',
@@ -117,7 +123,8 @@ const routes: Routes = [
     NzModalModule,
     NzDrawerModule,
     NzIconModule,
-    NzDropDownModule
+    NzDropDownModule,
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent],
