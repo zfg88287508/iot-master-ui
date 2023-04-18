@@ -32,15 +32,17 @@ const internals: any[] = [{
     {name: '设备类型', path: '/device/type'},
     {name: '设备区域', path: '/device/area'}
   ]
-}, {
-  icon: '/assets/alarm.png',
-  nzIcon: 'bell',
-  name: '报警管理',
-  internal: true,
-  entries: [
-    {name: '报警记录', path: '/alarm/list'},
-  ]
-}, {
+},
+//  {
+//   icon: '/assets/alarm.png',
+//   nzIcon: 'bell',
+//   name: '报警管理',
+//   internal: true,
+//   entries: [
+//     {name: '报警记录', path: '/alarm/list'},
+//   ]
+// }, 
+{
   icon: '/assets/user.png',
   nzIcon: 'user',
   name: '用户管理',
