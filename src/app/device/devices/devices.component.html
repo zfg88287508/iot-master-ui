@@ -13,14 +13,11 @@
     </ng-template>
     <button nz-button nzType="primary" *nzSpaceItem class="btn">
       <span nz-icon nzType="cloud-download" nzTheme="outline"></span>
-      <a (click)="handleExport()" download="filename" [href]="href"
-        >导出</a
-      >
+      <a (click)="handleExport()" download="filename" [href]="href">导出</a>
     </button>
 
-     
-  <app-import *nzSpaceItem  [url]="'device/import'"></app-import>
-  
+    <app-import *nzSpaceItem [url]="'device/import'"></app-import>
+
     <button
       *nzSpaceItem
       nz-button
@@ -36,9 +33,15 @@
 <nz-table
   #basicTable
   [nzData]="datum"
-  [nzShowPagination]="false"
   [nzLoading]="loading"
   [nzScroll]="getTableHeight()"
+  nzShowPagination
+  nzShowSizeChanger
+  [nzTotal]="total"
+  (nzPageSizeChange)="pageSizeChange($event)"
+  (nzPageIndexChange)="pageIndexChange($event)"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
   (nzQueryParams)="onQuery($event)"
 >
   <thead>
@@ -56,7 +59,7 @@
       <th nzColumnKey="desc">说明</th>
       <th nzColumnKey="disabled">状态</th>
       <th nzColumnKey="created" [nzSortFn]="true">日期</th>
-       
+
       <th>操作</th>
     </tr>
   </thead>
@@ -75,16 +78,12 @@
       <td>{{ data.group_id }}</td>
       <td>{{ data.name }}</td>
       <td>{{ data.desc }}</td>
-      <td >
-        <nz-tag nzColor="success" *ngIf="data.disabled">
-         启用
-        </nz-tag>
-        <nz-tag nzColor="error" *ngIf="!data.disabled">
-          禁用
-        </nz-tag>
-        </td>
+      <td>
+        <nz-tag nzColor="success" *ngIf="data.disabled"> 启用 </nz-tag>
+        <nz-tag nzColor="error" *ngIf="!data.disabled"> 禁用 </nz-tag>
+      </td>
       <td>{{ data.created | date }}</td>
-       
+
       <td *ngIf="!ref">
         <a (click)="open(data.id)" title="详情">
           <i nz-icon nzType="eye"></i>
@@ -104,13 +103,9 @@
           <i nz-icon nzType="delete"></i>
         </a>
         <nz-divider nzType="vertical"></nz-divider>
-       
-        <a *ngIf="!data.disabled" (click)="disable(1,data.id)">
-         启用
-        </a>
-        <a   *ngIf="data.disabled" (click)="disable(0,data.id)">
-          禁用
-        </a>
+
+        <a *ngIf="!data.disabled" (click)="disable(1, data.id)"> 启用 </a>
+        <a *ngIf="data.disabled" (click)="disable(0, data.id)"> 禁用 </a>
       </td>
       <td *ngIf="ref">
         <a (click)="select(data.id)"> 选择 </a>
@@ -118,11 +113,3 @@
     </tr>
   </tbody>
 </nz-table>
-
-<app-custom-pagination
-  [pageIndex]="pageIndex"
-  [pageSize]="pageSize"
-  [total]="total"
-  (pageIndexChange)="pageIndexChange($event)"
-  (pageSizeChange)="pageSizeChange($event)"
-></app-custom-pagination>

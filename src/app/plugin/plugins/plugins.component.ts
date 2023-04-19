@@ -87,7 +87,7 @@ export class PluginsComponent {
         break;
       case 2:
         {
-          this.rs.get(`plugin/${id}/reload`).subscribe((res) => {
+          this.rs.get(`plugin/${id}/restart`).subscribe((res) => {
             this.reload();
           });
         }

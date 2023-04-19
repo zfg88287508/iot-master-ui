@@ -76,14 +76,14 @@ export class BrokersComponent {
     this.href = `/api/broker/export`;
   }
    
-  onQuery($event: NzTableQueryParams) {
+  onQuery($event: NzTableQueryParams) { 
     ParseTableQuery($event, this.query)
     this.load();
   }
   pageIndexChange(pageIndex: number) {
     console.log("pageIndex:", pageIndex)
   }
-  pageSizeChange(pageSize: number) {
+  pageSizeChange(pageSize: number) {  
     this.query.limit = pageSize;
     this.load();
   }

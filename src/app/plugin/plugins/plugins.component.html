@@ -29,12 +29,17 @@
 
 <nz-table
   #basicTable
-  [nzData]="datum"
-  [nzShowPagination]="false"
-  [nzLoading]="loading"
-  
+  [nzData]="datum" 
+  [nzLoading]="loading" 
   [nzScroll]="getTableHeight()"
-  (nzQueryParams)="onQuery($event)"
+  nzShowPagination
+  nzShowSizeChanger
+  [nzTotal]="total"
+  (nzPageSizeChange)="pageSizeChange($event)"
+  (nzPageIndexChange)="pageIndexChange($event)"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzQueryParams)="onQuery($event)" 
 >
   <thead>
     <tr>
@@ -102,10 +107,4 @@
   </tbody>
 </nz-table>
 
-<app-custom-pagination
-  [pageIndex]="pageIndex"
-  [pageSize]="pageSize"
-  [total]="total"
-  (pageIndexChange)="pageIndexChange($event)"
-  (pageSizeChange)="pageSizeChange($event)"
-></app-custom-pagination>
+ 

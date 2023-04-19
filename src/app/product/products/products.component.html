@@ -10,14 +10,14 @@
         <i nz-icon nzType="plus"></i>
         创建产品
       </button>
-     
+
       <button nz-button nzType="primary" *nzSpaceItem class="btn">
         <span nz-icon nzType="cloud-download" nzTheme="outline"></span>
         <a (click)="handleExport()" download="filename" [href]="href">导出</a>
       </button>
 
-      <app-import *nzSpaceItem  [url]="'product/import'"></app-import>
-     
+      <app-import *nzSpaceItem [url]="'product/import'"></app-import>
+
       <button
         *nzSpaceItem
         nz-button
@@ -34,9 +34,15 @@
 <nz-table
   #basicTable
   [nzData]="datum"
-  [nzShowPagination]="false"
   [nzLoading]="loading"
   [nzScroll]="getTableHeight()"
+  nzShowPagination
+  nzShowSizeChanger
+  [nzTotal]="total"
+  (nzPageSizeChange)="pageSizeChange($event)"
+  (nzPageIndexChange)="pageIndexChange($event)"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
   (nzQueryParams)="onQuery($event)"
 >
   <thead>
@@ -87,11 +93,3 @@
     </tr>
   </tbody>
 </nz-table>
-
-<app-custom-pagination
-  [pageIndex]="pageIndex"
-  [pageSize]="pageSize"
-  [total]="total"
-  (pageIndexChange)="pageIndexChange($event)"
-  (pageSizeChange)="pageSizeChange($event)"
-></app-custom-pagination>
