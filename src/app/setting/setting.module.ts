@@ -21,6 +21,9 @@ import { MqttComponent } from './mqtt/mqtt.component';
 import { OemComponent } from './oem/oem.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { BaseModule } from '../base/base.module';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzTableModule } from 'ng-zorro-antd/table';
 @NgModule({
   declarations: [
     DatabaseComponent,
@@ -37,6 +40,9 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
     NzLayoutModule,
     NzMenuModule,
     NzUploadModule,
+    NzSpaceModule,
+    BaseModule,
+    NzTableModule,
     NzIconModule,
     NzCardModule,
     NzFormModule,

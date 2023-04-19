@@ -16,26 +16,8 @@
         <a (click)="handleExport()" download="filename" [href]="href">导出</a>
       </button>
 
+      <app-import *nzSpaceItem  [url]="'product/import'"></app-import>
      
-      <div *nzSpaceItem style="position: relative">
-        <button *ngIf="uploading" nz-button nzType="primary" nzLoading>
-          <span nz-icon nzType="poweroff"></span>
-          文件上传中
-        </button>
-        <label *ngIf="!uploading" for="file" style="position: absolute">
-          <div class="fileButton">
-            <span nz-icon nzType="cloud-upload" nzTheme="outline"></span>
-            导入
-          </div>
-        </label>
-        <input
-          *ngIf="!uploading"
-          type="file"
-          id="file" 
-          style="margin-top: 3px; width: 76px"
-          (change)="handleImport($event)"
-        />
-      </div>
       <button
         *nzSpaceItem
         nz-button

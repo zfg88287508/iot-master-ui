@@ -15,7 +15,8 @@
         >导出</a
       >
     </button>
-    <div *nzSpaceItem style="position: relative">
+    <app-import *nzSpaceItem  [url]="'broker/import'"></app-import>
+    <!-- <div *nzSpaceItem style="position: relative">
       <button *ngIf="uploading" nz-button nzType="primary" nzLoading>
         <span nz-icon nzType="poweroff"></span>
         文件上传中
@@ -33,7 +34,7 @@
         style="margin-top: 3px; width: 76px"
         (change)="handleImport($event)"
       />
-    </div>
+    </div> -->
     <button *nzSpaceItem nz-button nzType="primary" nzDanger (click)="handleBatchDel()">批量删除</button>
   </nz-space>
 </app-toolbar>

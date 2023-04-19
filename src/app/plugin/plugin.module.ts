@@ -19,7 +19,7 @@ import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import { PluginDetailComponent } from './plugin-detail/plugin-detail.component';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
-
+import { NzTagModule } from 'ng-zorro-antd/tag';
 @NgModule({
   declarations: [
     PluginsComponent,
@@ -35,6 +35,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NzCardModule,
     NzFormModule,
     NzPopconfirmModule,
+    NzTagModule ,
     ReactiveFormsModule,
     NzInputModule,
     NzInputNumberModule,

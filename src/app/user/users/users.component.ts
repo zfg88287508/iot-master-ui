@@ -77,12 +77,7 @@ export class UsersComponent {
   handleExport(){
     this.href = `/api/user/export`;  
   }
-  handleImport(e: any) { 
-    const file: File = e.target.files[0];
-    const formData = new FormData();
-    formData.append('file', file)
-     this.rs.post(`user/import`,formData).subscribe((res)=>{console.log(res )}) 
-  }
+   
   onQuery($event: NzTableQueryParams) {
     ParseTableQuery($event, this.query);
     this.load();

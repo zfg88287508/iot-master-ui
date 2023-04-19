@@ -84,7 +84,7 @@ const internals: any[] = [{
     {name: '日志', path: '/setting/log'},
     {name: 'OEM', path: '/setting/oem'},
     {name: 'MQTT', path: '/setting/mqtt'},
-    //{name: '备份', path: '/setting/backup'},
+     {name: '页面备份', path: '/setting/backup'},
     //{name: '重启', path: '/setting/reboot'},
   ]
 }];

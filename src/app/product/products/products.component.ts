@@ -113,13 +113,7 @@ export class ProductsComponent {
   handleExport() {
     this.href = `/api/product/export`; 
   }
-   
-  handleImport(e: any) {  
-     const file: File = e.target.files[0];
-    const formData = new FormData();
-    formData.append('file', file)
-     this.rs.post(`product/import`,formData).subscribe((res)=>{console.log(res )}) 
-   }
+  
   getTableHeight() {
     return tableHeight(this);
   }

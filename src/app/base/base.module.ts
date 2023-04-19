@@ -19,6 +19,7 @@ import { SearchBoxComponent } from './search-box/search-box.component';
 import { DatePipe } from "./date.pipe";
 import { CustomPaginationComponent } from './custom-pagination/custom-pagination.component';
 import { EditTableComponent } from './edit-table/edit-table.component';
+import { ImportComponent } from './import/import.component';
 @NgModule({
   declarations: [
     DatePipe,
@@ -27,6 +28,7 @@ import { EditTableComponent } from './edit-table/edit-table.component';
     SearchBoxComponent,
     CustomPaginationComponent,
     EditTableComponent,
+    ImportComponent,
   ],
   exports: [
     DatePipe,
@@ -35,6 +37,7 @@ import { EditTableComponent } from './edit-table/edit-table.component';
     SearchBoxComponent,
     CustomPaginationComponent,
     EditTableComponent,
+    ImportComponent,
   ],
   imports: [
     CommonModule,

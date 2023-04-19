@@ -41,6 +41,9 @@ export class PluginEditComponent implements OnInit {
       id: [obj.id || '', []],
       name: [obj.name || '', [Validators.required]],
       version: [obj.version || '', []],
+      username: [obj.username || '', []],
+      password: [obj.password || '', []],
+      external: [obj.external || '', []],
       command: [obj.command || '', []],
       dependencies: [obj.dependencies || {}, []],
     })
